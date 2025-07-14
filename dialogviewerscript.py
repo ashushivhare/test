@@ -784,7 +784,7 @@ def category_item(category, item):
 def export_to_ccai(category, item):
     # Get the dialog data
     if not DIALOGFLOW_AVAILABLE:
-        return "Google Dialogflow CX library not installed. Please run 'pip install google-cloud-dialogflow-cx'", 400
+        return render_template("export_error.html", error="Google Dialogflow CX library not installed. Please run 'pip install google-cloud-dialogflow-cx'")
         
     Data = dialog_viewer(item)
     
@@ -793,7 +793,7 @@ def export_to_ccai(category, item):
     selected_dialogs = request.form.getlist('selected_dialogs') 
     
     if not selected_dialogs:
-        return "No dialogs selected for migration", 400
+        return render_template("export_error.html", error="No dialogs selected for migration")
     
     # Filter the data to only include selected dialogs
     filtered_data = []
@@ -803,23 +803,31 @@ def export_to_ccai(category, item):
     
     # Configure Google CCAI parameters
     # These should be set by the user or stored in configuration
-    project_id = "your-project-id"  # Replace with actual project ID
-    location = "us-central1"        # Replace with actual location
-    agent_id = "your-agent-id"      # Replace with actual agent ID
+    # Use default values for now, these can be configured in a real deployment
+    project_id = "test-project-id"
+    location = "us-central1"
+    agent_id = "test-agent-id"
     
     # Convert to CCAI format
     ccai_data = []
     for dialog in filtered_data:
-        ccai_flow = create_ccai_flow(dialog, project_id, location, agent_id)
-        ccai_data.append(ccai_flow)
+        try:
+            ccai_flow = create_ccai_flow(dialog, project_id, location, agent_id)
+            ccai_data.append(ccai_flow)
+        except Exception as e:
+            print(f"Error converting dialog {dialog.get('title')}: {e}")
+            return render_template("export_error.html", error=f"Error converting dialog {dialog.get('title')}: {e}")
     
     # Save the CCAI data to a file
     os.makedirs("static/ccai_exports", exist_ok=True)
     filename = f"{item}_ccai_export.json"
     file_path = os.path.join("static/ccai_exports", filename)
     
-    with open(file_path, 'w') as f:
-        json.dump(ccai_data, f, indent=2)
+    try:
+        with open(file_path, 'w') as f:
+            json.dump(ccai_data, f, indent=2)
+    except Exception as e:
+        return render_template("export_error.html", error=f"Error saving export file: {e}")
     
     return render_template("export_success.html", item=item, filename=filename)
 
