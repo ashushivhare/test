@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .success-message {
+            padding: 15px;
+            background-color: #dff0d8;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .download-link {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .download-link:hover {
+            background-color: #45a049;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #337ab7;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Export Successful</h1>
+        
+        <div class="success-message">
+            <p>The dialog "{{ item }}" has been successfully exported to Google CCAI format.</p>
+        </div>
+        
+        <p>You can download the exported file:</p>
+        <a href="{{ url_for('static', filename='ccai_exports/' + filename) }}" class="download-link" download>Download CCAI Export</a>
+        
+        <p>
+            <a href="{{ url_for('home') }}" class="back-link">← Back to Home</a>
+        </p>
+    </div>
+</body>
+</html>
