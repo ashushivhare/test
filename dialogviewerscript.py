@@ -8,7 +8,13 @@ import re
 import os
 import json
 import uuid
-from google.cloud import dialogflow_cx_v3
+# Import Google Dialogflow CX library - will be imported only if available
+try:
+    from google.cloud import dialogflow_cx_v3
+    DIALOGFLOW_AVAILABLE = True
+except ImportError:
+    DIALOGFLOW_AVAILABLE = False
+    print("Warning: Google Dialogflow CX library not available. Migration features will be disabled.")
 from google.oauth2 import service_account
 
 app = Flask(__name__)
@@ -16,6 +22,9 @@ app = Flask(__name__)
 # Google CCAI Configuration
 def get_google_credentials():
     try:
+        if not DIALOGFLOW_AVAILABLE:
+            return None
+            
         # Check if credentials file exists
         if os.path.exists('google_credentials.json'):
             credentials = service_account.Credentials.from_service_account_file(
@@ -29,6 +38,9 @@ def get_google_credentials():
 
 def create_ccai_flow(dialog_data, project_id, location, agent_id):
     """Convert Watson dialog to Google CCAI flow format"""
+    if not DIALOGFLOW_AVAILABLE:
+        return {"error": "Google Dialogflow CX library not installed. Please run 'pip install google-cloud-dialogflow-cx'"}
+        
     credentials = get_google_credentials()
     if not credentials:
         return {"error": "Google credentials not found"}
@@ -771,6 +783,9 @@ def category_item(category, item):
 @app.route("/export_to_ccai/<category>/<item>", methods=["POST"])
 def export_to_ccai(category, item):
     # Get the dialog data
+    if not DIALOGFLOW_AVAILABLE:
+        return "Google Dialogflow CX library not installed. Please run 'pip install google-cloud-dialogflow-cx'", 400
+        
     Data = dialog_viewer(item)
     
     # Get selected dialogs to migrate
