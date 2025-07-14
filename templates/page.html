@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .export-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .export-button:hover {
+            background-color: #45a049;
+        }
+        .checkbox-container {
+            margin: 10px 0;
+        }
+        .checkbox-container label {
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -49,6 +69,27 @@
 
     <!-- Right Side: PDF Viewer -->
     <section class="pdf-container">
+        {% if pdfs %}
+        <div class="migration-controls">
+            <h2>Migrate to Google CCAI</h2>
+            <form action="{{ url_for('export_to_ccai', category=category, item=selected_item) }}" method="post">
+                <div class="checkbox-container">
+                    <h3>Select dialogs to migrate:</h3>
+                    {% for pdf in pdfs %}
+                        <div>
+                            <input type="checkbox" id="dialog-{{ pdf.split('/')[-1] | replace('.pdf', '') }}" 
+                                   name="selected_dialogs" value="{{ pdf.split('/')[-1] | replace('.pdf', '') }}">
+                            <label for="dialog-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">
+                                {{ pdf.split('/')[-1] | replace('.pdf', '') }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button type="submit" class="export-button">Export to Google CCAI</button>
+            </form>
+        </div>
+        {% endif %}
+        
         {% for pdf in pdfs %}
             <h3 id="pdf-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">{{ pdf.split('/')[-1] | replace('.pdf', '') }}</h3>
             <iframe src="{{ url_for('static', filename=pdf) }}" class="pdf-frame"></iframe>

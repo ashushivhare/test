@@ -1,11 +1,102 @@
 from flask import Flask, render_template, request
+from flask import jsonify, redirect, url_for
 import threading
 import tkinter as tk
 from tkinter import Canvas
 from graphviz import Digraph
 import re
 import os
+import json
+import uuid
+from google.cloud import dialogflow_cx_v3
+from google.oauth2 import service_account
+
 app = Flask(__name__)
+
+# Google CCAI Configuration
+def get_google_credentials():
+    try:
+        # Check if credentials file exists
+        if os.path.exists('google_credentials.json'):
+            credentials = service_account.Credentials.from_service_account_file(
+                'google_credentials.json')
+            return credentials
+        else:
+            return None
+    except Exception as e:
+        print(f"Error loading Google credentials: {e}")
+        return None
+
+def create_ccai_flow(dialog_data, project_id, location, agent_id):
+    """Convert Watson dialog to Google CCAI flow format"""
+    credentials = get_google_credentials()
+    if not credentials:
+        return {"error": "Google credentials not found"}
+    
+    try:
+        # Create Dialogflow CX client
+        client = dialogflow_cx_v3.FlowsClient(credentials=credentials)
+        
+        # Create a new flow
+        parent = f"projects/{project_id}/locations/{location}/agents/{agent_id}"
+        flow = dialogflow_cx_v3.Flow()
+        flow.display_name = dialog_data.get('title', 'Imported Watson Dialog')
+        flow.description = f"Imported from Watson Assistant: {dialog_data.get('title', '')}"
+        
+        # Create pages for each dialog node
+        pages = []
+        routes = []
+        
+        # Process dialog nodes
+        for key, value in dialog_data.items():
+            if 'title' in key and not key == 'title':
+                # Create a page for this dialog node
+                page_id = str(uuid.uuid4())
+                page = {
+                    "id": page_id,
+                    "display_name": value,
+                    "entry_fulfillment": {
+                        "messages": []
+                    }
+                }
+                
+                # Find associated dialog text
+                dialog_key = key.replace('title', 'dialog')
+                if dialog_key in dialog_data and dialog_data[dialog_key]:
+                    page["entry_fulfillment"]["messages"].append({
+                        "text": {
+                            "text": [dialog_data[dialog_key]]
+                        }
+                    })
+                
+                pages.append(page)
+                
+                # Create routes
+                jump_key = key.replace('title', 'jump')
+                if jump_key in dialog_data and dialog_data[jump_key]:
+                    # This is a jump to another node
+                    routes.append({
+                        "source": page_id,
+                        "target": dialog_data[jump_key],
+                        "condition": "true"
+                    })
+        
+        # Create the CCAI export format
+        ccai_export = {
+            "flow": {
+                "name": f"projects/{project_id}/locations/{location}/agents/{agent_id}/flows/{str(uuid.uuid4())}",
+                "display_name": dialog_data.get('title', 'Imported Watson Dialog'),
+                "description": f"Imported from Watson Assistant: {dialog_data.get('title', '')}",
+                "pages": pages,
+                "routes": routes
+            }
+        }
+        
+        return ccai_export
+    
+    except Exception as e:
+        print(f"Error creating CCAI flow: {e}")
+        return {"error": str(e)}
 
 # Function to draw the Data Flow Diagram
 def dialog_viewer(selected_item):
@@ -675,7 +766,46 @@ def category_item(category, item):
         dfd_files=draw_dfd(Data,output_dir,dfd_files)
         
             
-    return render_template("page.html", title=category, menu_data=menu_data, pdfs=dfd_files, selected_item=item)
+    return render_template("page.html", title=category, menu_data=menu_data, pdfs=dfd_files, selected_item=item, category=category)
+
+@app.route("/export_to_ccai/<category>/<item>", methods=["POST"])
+def export_to_ccai(category, item):
+    # Get the dialog data
+    Data = dialog_viewer(item)
+    
+    # Get selected dialogs to migrate
+    selected_dialogs = request.form.getlist('selected_dialogs')
+    
+    if not selected_dialogs:
+        return "No dialogs selected for migration", 400
+    
+    # Filter the data to only include selected dialogs
+    filtered_data = []
+    for dialog in Data:
+        if dialog.get('title') in selected_dialogs:
+            filtered_data.append(dialog)
+    
+    # Configure Google CCAI parameters
+    # These should be set by the user or stored in configuration
+    project_id = "your-project-id"  # Replace with actual project ID
+    location = "us-central1"        # Replace with actual location
+    agent_id = "your-agent-id"      # Replace with actual agent ID
+    
+    # Convert to CCAI format
+    ccai_data = []
+    for dialog in filtered_data:
+        ccai_flow = create_ccai_flow(dialog, project_id, location, agent_id)
+        ccai_data.append(ccai_flow)
+    
+    # Save the CCAI data to a file
+    os.makedirs("static/ccai_exports", exist_ok=True)
+    filename = f"{item}_ccai_export.json"
+    file_path = os.path.join("static/ccai_exports", filename)
+    
+    with open(file_path, 'w') as f:
+        json.dump(ccai_data, f, indent=2)
+    
+    return render_template("export_success.html", item=item, filename=filename)
 
 
 if __name__ == "__main__":
