@@ -10,6 +10,10 @@ import os
 import json
 import uuid
 
+# Add print statements for debugging
+def debug_print(message):
+    print(f"DEBUG: {message}")
+
 # Configure logging
 logging.basicConfig(
     level=logging.DEBUG,
@@ -37,34 +41,41 @@ app = Flask(__name__)
 def get_google_credentials():
     try:
         if not DIALOGFLOW_AVAILABLE:
+            debug_print("Dialogflow not available, skipping credentials check")
             logger.warning("Dialogflow not available, skipping credentials check")
             return None
             
         # Check if credentials file exists
         if os.path.exists('google_credentials.json'):
+            debug_print("Found google_credentials.json file")
             logger.info("Found google_credentials.json file")
             credentials = service_account.Credentials.from_service_account_file(
                 'google_credentials.json')
             return credentials
         else:
+            debug_print("google_credentials.json file not found")
             logger.error("google_credentials.json file not found")
             return None
     except Exception as e:
+        debug_print(f"Error loading Google credentials: {str(e)}")
         logger.error(f"Error loading Google credentials: {e}")
         return None
 
 def create_ccai_flow(dialog_data, project_id, location, agent_id):
     """Convert Watson dialog to Google CCAI flow format"""
     if not DIALOGFLOW_AVAILABLE:
+        debug_print("Attempted to create CCAI flow but Dialogflow library not installed")
         logger.error("Attempted to create CCAI flow but Dialogflow library not installed")
         return {"error": "Google Dialogflow CX library not installed. Please run 'pip install google-cloud-dialogflow-cx'"}
         
     credentials = get_google_credentials()
     if not credentials:
+        debug_print("No Google credentials available")
         logger.error("No Google credentials available")
         return {"error": "Google credentials not found"}
     
     try:
+        debug_print(f"Creating CCAI flow for dialog: {dialog_data.get('title', 'Unknown')}")
         logger.info(f"Creating CCAI flow for dialog: {dialog_data.get('title', 'Unknown')}")
         # Create Dialogflow CX client
         client = dialogflow_cx_v3.FlowsClient(credentials=credentials)
@@ -78,11 +89,13 @@ def create_ccai_flow(dialog_data, project_id, location, agent_id):
         # Create pages for each dialog node
         pages = []
         routes = []
+        debug_print(f"Processing {len(dialog_data)} dialog nodes")
         logger.debug(f"Processing {len(dialog_data)} dialog nodes")
         
         # Process dialog nodes
         for key, value in dialog_data.items():
             if 'title' in key and not key == 'title':
+                debug_print(f"Processing dialog node: {key} = {value}")
                 logger.debug(f"Processing dialog node: {key} = {value}")
                 # Create a page for this dialog node
                 page_id = str(uuid.uuid4())
@@ -97,6 +110,7 @@ def create_ccai_flow(dialog_data, project_id, location, agent_id):
                 # Find associated dialog text
                 dialog_key = key.replace('title', 'dialog')
                 if dialog_key in dialog_data and dialog_data[dialog_key]:
+                    debug_print(f"Found dialog text for {key}")
                     logger.debug(f"Found dialog text for {key}")
                     page["entry_fulfillment"]["messages"].append({
                         "text": {
@@ -109,6 +123,7 @@ def create_ccai_flow(dialog_data, project_id, location, agent_id):
                 # Create routes
                 jump_key = key.replace('title', 'jump')
                 if jump_key in dialog_data and dialog_data[jump_key]:
+                    debug_print(f"Found jump for {key} to {dialog_data[jump_key]}")
                     logger.debug(f"Found jump for {key} to {dialog_data[jump_key]}")
                     # This is a jump to another node
                     routes.append({
@@ -131,10 +146,12 @@ def create_ccai_flow(dialog_data, project_id, location, agent_id):
         return ccai_export
     except Exception as e:
         logger.error(f"Error creating CCAI flow: {e}", exc_info=True)
+        debug_print(f"Error creating CCAI flow: {str(e)}")
         return {"error": str(e)}
 
 # Function to draw the Data Flow Diagram
 def dialog_viewer(selected_item):
+        debug_print(f"Loading dialog for: {selected_item}")
         logger.info(f"Loading dialog for: {selected_item}")
         from ibm_watson import AssistantV1
         from ibm_watson import AssistantV2
@@ -143,6 +160,7 @@ def dialog_viewer(selected_item):
         # V2 libraries can't see old V1 libraries
         authenticator = IAMAuthenticator('qpLmPC9InrkehNB3dYCJFpD4Q0f8eHUjJf1c0JF94mP-')
 
+        debug_print("Initializing Watson Assistant")
         logger.debug("Initializing Watson Assistant")
         assistant = AssistantV1(
             version='2021-06-14',
@@ -164,6 +182,7 @@ def dialog_viewer(selected_item):
             '''
             This function is used to download a skill by workspace_id.
             '''
+            debug_print(f"Downloading workspace: {workspace_name}")
             logger.debug(f"Downloading workspace: {workspace_name}")
             response = assistant.list_workspaces(sort='name').get_result()
             workspaces = response['workspaces']
@@ -178,6 +197,7 @@ def dialog_viewer(selected_item):
         #download all skills for premierlist
         Skill_list=[]
         for name in Premier_workspace_list:
+            debug_print(f"Downloading skill: {name}")
             logger.info(f"Downloading skill: {name}")
             response=download_a_workspace(assistant,name)
             skill={'name':name,'response':response}
@@ -435,6 +455,7 @@ def getnode(rootkey,obj):
 def draw_dfd(map_obj,output_dir,dfd_files):
             DFD_list=[]
             for obj in map_obj:
+                debug_print(f"Drawing DFD for: {obj.get('title', 'Unknown')}")
                 logger.info(f"Drawing DFD for: {obj.get('title', 'Unknown')}")
                 try:
                 #if(selected_item == obj['title']):
@@ -764,9 +785,11 @@ def draw_dfd(map_obj,output_dir,dfd_files):
                     file_path = os.path.join(output_dir, filename)
                     dfd.render(file_path, format="pdf", cleanup=False)
                     DFD_list.append(dfd)
+                    debug_print(f"Generated PDF: {filename}.pdf")
                     logger.debug(f"Generated PDF: {filename}.pdf")
                     dfd_files.append(f"pdfs/{filename}.pdf")
                 except Exception as e:
+                    debug_print(f"⚠️ Error processing object '{obj.get('title', 'Unknown')}': {str(e)}")
                     logger.error(f"⚠️ Error processing object '{obj.get('title', 'Unknown')}': {e}", exc_info=True)
                     continue  # Skip this object and continue with the next one
             return  dfd_files
@@ -792,13 +815,16 @@ menu_data = {
 
 @app.route("/")
 def home():
+    debug_print("Home page accessed")
     logger.info("Home page accessed")
     return render_template("page.html", title="Home", menu_data=menu_data, pdfs=[], selected_item="")
 
 @app.route("/<category>/<item>")
 def category_item(category, item):
+    debug_print(f"Category page accessed: {category}/{item}")
     logger.info(f"Category page accessed: {category}/{item}")
     if category not in menu_data:
+        debug_print(f"Invalid category: {category}")
         logger.warning(f"Invalid category: {category}")
         return "Page Not Found", 404
     else:
@@ -815,19 +841,24 @@ def category_item(category, item):
 def export_to_ccai(category, item):
     # Get the dialog data
     logger.info(f"Export to CCAI requested for {category}/{item}")
+    debug_print(f"Starting export to CCAI for {category}/{item}")
     if not DIALOGFLOW_AVAILABLE:
         logger.error("Export failed: Dialogflow CX library not installed")
+        debug_print("Export failed: Dialogflow CX library not installed")
         return render_template("export_error.html", error="Google Dialogflow CX library not installed. Please run 'pip install google-cloud-dialogflow-cx'")
         
     Data = dialog_viewer(item)
+    debug_print(f"Retrieved {len(Data)} dialog items")
     
     # Get selected dialogs to migrate
     # Get selected dialogs from the sidebar checkboxes
     selected_dialogs = request.form.getlist('selected_dialogs') 
     logger.info(f"Selected dialogs for migration: {selected_dialogs}")
+    debug_print(f"Selected dialogs for migration: {selected_dialogs}")
     
     if not selected_dialogs:
         logger.warning("No dialogs selected for migration")
+        debug_print("No dialogs selected for migration")
         return render_template("export_error.html", error="No dialogs selected for migration")
     
     # Filter the data to only include selected dialogs
@@ -835,11 +866,13 @@ def export_to_ccai(category, item):
     for dialog in Data:
         if dialog.get('title') in selected_dialogs:
             filtered_data.append(dialog)
+    debug_print(f"Filtered to {len(filtered_data)} selected dialogs")
     
     # Configure Google CCAI parameters
     # These should be set by the user or stored in configuration
     # Use default values for now, these can be configured in a real deployment
     logger.debug("Using default CCAI parameters")
+    debug_print("Using default CCAI parameters")
     project_id = "test-project-id"
     location = "us-central1"
     agent_id = "test-agent-id"
@@ -848,11 +881,13 @@ def export_to_ccai(category, item):
     ccai_data = []
     for dialog in filtered_data:
         logger.info(f"Converting dialog to CCAI format: {dialog.get('title')}")
+        debug_print(f"Converting dialog to CCAI format: {dialog.get('title')}")
         try:
             ccai_flow = create_ccai_flow(dialog, project_id, location, agent_id)
             ccai_data.append(ccai_flow)
         except Exception as e:
             logger.error(f"Error converting dialog {dialog.get('title')}: {e}", exc_info=True)
+            debug_print(f"Error converting dialog {dialog.get('title')}: {str(e)}")
             return render_template("export_error.html", error=f"Error converting dialog {dialog.get('title')}: {e}")
     
     # Save the CCAI data to a file
@@ -861,18 +896,22 @@ def export_to_ccai(category, item):
     file_path = os.path.join("static/ccai_exports", filename)
     
     logger.info(f"Saving CCAI export to {file_path}")
+    debug_print(f"Saving CCAI export to {file_path}")
     try:
         with open(file_path, 'w') as f:
             json.dump(ccai_data, f, indent=2)
     except Exception as e:
         logger.error(f"Error saving export file: {e}", exc_info=True)
+        debug_print(f"Error saving export file: {str(e)}")
         return render_template("export_error.html", error=f"Error saving export file: {e}")
     
     logger.info(f"Export successful for {item}")
+    debug_print(f"Export successful for {item}")
     return render_template("export_success.html", item=item, filename=filename)
 
 
 if __name__ == "__main__":
+    debug_print("Starting Flask application")
     logger.info("Starting Flask application")
     app.run(debug=True)
 
