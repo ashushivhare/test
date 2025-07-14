@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Equipment Device Trouble" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Equipment_Device_Trouble" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you with that!<br><div><ol><li>Go to <a href=\"https://www.att.com/support/wireless/\" target=\"_blank\"><b>Fix My Wireless</b></a>. Sign in, if asked.</li><li>Select the phone number you want to troubleshoot.</li><li>Scroll to Fix my Wireless and select <b>Phone Calls</b> under <b>Connection</b>.</li><li>Answer the questions to troubleshoot the problem.</li></ol></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

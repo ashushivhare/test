@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="forgot username" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#forgot_username || @forgotpassword:(Retrieve my User Name)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Did you know that your Business Center login ID is your email address?<br>
+If you don't recall the email address used, please visit link <a href=\"https://businesscenter.att.com/ebiz/registration/home.jsp#/forgotPassword\" target=\"_blank\"><b>here</b></a>[MSG_LINE_BR~05000]Can I help you with anything else today?<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Yes\">Yes</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"No\">No</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

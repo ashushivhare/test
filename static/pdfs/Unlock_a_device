@@ -1,0 +1,18 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Unlock a device" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#unlock_device_support_oos && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label="I got what I needed" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Get Business phone number" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="Our phone support agents can help 24/7! Please call <b>800.331.0500</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="You can find step-by-step instructions for how to unlock your phone <a href=\"https://www.att.com/deviceunlock\" target=\"_blank\"><b>here.</b></a><br></br>To unlock your device, You’ll need the device’s IMEI number. To find the IMEI number, enter <b>*#06#</b> on your device’s phone keypad, and then tap the call icon. We can unlock only devices that work on the AT&T network. Some unlocked phones may not work with other providers.[MSG_LINE_BR~05000]If you’ve already requested to unlock your device, you can <a href=\"https://www.att.com/deviceunlock/#/status\" target=\"_blank\"><b>check your unlock status here.</b></a> You’ll need your device’s IMEI number and the unlock request number that we sent by email.<br></br>For questions about unlocking your device, please read <a href=\"https://www.att.com/esupport/article.html#!/wireless/KM1008728?gsi=qqh8bg\" target=\"_blank\"><b>Unlock a Device</b></a>.[MSG_LINE_BR~05000]We appreciate a lot of reasons can hinder success here and talking to an expert may be best.[MSG_LINE_BR~05000] What can I help you with next:<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Get Business phone number\">Get Business phone number</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\">I got what I needed </a></li></ul></div><br>I would like more info on…" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2dialog -> _level1child2waFlags
+}

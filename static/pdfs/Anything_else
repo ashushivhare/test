@@ -1,0 +1,20 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Anything else" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=anything_else fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Anything else 2" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeoption1 [label="$waSession && $waSession.retryCount && $waSession.retryCount == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodetext2 [label="I’m sorry, I couldn’t understand your question. Would you mind rephrasing in simpler terms?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeoption3 [label="(intents.size()>0 && intents[0].confidence > 0.5)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend3 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1nodeoption1
+	_level1child1nodeoption1 -> _level1child1nodeend1 [label="Jump To"]
+	_level1child1title -> _level1child1nodetext2
+	_level1child1title -> _level1child1nodeoption3
+	_level1child1nodeoption3 -> _level1child1nodeend3 [label="Jump To"]
+}

@@ -1,0 +1,20 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Website hard to navigate" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Website_Difficult_To_Navigate" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="The next best thing to do is to call and talk with one of our live support agents. You can reach them at  <b>1.800.574.7000</b>. They’ll be happy to help![MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="In hours" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	root_dialog1 -> root_jump1 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

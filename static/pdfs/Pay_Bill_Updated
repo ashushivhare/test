@@ -1,0 +1,72 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Pay Bill Updated" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#pay_bill" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label="I have another question" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="What else can I help with?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2title [label="Negative- Whisbi" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2nodetext1 [label="I’m sorry, our live agents are available only after logging into your online portal. I am happy to assist you here now with questions and direct you to the portal for login.<br>
+You can type a question or click on a popular topic:<br>
+<div><ul><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"What portal do I log into?\">What portal do I log into?</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Reset my FAN PIN\">Reset my FAN PIN</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Learn about FAN PINs\">Learn about FAN PINs</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Pay my bill without logging in\">Pay my bill without logging in</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"What is my balance due?\">What is my balance due?</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Purchase a device\">Purchase a device</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Prepaid support\">Prepaid support</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2nodeoption2 [label="$waSession.isauthenticated" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2nodeend2 [label="Transfer To Live Agent Wireless Intents " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child1title [label="options- What portal do I log into" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1jump [label="Am I In Right Place" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label=Negative fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext1 [label="I’m sorry that I couldn’t help with processing your payment today. I’m continually learning how to help you better. Unfortunately, our live agents aren't available over chat to help with what you're asking. You can reach them 24/7!<br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption2 [label="$waSession.isauthenticated" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodeend2 [label="Transfer To Live Agent Wireless Intents " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3nodeoption3 [label="(now().reformatDateTime( 'u' ) == \"6\" OR now().reformatDateTime( 'u' ) == \"7\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext3 [label="I’m sorry to hear that. I can give you the phone number to contact our Support team. They’re available 24/7!<br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption4 [label="now().before('8:00:00') || now().after('22:00:00')" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext4 [label="I’m sorry to hear that. I can give you the phone number to contact our Support team. They’re available 24/7!<br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child1waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child2nodetext1 [label="Thank you for your feedback, and thank you for your patience. Please call Support at <b>800.331.0500</b>.<br></br>For help with a new purchase, please contact <b>855.328.9612</b>.<br></br>If you need help because your phone can’t make calls, click <a href=\"https://www.att.com/support/smallbusiness/wireless/\" target=\"_blank\">here</a> and log in to troubleshoot your actual device online.<br></br>Whenever you need help, feel free to come back and chat. I’m here 24/7.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child2nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3_level2child2nodeoption2 [label="$waSession.noPhoneSupport" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child2nodetext2 [label="Thank you for your feedback, and thank you for your patience. Please call Support 24/7 at <b>800.331.0500</b>.<br></br>For help with a new purchase, please contact <b>855.328.9612</b>. <br></br>If you need help because your phone can’t make calls, click <a href=\"https://www.att.com/support/smallbusiness/wireless/\" target=\"_blank\">here</a> and log in to troubleshoot your actual device online.<br></br>Whenever you need help, feel free to come back and chat. I’m here 24/7.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child2nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Yes - Positive" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4nodetext1 [label="It's been a pleasure assisting you today to process your payment successfully. <br></br> If you are a new customer or if you want to know how you can get things done, you might find answers to your questions <a href=\"https://www.att.com/support/smallbusiness/\">here</a>.<br></br>Thank you for choosing AT&T and we appreciate your business." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child4nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeoption2 [label="$waReporting.transferToPhoneAgent" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodetext2 [label="Thank you very much for your feedback and I appreciate your patience with resolving this issue. Our call center specialist will help you process your payment. When you need us, just ask, anytime. I’m here 24x7 to help answer your questions. <br></br> If you are a new customer or if you want to know how you can get things done, you might find answers to your questions <a href=\"https://www.att.com/support/smallbusiness/\">here</a>.<br></br> Thank you for choosing AT&T and we appreciate your business." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child4nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I can help you pay your bill without logging in. To get started, Go  <a href=\"https://www.att.com/acctmgmt/fastpay\" target='_blank'>here</a> and enter your phone or account number and your billing ZIP Code. You may want to bookmark or favorite this page for the future.<br>
+If you have bills with no payments due, you'll see a message stating that your balance due is \$0.<br></br>If you see a balance due, proceed to the page from where you can make your payment.<br>To see the amount due, click on <b>Get balance</b>.<br></br>In the <b>Payment amount</b> box, enter the amount you want to pay. <br></br>Next, select your <b>Payment method</b> and follow the prompts. 
+<br></br>Thank you for making a payment today.[MSG_LINE_BR~05000]Was this information helpful?$waSession.buttons.optionsYesNoAnotherQuestion" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2nodetext1
+	_level1child2title -> _level1child2nodeoption2
+	_level1child2nodeoption2 -> _level1child2nodeend2 [label="Jump To"]
+	_level1child2nodetext1 -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1jump [label="Jump To"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3nodetext1
+	_level1child3title -> _level1child3nodeoption2
+	_level1child3nodeoption2 -> _level1child3nodeend2 [label="Jump To"]
+	_level1child3title -> _level1child3nodeoption3
+	_level1child3nodeoption3 -> _level1child3nodetext3
+	_level1child3title -> _level1child3nodeoption4
+	_level1child3nodeoption4 -> _level1child3nodetext4
+	_level1child3nodetext1 -> _level1child3_level2child1title
+	_level1child3_level2child1title -> _level1child3_level2child1waFlags
+	_level1child3nodetext1 -> _level1child3_level2child2title
+	_level1child3_level2child2title -> _level1child3_level2child2nodetext1
+	_level1child3_level2child2nodetext1 -> _level1child3_level2child2nodeflags1
+	_level1child3_level2child2title -> _level1child3_level2child2nodeoption2
+	_level1child3_level2child2nodeoption2 -> _level1child3_level2child2nodetext2
+	_level1child3_level2child2nodetext2 -> _level1child3_level2child2nodeflags2
+	Dialog -> _level1child4title
+	_level1child4title -> _level1child4nodetext1
+	_level1child4nodetext1 -> _level1child4nodeflags1
+	_level1child4title -> _level1child4nodeoption2
+	_level1child4nodeoption2 -> _level1child4nodetext2
+	_level1child4nodetext2 -> _level1child4nodeflags2
+}

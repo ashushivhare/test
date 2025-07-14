@@ -1,0 +1,15 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Place Order" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Place_Order" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Here's how you can easily place an order:<br>
+1. Go <a href=\" https://www.att.com/buy/phones/target=\"_blank\"\"><b>here</b></a> to shop and choose a new device or accessory.
+2. Select <b>Delivery Method</b> of Free shipping, Pick up at store, or Delivery & Setup.
+3. Follow the prompts to check out and submit your order!<br>
+You will get a confirmation email of your order. If you plan to pick up in the store, wait to get the additional email that your order is ready to pick up.<br>
+To get there quickly, use this <a href=\" https://www.att.com/buy/phones/\"target=\"_blank\"><b>link</b></a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

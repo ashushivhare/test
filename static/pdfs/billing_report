@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="billing report" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Reports_Premier" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! <br>
+Go to the <b>Manage Devices and Services</b> tile.  You can create, view and print a report of your AT&T voice, text and web network usage.<br>
+To get there quickly use this <a href=\"https://www.att.com/my/#/billUsageReports?passthru=reports\">link</a> <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

@@ -1,0 +1,18 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Email Address Doesn't Match Domain" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#email_domain_error && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition2 [label="$waSession.primaryIntentCounter == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump2 [label="Transfer To Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition2
+	root_condition2 -> root_jump2 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1waFlags
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2waFlags
+}

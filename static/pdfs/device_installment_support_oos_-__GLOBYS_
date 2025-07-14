@@ -1,0 +1,68 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="device installment support oos - (GLOBYS)" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#device_installment_support_oos && !@negativeTerms && ($waInput.businessRule==\"ATT-BME-Premier-GL-POC-BME-Premier-VA-C2C\" || $waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" || $waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label=here fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label=" Please provide the ten digit number with no punctuation or spaces." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="Phone Number" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeoption1 [label="@phoneNumber:(Phone Number with Characters)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeflags1 [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption2 [label="@phoneNumber:(Phone Number)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeflags2 [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child1title [label="Installment Plan Data" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child1nodeoption1 [label="$waInput && $waInput.contractDetails && $waInput.contractDetails.totalPendingAmount == \"\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1nodetext1 [label="OK. You currently have paid $<? T(String).format('%,.2f',$waInput.contractDetails.totalPaidAmount.toDouble()) ?> on your installment agreement.<br></br>Your early payoff amount is $<? T(String).format('%,.2f',$waInput.contractDetails.totalEarlyPayoffAmount.toDouble()) ?>.<br></br><a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/installmentPayment/installmentDefault\">You can view and pay your installments here.</a>[MSG_LINE_BR~05000]If you want to pay off your installments so that you can upgrade now, select the <b>SHOP</b> tab in the dark blue bar at the top of the page. After the page loads, select <b>Upgrade a Device</b>.<br></br>If you can’t access these functions, see your company administrator.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1nodeoption2 [label="$waInput && $waInput.contractDetails && $waInput.contractDetails.totalEarlyPayoffAmount == \"\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1nodetext2 [label="OK. You've paid $<? T(String).format('%,.2f',$waInput.contractDetails.totalPaidAmount.toDouble()) ?> on your installment agreement.[MSG_LINE_BR~05000]You can view information about your installment agreement <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/installmentPayment/installmentDefault\">here</a>. If you can’t access this site, see your company administrator.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1nodetext3 [label="OK. You've paid $<? T(String).format('%,.2f',$waInput.contractDetails.totalPaidAmount.toDouble()) ?> on your installment agreement.<br></br>Your remaining balance is $<? T(String).format('%,.2f',$waInput.contractDetails.totalPendingAmount.toDouble()) ?>. Your early payoff amount is $<? T(String).format('%,.2f',$waInput.contractDetails.totalEarlyPayoffAmount.toDouble()) ?>.<br></br><a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/installmentPayment/installmentDefault\">You can view and pay your installments here.</a>[MSG_LINE_BR~05000]If you want to pay off your installments so that you can upgrade now, select the <b>SHOP</b> tab in the dark blue bar at the top of the page. After the page loads, select <b>Upgrade a Device</b>.<br></br>If you can’t access these functions, see your company administrator.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1nodeoption4 [label="$waInput && $waInput.contractDetails && $waInput.contractDetails.totalPaidAmount == \"\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1nodetext4 [label="OK. Your installment agreement was cancelled.[MSG_LINE_BR~05000]You can view information about your installment agreement <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/installmentPayment/installmentDefault\">here</a>. If you can’t access this site, see your company administrator.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child2title [label="Installment Plan Self Service" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2_level4child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2_level4child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child2_level4child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2_level4child2jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child3title [label="CTN Does Not Match" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child3_level4child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child3_level4child1_level5child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child3_level4child1_level5child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child3_level4child1_level5child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child3_level4child1_level5child2jump [label=Yes fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child3_level4child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child3_level4child2jump [label=here fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I can help you with that! There is an awesome report available that shows all lines and their installment details like total amount financed, installment amount and remaining balance.<br>To get there simply click on the <b>Reports</b> menu option and <b>Detail</b> from the drop down. Scroll to the bottom of the list to the <b>Equipment Installment</b> section. Click on the <b>Device Installment</b> Details reports and you got it!<br>You can use various filters, export the data to a familiar application or by clicking the <b>Request Reports</b> link you can schedule this report to generate automatically on a daily, weekly or monthly basis. You can even have these emailed directly to you! <br>If you want to check just one line, I can try to look it up for you.<div>Click <a href=\"#\" role=\"button\" data-nuance-message-text=\"here\"> here </a>for automation</div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption1
+	_level1child1_level2child1nodeoption1 -> _level1child1_level2child1nodeflags1 [label="Switch Workspace"]
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption2
+	_level1child1_level2child1nodeoption2 -> _level1child1_level2child1nodeflags2 [label="Switch Workspace"]
+	_level1child1_level2child1title -> _level1child1_level2child1_level3child1title
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1jump [label="Jump To"]
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1nodeoption1
+	_level1child1_level2child1_level3child1nodeoption1 -> _level1child1_level2child1_level3child1nodetext1
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1nodeoption2
+	_level1child1_level2child1_level3child1nodeoption2 -> _level1child1_level2child1_level3child1nodetext2
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1nodetext3
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1nodeoption4
+	_level1child1_level2child1_level3child1nodeoption4 -> _level1child1_level2child1_level3child1nodetext4
+	_level1child1_level2child1title -> _level1child1_level2child1_level3child2title
+	_level1child1_level2child1_level3child2title -> _level1child1_level2child1_level3child2_level4child1title
+	_level1child1_level2child1_level3child2_level4child1title -> _level1child1_level2child1_level3child2_level4child1jump [label="Jump To"]
+	_level1child1_level2child1_level3child2title -> _level1child1_level2child1_level3child2_level4child2title
+	_level1child1_level2child1_level3child2_level4child2title -> _level1child1_level2child1_level3child2_level4child2jump [label="Jump To"]
+	_level1child1_level2child1title -> _level1child1_level2child1_level3child3title
+	_level1child1_level2child1_level3child3title -> _level1child1_level2child1_level3child3_level4child1title
+	_level1child1_level2child1_level3child3_level4child1title -> _level1child1_level2child1_level3child3_level4child1_level5child1title
+	_level1child1_level2child1_level3child3_level4child1_level5child1title -> _level1child1_level2child1_level3child3_level4child1_level5child1jump [label="Jump To"]
+	_level1child1_level2child1_level3child3_level4child1title -> _level1child1_level2child1_level3child3_level4child1_level5child2title
+	_level1child1_level2child1_level3child3_level4child1_level5child2title -> _level1child1_level2child1_level3child3_level4child1_level5child2jump [label="Jump To"]
+	_level1child1_level2child1_level3child3title -> _level1child1_level2child1_level3child3_level4child2title
+	_level1child1_level2child1_level3child3_level4child2title -> _level1child1_level2child1_level3child3_level4child2jump [label="Jump To"]
+}

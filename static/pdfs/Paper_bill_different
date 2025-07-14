@@ -1,0 +1,15 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Paper bill different" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#paper_bill_different" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! There are several reasons why your paper/PDF bill differs from what you see online.<br>
+Check the date the paper/PDF was generated as it is a snap shot of the account at that time. Your online presentation will be the most up to the minute information.<br>
+The most common cause for variance are payments/credits received since the paper/PDF was generated. To see the most accurate balance due, use the online amount that is shown on the payment screen.[MSG_LINE_BR~05000]
+The <b>Make a Payment </b>page shows the most up to date information, and it includes all payments and credits made after your paper bill was generated. <br>To navigate there: <br> 1. Go to the Manage Devices and Services tile. 
+2. On the top of your screen, click <b>My AT&T</b> to open the dropdown menu, then choose <b>Make a Payment</b> <br>
+To get there quickly, use this <a href=\"https://www.att.com/acctmgmt/makepayment\">link</a>.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

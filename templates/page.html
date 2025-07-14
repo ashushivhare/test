@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="nav-container">
+       <div class="nav-left">
+        <div class="dropdown">
+            <button class="dropbtn">Portal</button>
+            <div class="dropdown-content">
+                {% for category, items in menu_data.items() %}
+                    <div class="nested-dropdown">
+                        <button class="nested-btn">{{ category }}</button>
+                        <div class="nested-content">
+                            {% for item in items %}
+                                <a href="{{ url_for('category_item', category=category, item=item) }}">{{ item }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="nav-right">
+        <input type="text" placeholder="Search for the intent...">
+        <button>Go</button>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="content-wrapper">
+    <!-- Sidebar: Scrollable PDF List -->
+    <aside class="pdf-sidebar">
+        <h3>Intents List</h3>
+        <ul>
+            {% for pdf in pdfs %}
+                <li><a href="#pdf-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">{{ pdf.split('/')[-1] | replace('.pdf', '') }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <!-- Right Side: PDF Viewer -->
+    <section class="pdf-container">
+        {% for pdf in pdfs %}
+            <h3 id="pdf-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">{{ pdf.split('/')[-1] | replace('.pdf', '') }}</h3>
+            <iframe src="{{ url_for('static', filename=pdf) }}" class="pdf-frame"></iframe>
+        {% endfor %}
+    </section>
+</main>
+
+</body>
+</html>

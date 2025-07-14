@@ -1,0 +1,113 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Goodbye - backup" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="false && #General_Ending && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition2 [label="$waSession && $waSession.websiteErrorCounter && $waSession.websiteErrorCounter==1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="Was this information helpful?$waSession.buttons.websiteErrorOptions" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1title [label="Negative- Whisbi" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1waFlags [label="SMB FAN PIN" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Positive fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2nodetext1 [label="I'm glad that I could help you today. <br></br>If you're a new customer or want to know how you can get things done, you can find answers to many questions <a href=\"https://www.att.com/support/smallbusiness/\">here</a><br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2nodeoption2 [label="$waSession.currentIntent == \"FAN_PIN_Support\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2nodetext2 [label="It's been a pleasure assisting you today with resetting your foundation account (FAN) PIN. <br></br>If you're a new customer or want to know how you can get things done, you can find answers to many questions                                                                                      
+<a target=\"_blank\" href=\"https://www.att.com/support/smallbusiness/\">here</a><br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2nodeoption3 [label="$waSession.currentIntent == \"FAN_PIN_Support\" && $waReporting.transferToPhoneAgent" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2nodetext3 [label="Thank you for your feedback, and thank you for your patience. Our support agents will be happy to help you reset your foundation account (FAN) PIN. <br></br>Feel free to come back and chat whenever you need help. I'm here 24/7. <br></br> If you're a new customer or want to know how you can get things done, you can find answers to many questions                                                                                                                                              <a target=\"_blank\" href=\" https://www.att.com/support/smallbusiness/\">here</a><br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2nodeflags3 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label=Negative fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext1 [label="I’m sorry to hear that. Unfortunately, our live agents aren't available over chat to help with what you're asking.<br></br> If you want, for your security and to protect your account, I can connect you to a live agent who can help you by phone today.<br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption2 [label="$waSession.currentIntent == \"FAN_PIN_Support\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext2 [label="I’m sorry that I couldn’t help you reset your FAN PIN today. I’m continually learning how to help you better. Unfortunately, our live agents aren't available over chat to help with what you're asking, but for now your best option is to speak with one of our support agents. They’re available 24/7. <br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption3 [label="$waSession.currentIntent == \"FAN_PIN_Support\" && ((now().reformatDateTime( 'u' ) == \"6\" || now().reformatDateTime( 'u' ) == \"7\") || (now().before('8:00:00') || now().after('22:00:00')))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext3 [label="I’m sorry that I couldn’t help you reset your FAN PIN today. I’m continually learning how to help you better, but for now your best option is to speak with one of our support agents. They’re available 24/7! <br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption4 [label="(now().reformatDateTime( 'u' ) == \"6\" OR now().reformatDateTime( 'u' ) == \"7\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext4 [label="I’m sorry to hear that. You can talk with one of our support agents. Live agents are available 24/7! They’ll be happy to help.<br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption5 [label="now().before('8:00:00') || now().after('22:00:00')" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext5 [label="I’m sorry to hear that. You can talk with one of our support agents. Live agents are available 24/7! They’ll be happy to help.<br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption6 [label="$waReporting.transferToPhoneAgent" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext6 [label="I’m sorry that I couldn’t help reset you today. I’m continually learning how to help you better. Your best option is to speak with a Support agent at <b>800.331.0500</b>. They’re available 24/7. <br></br>Whenever you need help, feel free to come back and chat. I’m here 24/7.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeflags6 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3nodeoption7 [label="$waSession.currentIntent == \"FAN_PIN_Support\" && $waReporting.transferToPhoneAgent" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext7 [label="I’m sorry that I couldn’t help reset your foundation account (FAN) PIN today. I’m continually learning how to help you better. Your best option is to speak with a Support agent at <b>800.331.0500</b>. <br></br>For help with a new purchase, please contact <b>855.328.9612</b>. <br></br>If you need help because your phone can’t make calls, click <a href=\"https://www.att.com/support/smallbusiness/wireless/\" target=\"_blank\">here</a> and log in to troubleshoot your actual device online.<br></br>Whenever you need help, feel free to come back and chat. I’m here 24/7.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeflags7 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child1nodetext1 [label="Again, I’m sorry that I couldn’t help you today.<br></br>Thank you for choosing AT&T. Goodbye" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child1nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3_level2child1nodeoption2 [label="$waSession.currentIntent == \"FAN_PIN_Support\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child1nodetext2 [label="Again, I’m sorry that I couldn’t help you reset your FAN PIN today.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child1nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child2nodetext1 [label="Thank you for your feedback, and thank you for your patience. Please call Support at <b>800.331.0500</b>. <br></br>For help with a new purchase, please contact <b>855.328.9612</b>. <br></br>If you need help because your phone can’t make calls, click <a href=\"https://www.att.com/support/smallbusiness/wireless/\" target=\"_blank\">here</a> and log in to troubleshoot your actual device online.<br></br>Whenever you need help, feel free to come back and chat. I’m here 24/7.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child2nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3_level2child2nodeoption2 [label="$waSession.noPhoneSupport" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child2nodetext2 [label="Thank you for your feedback, and thank you for your patience. Please call Support 24/7 at <b>800.331.0500</b>. <br></br>For help with a new purchase, please contact <b>855.328.9612</b>. <br></br>If you need help because your phone can’t make calls, click <a href=\"https://www.att.com/support/smallbusiness/wireless/\" target=\"_blank\">here</a> and log in to troubleshoot your actual device online.<br></br>Whenever you need help, feel free to come back and chat. I’m here 24/7.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child2nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Fan pin options" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4nodeoption1 [label="(@fanPinOptions:(Reopen the form) || @fanPinOptions:(Open Account Verification form)) &&  !($waInput.rpaApi.rpaCallAvailable) && !($waInput.rpaApi.rpaFanPinSecureFormEnabled)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodetext1 [label="OK, you want to reset your foundation account (FAN) PIN. Unfortunately, the system is working at maximum capacity. You can chat back later, or you can contact Support at <b>800.331.0500</b>. Agents will be happy to help you with this process.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child4nodeend1 [label="Goodbye - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeoption2 [label="@fanPinOptions:(Get Support number)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeend2 [label=No fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeoption3 [label="@fanPinOptions:(Open Account Verification form) && ($waInput && $waInput.rpaApi && $waInput.rpaApi.rpaCallAvailable) && $waInput.rpaApi.rpaFanPinSecureFormEnabled" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeend3 [label="Yes (Secure Form)" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeoption4 [label="(@fanPinOptions:(Reopen the form) || @fanPinOptions:(Open Account Verification form)) &&  !($waInput.rpaApi.rpaFanPinSecureFormEnabled)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeend4 [label=Yes fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeoption5 [label="@fanPinOptions:(Reopen the form) && ($waInput && $waInput.rpaApi && $waInput.rpaApi.rpaCallAvailable) && $waInput.rpaApi.rpaFanPinSecureFormEnabled" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeend5 [label="Yes (Secure Form)" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1waFlags [label="Switch Workspace"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2nodetext1
+	_level1child2nodetext1 -> _level1child2nodeflags1
+	_level1child2title -> _level1child2nodeoption2
+	_level1child2nodeoption2 -> _level1child2nodetext2
+	_level1child2nodetext2 -> _level1child2nodeflags2
+	_level1child2title -> _level1child2nodeoption3
+	_level1child2nodeoption3 -> _level1child2nodetext3
+	_level1child2nodetext3 -> _level1child2nodeflags3
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3nodetext1
+	_level1child3title -> _level1child3nodeoption2
+	_level1child3nodeoption2 -> _level1child3nodetext2
+	_level1child3title -> _level1child3nodeoption3
+	_level1child3nodeoption3 -> _level1child3nodetext3
+	_level1child3title -> _level1child3nodeoption4
+	_level1child3nodeoption4 -> _level1child3nodetext4
+	_level1child3title -> _level1child3nodeoption5
+	_level1child3nodeoption5 -> _level1child3nodetext5
+	_level1child3title -> _level1child3nodeoption6
+	_level1child3nodeoption6 -> _level1child3nodetext6
+	_level1child3nodetext6 -> _level1child3nodeflags6
+	_level1child3title -> _level1child3nodeoption7
+	_level1child3nodeoption7 -> _level1child3nodetext7
+	_level1child3nodetext7 -> _level1child3nodeflags7
+	_level1child3nodetext1 -> _level1child3_level2child1title
+	_level1child3_level2child1title -> _level1child3_level2child1nodetext1
+	_level1child3_level2child1nodetext1 -> _level1child3_level2child1nodeflags1
+	_level1child3_level2child1title -> _level1child3_level2child1nodeoption2
+	_level1child3_level2child1nodeoption2 -> _level1child3_level2child1nodetext2
+	_level1child3_level2child1nodetext2 -> _level1child3_level2child1nodeflags2
+	_level1child3nodetext1 -> _level1child3_level2child2title
+	_level1child3_level2child2title -> _level1child3_level2child2nodetext1
+	_level1child3_level2child2nodetext1 -> _level1child3_level2child2nodeflags1
+	_level1child3_level2child2title -> _level1child3_level2child2nodeoption2
+	_level1child3_level2child2nodeoption2 -> _level1child3_level2child2nodetext2
+	_level1child3_level2child2nodetext2 -> _level1child3_level2child2nodeflags2
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4nodeoption1
+	_level1child4nodeoption1 -> _level1child4nodetext1
+	_level1child4nodeoption1 -> _level1child4nodeend1 [label="Jump To"]
+	_level1child4title -> _level1child4nodeoption2
+	_level1child4nodeoption2 -> _level1child4nodeend2 [label="Jump To"]
+	_level1child4title -> _level1child4nodeoption3
+	_level1child4nodeoption3 -> _level1child4nodeend3 [label="Jump To"]
+	_level1child4title -> _level1child4nodeoption4
+	_level1child4nodeoption4 -> _level1child4nodeend4 [label="Jump To"]
+	_level1child4title -> _level1child4nodeoption5
+	_level1child4nodeoption5 -> _level1child4nodeend5 [label="Jump To"]
+}

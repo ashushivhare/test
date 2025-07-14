@@ -1,0 +1,27 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Uplift Management" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Uplift_Management" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.User_VOL || $waSession.User_VOL_C || $waSession.User_SUB" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_jump2 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="$waSession.User_TCM_ADM" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog3 [label="I can help you with that!  <br><br>
+1. After selecting <b>Uplift</b> from the main <b>FirstNet Central</b> dashboard, you should see any current or past events you have created (or that added you as an administrator).
+2. Select any event you want to add users into. 
+3. Scroll down to <b>Add groups and wireless numbers</b>. Enter the phone numbers of users to add them to the event. 
+4. Click Submit to see a Success message at the top of the page. Your users will get an SMS text to let them know they are added.
+[MSG_LINE_BR~05000] 
+For more detailed information, you can click <b>Help</b> at the top of the <b>Uplift</b> page or refer to the <b>Uplift User Guide</b> linked  <a href=\"https://training.firstnet.att.com/api/training/content/FirstNet_Uplift%20Request%20Tool_UserGuide.pdf\">here</a>.<br><br>
+Note: If you do not see the Uplift portal, you may not have the correct access to create events. See your agency administrator or sales team for assistance.[MSG_LINE_BR~05000] " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump3 [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_jump1 [label="Jump To"]
+	Intent -> root_jump2 [label="Jump To"]
+	Intent -> root_condition3
+	root_condition3 -> root_dialog3
+	root_dialog3 -> root_jump3 [label="Jump To"]
+}

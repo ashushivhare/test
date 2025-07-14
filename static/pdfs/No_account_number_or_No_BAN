@@ -1,0 +1,18 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="No account number or No BAN" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#dont_know_ban && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="If you can’t find your billing account number on your bill, you can contact our live agents who can help you reset your foundation account PIN.<br></br> You can reach our agents at <b>800.331.0500</b>.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label=<span data-automaton-id="2365" data-context="ci" data-panel="outer-left" data-action="show">Please submit the form when you're ready.</span> fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Yes (Secure Form)" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

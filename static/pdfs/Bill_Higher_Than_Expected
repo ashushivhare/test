@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Bill Higher Than Expected" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bill_Higher_Than_Expected" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Look for and select<b> See What Changed </b>on your Home Page. You’ll only see this if your bill went up or down \$5 or more. (You can also find this in your bill history).<br>To learn more about this feature, use this <a href=\"https://www.att.com/support/article/my-account/KM1051879/\" target=\"_blank\">link</a> <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

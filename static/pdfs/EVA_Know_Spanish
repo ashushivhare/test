@@ -1,0 +1,23 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="EVA Know Spanish" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#EVA_Know_Spanish" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Reset my password" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="forgot password" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Retrieve my User Name" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="forgot username" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Create an account" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3jump [label=Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I’m sorry, I’m not trained in Spanish yet. For help in Spanish, please call <b>800.331.0500</b> and press <b>8</b>. Spanish-speaking agents will be happy to help you.[MSG_LINE_BR~05000] Lo siento, aun no estoy entrenando para hablar en espanol. Para obtener ayuda en espanol, por favor llama <b>800.331.0500</b> y presiona <b>8</b>.[MSG_LINE_BR~05000] May I offer additional assistance with: 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Create an account\">Create an account </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Retrieve my User Name\">Retrieve my User Name</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Reset my password\">Reset my password </a></li></ul></div><br>I want more info on…" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3jump [label="Jump To"]
+}

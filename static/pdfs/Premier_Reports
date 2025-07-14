@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Premier Reports" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Reports_Premier" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label="Billing Reports" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+}

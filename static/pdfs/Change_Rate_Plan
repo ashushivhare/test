@@ -1,0 +1,24 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Change Rate Plan" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Change_Rate_Plan" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! 
+<br></br>1.In the <b>I want to:</b> drop down, select <b>Change Rate Plan</b> option. Be sure to enter the ten digit number then select <b>Go</b>. 
+<br></br>2.You will go to the <b>Change Rate Plan screen</b> where you can see all the available options and select the desired one.
+<br></br>3.To get more information on each plan, simply click on the <b>Plan Details</b> link to see a pop up of all information. That's it - you got it! <br></br>
+Was this information helpful? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2dialog -> _level1child2waFlags
+}

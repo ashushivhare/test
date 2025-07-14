@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="First Bill review" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#First_Bill_review" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! We understand your first bill is usually higher than expected as it contains a partial month plus a full month. There is a great tool to explain your first bill <a href=\"https://www.att.com/support/article/my-account/KM1009257/\" target=\"_blank\">here</a>.<br>If you need help understanding partial month charges on your first bill, this <a href=\"https://www.att.com/support/article/wireless/KM1051632\" target=\"_blank\">article</a> is really helpful and there is an awesome short video! <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

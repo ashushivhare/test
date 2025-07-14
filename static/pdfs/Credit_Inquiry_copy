@@ -1,0 +1,30 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Credit Inquiry copy" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!Are you expecting a credit that you do not see yet or are you seeking to request a credit?
+<div><ul><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Missing Credit/Promo/Discount\">Missing Credit/Promo/Discount</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Request a credit\">Request a credit</a></li></ul></div>
+Was this information helpful?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Request a credit" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="Multi intents" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Missing Credit/Promo/Discount" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="It's good to know that it may take up to two months for credit and promotions to appear on your bill. Find an AT&T credit or adjustment by clicking<b>My AT&T</b> on the top of your screen, then select the service you want to view. Expand sections to see more details on charges and credits.To get there quickly, use this <a href=\"https://www.att.com/acctmgmt/billandpay\">link</a>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child4title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child4waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	Dialog -> _level1child4title
+	_level1child4title -> _level1child4dialog
+	_level1child4dialog -> _level1child4waFlags
+}

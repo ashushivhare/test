@@ -1,0 +1,15 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Copy_of_Contract fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Copy_of_Contract" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!<br>
+1. Go to the <b>Manage Devices and Services</b> tile. 
+2. On the top of your  screen, click <b>My AT&T</b>to get a menu then choose <b>Go to my account</b>.
+3. Scroll down to select <b>Billing</b> click <b>Get The Details</b> from the black header bar.
+4. Click on <b>See the Legal Stuff</b> link in the lower right.<br>
+To get there quickly, use this <a href=\"https://www.att.com/acctmgmt/billandpay\">link</a>   <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

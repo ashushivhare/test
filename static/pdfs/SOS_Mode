@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="SOS Mode" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#SOS_Mode" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! <br></br>For a mobile device with an SOS error, we recommend:
+1.Power cycle your device by turning it off, then back on or moving into Airplane Mode, then back out in your device Settings.<br>2.If you have pending device software updates, complete those updates.<br>3.In your device settings, you can reset Network Settings to clear the SOS error.<br><div><ul><li>If you have a physical sim, removing it and adding it back and then power cycle device on.</li></ul><ul><li> If you are using an electronic sim, ensure you only have one showing in Settings – General – About to see device esim for connection.</li></ul></div>4.If you have are using a Mobile Device Management application, ensure the device and sim are configured for update with the MDM application. Contact your administrator for additional assistance with and MDM.
+[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

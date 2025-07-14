@@ -1,0 +1,27 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Product Catalog - POC" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label="Not Sure" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I can help you with that! Do you have any specific preferences in mind?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="Preference ?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1dialog [label="No problem, I can help you find the best phone for your needs. <br>
+Please provide some details on what you’re looking for.<br>
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"What is your budget for phones?\">What is your budget for phones? </a>  </li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"How many lines do you need?\">How many lines do you need? </a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1title [label=Budget fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1dialog [label="Great, thank you for providing that information!What operating system (OS) do you prefer, iOS or Android?<br>
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"iOS\"> iOS </a> </li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Android\">Android</a> </li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"No preference\">No preference</a> </li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1_level4child1title [label=iOS fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1_level4child1jump [label="Phone List API response" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="Hello. I’m the enterprise virtual assistant. Let me know how I can assist you by selecting one of the topics below or by typing in your question.<br><br><div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Product Support\">Product Support</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Shopping for a Product\">Shopping for a Product</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Help with Order Issues\">Help with Order Issues</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Plans & Prices\">Plans & Prices</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1dialog
+	_level1child1_level2child1title -> _level1child1_level2child1_level3child1title
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1dialog
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1_level4child1title
+	_level1child1_level2child1_level3child1_level4child1title -> _level1child1_level2child1_level3child1_level4child1jump [label="Jump To"]
+}

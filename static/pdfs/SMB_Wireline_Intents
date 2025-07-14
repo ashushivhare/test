@@ -1,0 +1,6 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="SMB Wireline Intents" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Access_Hours || #ATT_Uverse || #Authorize_Dispatch || #Circuit_Information || #close_ticket || #create_ticket || #Dispatchstatus || #escalate_ticket || #get_ticket_status || #Group_Login_Password || #LCON_update || #need_etr || #need_rfo || #Power_Validation || #schedule_vendor_meet || #ScheduleDispatch || #tech_eta || #Test_Authorization" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+}

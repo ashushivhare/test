@@ -1,0 +1,24 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Cancel Service line Plan" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#cancel_service_line_plan_feature" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition1 [label="$waSession.isauthenticated" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer To Live Agent Wireless Intents " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="options - I have another question" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="What else can I help with?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2title [label="Options - Get phone support number" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="I’m sorry for any inconvenience. At the moment, our live support teams aren’t available to help with what you're asking.<br></br>You can reach AT&T support 24/7 at <b>800.331.0500</b>. <br></br>For help with a new purchase, please contact <b>855.328.9612</b>. <br></br>If you need help because your phone can’t make calls, click <a href=\"https://www.att.com/support/smallbusiness/wireless/\" target=\"_blank\">here</a> and log in to troubleshoot your actual device online. <br></br>Whenever you need help, feel free to come back and chat. I’m here 24/7.<br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="options- What portal do I log into" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3jump [label="Am I In Right Place" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition1
+	root_condition1 -> root_jump1 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2dialog -> _level1child2waFlags
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3jump [label="Jump To"]
+}

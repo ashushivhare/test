@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Account is personal" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Customer_says_Account_is_Personal" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I am the virtual assistant for business accounts, but I can get you to the right place for personal accounts.  Please go to <b>att.com</b> to learn and shop or the <b>MyATT</b> portal <a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\"><b>here</b></a> to login for self service options. From there, you can chat again to reach an agent.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

@@ -1,0 +1,15 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Nutrition Labels" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Nutrition_Labels" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! 
+
+Under the Infrastructure Investment & Jobs Act, the FCC requires providers to create consumer-friendly labels listing information about their broadband services. These labels apply to both Broadband and Mobility products and disclose important information about monthly price, data allowances and broadband speeds. You can read more about it  
+<a href=\"https://www.att.com/support/article/my-account/000100570\" target=\"_blank\"><b>here</b></a>
+
+You can obtain a copy of your label by calling a live agent by calling Business support at <b>1.800.574.7000</b>.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

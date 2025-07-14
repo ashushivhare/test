@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Product Catalog" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Login_and_Registration [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> Login_and_Registration [label="Switch Workspace"]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}

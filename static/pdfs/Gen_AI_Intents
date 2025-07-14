@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Gen AI Intents" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#which_online_portal || #Device_Support_iphone || #Device_Support_samsung || #Device_Support_google || #device_support_motorola || #Purchase_Mobile || #Compare_mobile_devices || #ATT_ADI || #ATT_AIAB || #ATT_Business_Internet || #ATT_Fiber || #ATT_Wireless_Broadband || #Fraud_Prevention" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Transfer to Live Agent" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}

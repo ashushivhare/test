@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Remove User" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Remove_User" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! To add or remove a user:<br>
+1.  On the top of your screen, click on <b>Profile</b> and select <b>People & Permissions</b>. 
+2.  Under <b>Account Permissions</b> select <b>Add Authorized User</b> to add or remove a user. <br>Click <a href=\"https://www.att.com/acctmgmt/profile/peoplePermissions\">here</a> to get there quickly.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

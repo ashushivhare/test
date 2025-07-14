@@ -1,0 +1,13 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="View Call History" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#View_Call_History" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! <br>
+Go to the <b>Manage Devices and Services</b> tile. <br>
+You can view your call history online or on your smartphone. You can also download them from your online account to keep records or track expenses.<br>
+Visit this <a href=\"https://www.att.com/acctmgmt/usagedetails/\">link</a> and choose talk, text or data. Select the billing month and phone number you want to view.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

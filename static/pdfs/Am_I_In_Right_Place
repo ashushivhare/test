@@ -1,0 +1,13 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Am I In Right Place" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#am_i_in_the_right_place ||  @routingOptions:(I need help with a different product)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you find the right portal for your AT&T solutions:<br>
+If you’re a consumer or small business mobility or internet customer, go to <a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\"><b>myAT&T</b></a>.<br>
+If you're an enterprise business customer looking for help with mobility accounts, go to <a href=\"https://www.wireless.att.com/business/\" target=\"_blank\"><b>Premier</b></a>.<br>
+If you’re an enterprise business customer looking for help with your network services, go to <a href=\"https://businesscenter.att.com/ebiz/registration/\" target=\"_blank\"><b>Business Center</b></a>or <a href=\"https://businesscenter.att.com/ebiz/registration/\" target=\"_blank\"><b>Business Direct</b></a>.<br>
+To explore the AT&T Cloud ecosystem or log in to your AT&T Cloud Solutions account, go to <a href=\"https://www.synaptic.att.com/clouduser/login.htm\" target=\"_blank\"><b>Cloud Solutions</b></a>.<br>
+The <a href=\"https://my-attwifi.attwifi.com/ent_loginpage\" target=\"_blank\"><b>AT&T Wi-Fi Customer Portal</b></a> is where you can manage your AT&T wireless internet solution.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

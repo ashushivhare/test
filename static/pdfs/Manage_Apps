@@ -1,0 +1,18 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Manage Apps" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Manage_Apps" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="$waSession.User_TCM_ADM" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that!<br><br>To find and manage applications that are certified for FirstNet, click the <b>Manage Apps</b> tile on the dashboard. To get there quickly, use this link <a href=\"https://localcontrol.firstnet.att.com/admin/manage-apps\">here</a> to search for applications to push to users.
+[MSG_LINE_BR~5000]
+For more detailed information, you can click <b>Help</b> at the top of the <b>FirstNet Central</b> page or refer to the <b>Manage Apps User Guide</b> linked <a href=\"https://training.firstnet.att.com/api/training/content/App_Catalog_User_Guide.pdf\">here</a>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump2 [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_jump2 [label="Jump To"]
+}

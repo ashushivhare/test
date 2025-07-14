@@ -1,0 +1,62 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="International Inquiry" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=" (#International_device_support ||#International_Long_Distance ||#International_packages_pricing_billing)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! We have a great resource available by clicking <a target=\"_blank\" href=\"https://www.business.att.com/categories/international-add-ons.html\"><b>here</b></a> that will tell you all about using your service while international traveling or calling internationally. <br>
+Would you like more help to: <div><ul><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Packages,Pricing and Features\">Packages,Pricing and Features</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"View/Update my current plan for international features\">View/Update my current plan for international features</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"View my international data or call usage and charges\">View my international data or call usage and charges</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Device Support while traveling\">Device Support while traveling</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what i needed\">I got what i needed</a></li></ul></div><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="Anything Else" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1waFlags [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="View my international data or call usage and charges" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="You can view your international data usage from the <b>Mobile device summary</b> page after clicking the <b>Billing</b> tab. <br>You can get an overall summary of your usage on the<b> Mobile device summary</b> page, under <b>Mobile device usage</b>, expand <b>Usage summary</b>.
+To see a comprehensive list of usage for the selected billing period, expand Data usage details or Voice usage details." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Was this Information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="View/Update my current plan for international features" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="I can help with that!
+1. In the <b>I want to</b>: drop down, select <b>Change Features</b> option. Be sure to enter the ten digit number then select <b>Go</b>.
+2. You will go to the <b>Change Features</b> screen where you can see all the available options and select the desired ones.
+3. To get more information on each feature, simply click on the feature name to see a pop up of all information. That's it - you got it!<br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label="Was this Information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="I got what I needed" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4jump [label="Was this Information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5title [label="Was this Information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5dialog [label="[MSG_LINE_BR~05000] Was this information helpful? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child2dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child6title [label="Device Support while traveling" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child6dialog [label="Please dial the 24 hours / 365 days number at no charge to reach FirstNet International Support: +1-469-675-7700." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child6jump [label="Was this Information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7title [label="Packages,Pricing and Features" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7dialog [label="The resources available by clicking <a target=\"_blank\" href=\"https://www.business.att.com/categories/international-add-ons.html\">here<a/> will answer all your questions!<br>
+You can scroll down to the FAQs, View Destinations - a list of over 200 destinations where the International Day Pass works, or if you click Learn More under International Day Pass or International Calling there are wonderful, short videos and more options to help." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7jump [label="Was this Information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1waFlags [label="Switch Workspace"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	Dialog -> _level1child4title
+	_level1child4title -> _level1child4jump [label="Jump To"]
+	Dialog -> _level1child5title
+	_level1child5title -> _level1child5dialog
+	_level1child5title -> _level1child5_level2child1title
+	_level1child5_level2child1title -> _level1child5_level2child1jump [label="Jump To"]
+	_level1child5title -> _level1child5_level2child2title
+	_level1child5_level2child2title -> _level1child5_level2child2dialog
+	_level1child5_level2child2dialog -> _level1child5_level2child2waFlags
+	Dialog -> _level1child6title
+	_level1child6title -> _level1child6dialog
+	_level1child6title -> _level1child6jump [label="Jump To"]
+	Dialog -> _level1child7title
+	_level1child7title -> _level1child7dialog
+	_level1child7title -> _level1child7jump [label="Jump To"]
+}

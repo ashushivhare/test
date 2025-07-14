@@ -1,0 +1,13 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="PPU Address Change" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#PPU_Address_Change" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! To update your primary place of use address on your account, <br>
+1. Go to <b>Profile </b>and <b>My Info page</b>. 
+2. Scroll down and click on <b>Manage your wireless primary place of use addresses</b>. <br>
+Go <a href=\"https://www.att.com/acctmgmt/profile/editPpuAddress\">here</a>, to learn more about this process.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

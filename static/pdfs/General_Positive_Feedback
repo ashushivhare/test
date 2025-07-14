@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="General Positive Feedback" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#General_Positive_Feedback && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label=Goodbye fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}

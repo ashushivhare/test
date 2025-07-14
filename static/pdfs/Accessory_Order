@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Accessory Order" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Accessory_Order" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! <br></br>1.Simply click on the <b>Shop</b> tab at the top of your screen. <br></br>2.Click on the icon for <b>Shop Accessories</b>. <br></br>3.Select the <b>Brand</b> and <b>device model</b> desired then click <b>Continue</b>. <br></br>4.You will see a list of items available to you based on options set up by your administrator. Select your item(s) to add to your cart then select <b>continue</b>.<br></br>5.You will see your cart summary. Select delivery option and click <b>Check Out</b>. <br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

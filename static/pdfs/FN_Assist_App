@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=FN_Assist_App fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_Assist_App" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!
+FirstNet has an exclusive application called FirstNet Assist, available to download in iOS and Android app stores. Only users with an active FirstNet User ID can login to use the application.
+Go <a href=\"https://www.firstnet.com/apps/featured-apps/firstnet-assist.html\" target=\"_blank\">here</a> to learn more about the FirstNet Assist app!<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

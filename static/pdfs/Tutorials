@@ -1,0 +1,17 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Tutorials fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Tutorials" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="($waSession.User_TCM_ADM || $waSession.User_VOL || $waSession.User_VOL_C || $waSession.User_SUB)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that!<br><br> To reach the Online Training Portal, go to Quick Help and Tutorials at the top left of the dashboard page. To get there quickly, use this link <a href=\"https://training.firstnet.att.com\">here</a>.<br><br>
+You can enter search criteria to find a video or online guide. Online guides are specific to the your user ID role." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump2 [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_jump2 [label="Jump To"]
+}

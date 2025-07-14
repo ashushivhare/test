@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="microcell support oos" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#microcell_support_oos && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Call Agent Availability Api for XFR/RFR" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="$waSession.User_TCM_ADM || $waSession.User_VOL_ADM || $waSession.User_VOL || $waSession.User_SUB" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+}

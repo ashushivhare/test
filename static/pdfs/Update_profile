@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Update profile" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#update_profile" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Want to update your profile? It's easy with My AT&T. <br>
+To update your profile:
+1. Go to the top right choose <b>My AT&T </b>to get a menu. 
+2. Choose<b> 'Go To My Account'</b> and under your name, click See Profile to edit your profile. 
+3. Click <b>Save Changes </b>to receive an email with confirmation of profile updates.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

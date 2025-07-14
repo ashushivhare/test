@@ -1,0 +1,180 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navigation Bar */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+}
+
+/* Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #444;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Nested Dropdown Styling */
+.nested-dropdown {
+    position: relative;
+}
+
+.nested-btn {
+    background: none;
+    border: none;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    display: block;
+}
+
+.nested-content {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.nested-dropdown:hover .nested-content {
+    display: block;
+}
+
+/* Links inside Dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Search Bar */
+.nav-right input {
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+}
+
+.nav-right button {
+    background-color: #555;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    width: 90%;
+    margin: auto;
+}
+
+/* Sidebar - PDF List (Now on Right Side) */
+.pdf-sidebar {
+    width: 250px;
+    height: 80vh;
+    overflow-y: auto;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    right: 0;
+    top: 60px;
+}
+
+.pdf-sidebar h3 {
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.pdf-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.pdf-sidebar li {
+    margin-bottom: 8px;
+}
+
+.pdf-sidebar a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #007bff;
+    display: block;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+.pdf-sidebar a:hover {
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+/* PDF Viewer - Adjust for Sidebar on Right */
+.pdf-container {
+    flex-grow: 1;
+    margin-right: 270px;
+    padding: 20px;
+}
+
+/* PDF Frames */
+.pdf-frame {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* PDF List (For Displaying Filenames) */
+.pdf-list {
+    list-style-type: disc;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.pdf-list li {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Yes Out of Hours" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bot_Control_Approve_Response && ($waSession.outOfHours || $waSession.agentsUnavailable || $waSession.unauthenticated) && !@negativeTerms &&  @phonesupportyes:(Provide you the number to call)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	"End Chat" [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> "End Chat" [minlen=2]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="Our phone support agents can help 24/7! Please call <b>1.800.574.7000</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	root_waFlags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	root_dialog1 -> root_waFlags1
+}

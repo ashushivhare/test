@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="CPNI Notification" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#CPNI_Notification" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!<br>1. On the top of your screen, click <b>My AT&T</b> to get a menu, then choose <b>Privacy Choices</b> to go to <b>Profile</b> page.  
+2. At the bottom of the page learn more about or manage <b>Customer Proprietary Network Information (CPNI)</b>.<br>To get there quickly, use this <a href=\"https://www.att.com/consent/cpni/\" target=\"_blank\">link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

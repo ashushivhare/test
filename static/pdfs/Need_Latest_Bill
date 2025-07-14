@@ -1,0 +1,17 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Need Latest Bill" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#need_latest_bill" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!
+Typically, your latest bill is available online 4 to 8 days after the end of the bill cycle.<br>
+
+In the upper right corner of your screen click on <b>See My Bill</b>. In the <b>Bill & Pay</b> section you can view/print your bill and see historic information. The site should default to your most current avialable bill.<br>
+
+To change the bill cycle you are viewing, click on <b>View My History</b> to see a list of all available bills. Simply click the one the wish to see.<br>
+
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

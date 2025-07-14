@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Activation Fee" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Activation_Fee" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I understand you have questions about activation fees. Please note that activation fees are not generally waived but to verify if your line should have been charged/waived please refer to your Customer Service Summary provided.<br></br>
+You received a copy of this to your email address upon activation and each time you make a change to your rate or features. If you are unable to locate this email in your records, you can visit your local store to have one printed. <br></br>
+Unfortunately, our live chat/call agents are unable to assist you with this. <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

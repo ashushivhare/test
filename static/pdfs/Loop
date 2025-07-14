@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Loop fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Loop || #term_lookup || #which_email || #Multi_Factor_Authentication" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Transfer to Live Agent" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}

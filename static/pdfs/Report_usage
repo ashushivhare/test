@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Report usage" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Report_usage" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you wtih that! <br>
+1. On the top of your screen, click <b>My AT&T</b> to get a menu, then choose <b>Go to My Account</b>. 2. Select the <b>Check My Usage</b> in the I Need To Section to view <b>Usage Summary Details.</b> <br>
+Click <a href=\"https://www.att.com/acctmgmt/usagesummary\">here </a> to get there quickly.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

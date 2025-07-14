@@ -1,0 +1,24 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Multi Factor Authentication" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Multi_Factor_Authentication" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!
+
+If your organization has mandatory Multi Factor Authentication, logging in with MFA allows access to any options requiring FCC mandated additional authentication.
+
+If you have a banner that is alerting you to set up Multi Factor Authentication:
+Click <a href=\"https://profilemgt.firstnet.att.com/icam-firstnet/my-profile-view-only\"  target=\"_blank\"> <b>here</b></a>
+Select <b>Edit Profile</b>.
+Under Profile Security, check the box for <b>Always use MFA</b>.
+Enter your password to confirm your changes and select <b>Save</b>.
+Choose <b>Set up now</b> on the successfully saved changes window
+Under use another 2FA method, select <b>Set up 2FA</b> with SMS messaging
+Enter any SMS capable wireless number (no VOIP) to receive the SMS to complete the setup. Select <b>Continue</b>.
+Complete the setup by adding the SMS information into the screen prompt.
+
+You are set! Now you can access any applications from FirstNet Central that require multi factor authentication.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

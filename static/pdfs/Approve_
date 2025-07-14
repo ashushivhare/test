@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Approve " fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bot_Control_Approve_Response &&     ($waSession.outOfHours || $waSession.agentsUnavailable ||$waSession.connectToPhone) && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition2 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\") || ($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="OK. To connect with our live support team, call Business support at <b>1.800.574.7000</b>, If you have other questions, send me a chat. I’m available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_waFlags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_waFlags2
+}

@@ -1,0 +1,21 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Fan pin Support - Learn about FAN PINs" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FAN_PIN_Support" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="FAN PIN  " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="A foundation account personal identification number, or FAN PIN, is a 5- to 7-digit number
+used to verify your organization’s wireless account when you call AT&T. <br>
+
+When you signed your AT&T mobility contract or were added as an authorized contact for your organization, we sent you an email with your FAN PIN. <br>
+
+If you’ve forgotten your FAN PIN, I can help you reset it. Do you want me to help you reset your FAN PIN now?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

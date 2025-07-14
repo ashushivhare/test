@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=TOBR fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#TOBR_support_oos" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Transfer to Live Agent" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}

@@ -1,0 +1,52 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Mobile Hotspot" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#mobile_hotspot" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Was this information helpful" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="Was this information helpful?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Turning on my hotspot - Apple device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="Follow these steps and you got it! 
+1. Got to your device <b>Settings</b>
+2. Select Cellular Data, then <b>Personal Hotspot</b> 
+3. Turn on your hotspot <br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Troubleshooting my device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="I have a great tool for you to use for all your device support needs.<br></br>
+Click <a target=\"_blank\" href=\"https://www.att.com/device-support/selector/\">here</a> to select your device and get amazing help with hotspots, voicemail, how to back up and restore your device along with a complete users manual! <br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Seeing if my line has the option" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4jump [label="Change Rate Plan" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5title [label="Turning on my hotspot - Andriod device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5dialog [label="Follow these steps and you got it! 
+1. Go to your device <b>Settings</b> 
+2. Select <b>Connections</b>, or <b>Networks</b>
+3. Choose <b>Mobile Hotspot and Tethering</b>
+4. Turn on your hotspot <br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2dialog
+	_level1child1_level2child2dialog -> _level1child1_level2child2waFlags
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4jump [label="Jump To"]
+	Intent -> _level1child5title
+	_level1child5title -> _level1child5dialog
+	_level1child5title -> _level1child5jump [label="Jump To"]
+}

@@ -1,0 +1,63 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Prepaid Service - whisbi" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="(#prepaid ||@Purchase_device:(Get prepaid balance) ||@Purchase_device:(Login to your online prepaid account) ||@Purchase_device:(Shop prepaid service)) && ($waInput.businessRule==\"ATT-MYATT-Sales-Marketing-O-BME-SMBWireless-R-C2C-EVA\" ||  $waInput.businessRule==\"ATT-MYATT-Sales-Marketing-O-BME-SMBWireless-DTM-R-C2C-EVA\" ||    $waInput.businessRule==\"ATT-Whisbi-BME-SMBWireless-C2C-EVA\" ||  $waInput.businessRule==\"ATT-Whisbi-BME-SMBWireless-DTM-C2C-EVA\" || $waInput.businessRule==\"ATT-SMB-Shared-VA-O-R-G-C2C-EVA\" ||$waInput.businessRule==\"ATT-SMB-Shared-VA-O-R-G-C2C\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label=" I can help you with that! Unfortunately, the portal you are on now is not the right place to be for prepaid. Here are the most helpful topics I have for you: <br>
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Login to your online prepaid account\">Login to your online prepaid account </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Shop prepaid service\">Shop prepaid service </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Get prepaid balance\">Get prepaid balance </a></li><br></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="Shop prepaid service" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="Click <a href=\"https://www.att.com/buy/prepaid-phones/\"  target=\"_blank\"> here </a> to Shop prepaid service [MSG_LINE_BR~05000] Was this information helpful?$waSession.buttons.optionsYesNoAnotherQuestion" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="I have another question" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1dialog [label="What else can I help with?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child2title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2jump [label="Negative- Whisbi" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child3title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child3dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child3waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=" Get prepaid balance" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="No problem! Simply Dial *777# from your AT&T Prepaid phone to get a text message with your balances. The text will give you your account balance and other account details like your data balance and package info.[MSG_LINE_BR~05000] Was this information helpful?$waSession.buttons.optionsYesNoAnotherQuestion" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1jump [label="Negative- Whisbi" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child2title [label="I have another question" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child2dialog [label="What else can I help with?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child3title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child3dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child3waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Login to your online prepaid account" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="Click <a href=\"https://www.paygonline.com/websc/loginPage.html\"  target=\"_blank\"> here </a> to login to your online prepaid account [MSG_LINE_BR~05000] Was this information helpful?$waSession.buttons.optionsYesNoAnotherQuestion" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child1jump [label="Negative- Whisbi" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3_level2child2title [label="I have another question" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child2dialog [label="What else can I help with?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child3title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child3dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3_level2child3waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1dialog
+	_level1child1title -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child3title
+	_level1child1_level2child3title -> _level1child1_level2child3dialog
+	_level1child1_level2child3dialog -> _level1child1_level2child3waFlags
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child2title
+	_level1child2_level2child2title -> _level1child2_level2child2dialog
+	_level1child2title -> _level1child2_level2child3title
+	_level1child2_level2child3title -> _level1child2_level2child3dialog
+	_level1child2_level2child3dialog -> _level1child2_level2child3waFlags
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3_level2child1title
+	_level1child3_level2child1title -> _level1child3_level2child1jump [label="Jump To"]
+	_level1child3title -> _level1child3_level2child2title
+	_level1child3_level2child2title -> _level1child3_level2child2dialog
+	_level1child3title -> _level1child3_level2child3title
+	_level1child3_level2child3title -> _level1child3_level2child3dialog
+	_level1child3_level2child3dialog -> _level1child3_level2child3waFlags
+}

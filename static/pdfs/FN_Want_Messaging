@@ -1,0 +1,27 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="FN Want Messaging" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_Want_Messaging" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Having trouble with messaging" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Cannot send message" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Regular messaging" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label=" Click here<a href=\"https://www.att.com/support/article/wireless/KM1227647/\" target=\"_blank\">link</a> to find out more about AT&T messaging.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label=" FirstNet Messaging" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="Click <a href=\"https://www.firstnet.com/apps/featured-apps/firstnet-messaging.html\" target=\"_blank\"> here </a>to find out more about FirstNet Messaging App. Reminder that only First Reponder lines are eligbile for this free service. <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I can help you with that! Are you asking about FirstNet messaging or regular SMS/MMS messaging?
+  <div><button>FirstNet Messaging</button>\n<button>Regular messaging</button>\n<button>Having trouble with messaging</button></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+}

@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=No fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bot_Control_Reject_Response &&     ($waSession.outOfHours || $waSession.connectToPhone ||$waSession.agentsUnavailable || $waSession.noPhoneSupport || $waSession.cantCall) && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition2 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\") || ($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="For self-service help, please see the <a href=\"https://www.wireless.att.com/business/support/\"><b>SUPPORT tab here.</b></a>[MSG_LINE_BR~05000]I'm sorry I couldn't help you today. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_waFlags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_waFlags2
+}

@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=FN_Upgrade_Tradein fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_Upgrade_Tradein" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! From the <b>Account Overview</b> home page, scroll down to <b>My Devices</b>  and select the device you would like to trade in/upgrade to see offers available for that device. Reminder that offers will vary from your first responder line to your family line.<br> 
+
+Or you can go <a href=\"https://www.att.com/deals/phone-trade-in/\" target=\"_blank\">here</a> to get more information.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

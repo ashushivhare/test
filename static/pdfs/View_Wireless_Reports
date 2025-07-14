@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="View Wireless Reports" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#View_Wireless_Reports" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="($waSession.User_TCM_ADM || $waSession.User_VOL)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that!<br><br>To reach wireless reports option, click <b>View Wireless Reports</b>. A new window will allow you to choose Manage or Billing for the various types of reports you may need.<br><br><b>Manage</b> links you to current usage and inventory reports. <b>Billing</b> is billed usage, payment history and monthly usage reports.<br><br>Manage Reports <a href=\"https://wireless.firstnet.att.com/businesscare/reporting/common/view_download.jsp?_requestid=4870\">Link</a>Billing Reports <a href=\"https://wireless.firstnet.att.com/b2bservlets/HaloSSOLoginServlet.dyn\">Link</a>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump2 [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_jump2 [label="Jump To"]
+}

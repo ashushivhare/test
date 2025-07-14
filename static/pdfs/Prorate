@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Prorate fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Prorate" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!  If you change your plan or add-ons in the middle of a bill period, you’ll see partial-month charges or credits on your next bill. There is more detailed information here and an awesome short video.<br>
+ To get there quickly, use this <a href=\"https://www.att.com/support/article/wireless/KM1051632/\" target=\"_blank\">link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

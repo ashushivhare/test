@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Live Agent Transfer Offer (No)" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bot_Control_Reject_Response && $waSession.liveAgentOffer && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.reachedSurvey || $waSession.disambiguationFailed || $waSession.outOfScope" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="Again, I’m sorry I couldn’t answer all your questions. I’m continually improving and increasing my capabilities. If you have other questions, send me a chat. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_waFlags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_waFlags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="$waSession.apiCallFailed" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog3 [label="I'm continually improving and increasing my capabilities. If you have other questions, send me a chat. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_waFlags3 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	root_dialog1 -> root_waFlags1
+	root_dialog2 -> root_waFlags2
+	Intent -> root_condition3
+	root_condition3 -> root_dialog3
+	root_dialog3 -> root_waFlags3
+}

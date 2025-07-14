@@ -1,0 +1,116 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Billing help-Enhanced" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=true fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_jump1 [label=Details fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="@data_pass_strings:Welcome" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="Hi, I’m the enterprise virtual assistant. I see your phone bill is higher than usual this month. Is this the topic you would like assistance with? " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1title [label=Avoid_charges fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="You can explore our international calling plans for more cost-effective options  <a href=\"https://www.att.com/international/long-distance/\" target=\"_blank\">here.</a>
+AT&T offers unlimited calling from the U.S. to 85+ countries with a qualified rate plan, and discounted calling rates to over 140 other countries." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label=New_charges fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Extra_charges fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="There are additional roaming charges for making international calls when you use your phone outside your home country. These charges cover the cost of connecting to local networks abroad." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label=Avoid_charges fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label=StillNotAddingUp fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="Let me walk through the bill in detail. Your average monthly bill is \$2,000. Last month, you added 10 new devices, resulting in an additional cost of \$1,000 for the devices. Additionally, there is a \$55 charge for each plan associated with the 10 new lines.
+[MSG_LINE_BR~05000]
+<img src=\"https://i.imgur.com/9g7I16K.jpg\" height=\"175px\" width=\"250px\" />" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label=ActivationFee fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label=promotions fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4dialog [label="Yes! You can enroll in <b>AutoPay</b> and get a monthly bill discount <a href=\"https://www.att.com/support/article/my-account/KM1009352\" target=\"_blank\"><b>here</b>.</a>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5title [label=BillingThanks fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5dialog [label="You're welcome! Do you have any more questions?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child6title [label=Notaddingup fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child6dialog [label="Let me walk through the bill in detail. Your average monthly bill is \$2,000. Last month, you added 10 new devices, resulting in an additional cost of \$1,000 for the devices. Additionally, there is a \$55 charge for each plan associated with the 10 new lines.
+[MSG_LINE_BR~05000]
+<img src=\"https://i.imgur.com/9g7I16K.jpg\" height=\"175px\" width=\"250px\" />" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child6jump [label=StillNotAddingUp fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7title [label=Using_date fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7dialog [label="Here is a breakdown of your data usage in December and January to see where you are using the most data.
+In <b>December</b>, you used the most data on <b>Web Browsing</b>: 4,325 MB.
+
+In <b>January</b>, you used the most data on <b>Video Streaming</b> apps: 20,580 MB." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7jump [label=ActivationFee fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child8title [label=ActivationFee fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child8dialog [label="Activation fees are one-time charges that cover the work required to set up your account and activate the service." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child8jump [label=ChargedActivationFee fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9title [label=New_charges fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child9dialog [label="No, there were no new charges or fees. However, there was a slight increase in price for the <b>Company Fees & Surcharges</b> in January.
+The Regulatory Cost Recovery Charge increased from $1.25 to $1.50 per device." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9jump [label=Company_fee fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child10title [label=ConfidenceCheck fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child10dialog [label="Sorry for the inconvenience... Still we are training our model!!!" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child11title [label="ConfidenceCheck - copy 1" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child11dialog [label="Sorry for the inconvenience... Still we are training our model!!!" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child12title [label=ChargedActivationFee fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child12dialog [label="Since you purchased 10 phones, each device requires its own activation process.[MSG_LINE_BR~05000] Your new devices were activated on 3/14/24. There is an activation fee of $35 per device, totaling \$350 in activation fees.
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child12jump [label=InternationalDayPass fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child13title [label=Data_alert fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child13dialog [label="Yes, you can set up data usage alerts to help you track your data use and prevent overages <a href=\"https://www.att.com/support/article/wireless/KM1009222/\" target=\"_blank\">here.</a>." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child13jump [label=Extra_charges fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child14title [label="breakdown of bill" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child14dialog [label=<img src="https://i.imgur.com/EHVqjyk.png" height="250px" width="250px" /> fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child14jump [label=Using_date fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child15title [label=Company_fee fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child15dialog [label="AT&T imposes additional charges on a per line basis, including federal and state universal service charges, an Administrative Fee, a Regulatory Cost Recovery Charge, and a Property Tax Allotment." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child15jump [label=promotions fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child16title [label=Billing_No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child16dialog [label="Have a great day!!" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child17title [label=Details fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child17dialog [label=" I can help you with that! Let’s go through your phone bill.
+[MSG_LINE_BR~05000]
+ It looks like there were 10 new devices purchased last month, which caused the bill to increase." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child17jump [label=StillNotAddingUp fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4dialog
+	Intent -> _level1child5title
+	_level1child5title -> _level1child5dialog
+	Intent -> _level1child6title
+	_level1child6title -> _level1child6dialog
+	_level1child6title -> _level1child6jump [label="Jump To"]
+	Intent -> _level1child7title
+	_level1child7title -> _level1child7dialog
+	_level1child7title -> _level1child7jump [label="Jump To"]
+	Intent -> _level1child8title
+	_level1child8title -> _level1child8dialog
+	_level1child8title -> _level1child8jump [label="Jump To"]
+	Intent -> _level1child9title
+	_level1child9title -> _level1child9dialog
+	_level1child9title -> _level1child9jump [label="Jump To"]
+	Intent -> _level1child10title
+	_level1child10title -> _level1child10dialog
+	Intent -> _level1child11title
+	_level1child11title -> _level1child11dialog
+	Intent -> _level1child12title
+	_level1child12title -> _level1child12dialog
+	_level1child12title -> _level1child12jump [label="Jump To"]
+	Intent -> _level1child13title
+	_level1child13title -> _level1child13dialog
+	_level1child13title -> _level1child13jump [label="Jump To"]
+	Intent -> _level1child14title
+	_level1child14title -> _level1child14dialog
+	_level1child14title -> _level1child14jump [label="Jump To"]
+	Intent -> _level1child15title
+	_level1child15title -> _level1child15dialog
+	_level1child15title -> _level1child15jump [label="Jump To"]
+	Intent -> _level1child16title
+	_level1child16title -> _level1child16dialog
+	Intent -> _level1child17title
+	_level1child17title -> _level1child17dialog
+	_level1child17title -> _level1child17jump [label="Jump To"]
+}

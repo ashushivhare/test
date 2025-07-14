@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="View Inventory" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#View_Inventory" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!
+To view devices on your account:
+- Click <b>Account</b>.
+- Choose <b>My Devices</b> to scroll through all the devices on your account. 
+You may be eligible for an upgrade or can access device support.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

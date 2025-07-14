@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Add A New Line - Devices or Packages" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="$waSession.addNewLine=='Step4' && @new_line_options && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition1 [label="@new_line_options:device" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="OK. Take a minute to look at the devices available to you.[MSG_LINE_BR~05000]To order a device, select <b>View</b>, and then choose the options you want, such as: <ul> <li>- Color</li> <li>- Capacity</li> <li>- Contract or Installment plan</li> </ul> <br></br> When you’re ready to continue, select <b>Add to Cart</b>. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition2 [label="@new_line_options:package" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="OK. To view Packages, select <b> Packages</b> under the shop tab. View the Packages on the page. <br></br> When you’re happy with your package Select <b>Add to Cart</b> to proceed. You can also select the package to view more details on the package and then select <b>Add to Cart</b>.[MSG_LINE_BR~05000]From the Shopping Cart you can shop for accessories, Add a data plan, or Add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+}

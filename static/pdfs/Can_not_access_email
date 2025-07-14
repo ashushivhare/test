@@ -1,0 +1,15 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Can not access email" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Can_not_access_email" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! 
+Go to Manage Devices and Services tile.
+1. There is an awesome tool <a href=\"https://www.att.com/support/wireless/\" target=\"_blank\">here</a>  called <b>Fix My Wireless</b>.
+2. Once there, check that the correct phone number is in view in the upper right of your screen, or change as needed.
+3. Under <b>Fix My Wireless</b>, choose <b>Email</b> under <b>Services</b>.
+4. Answer the questions to troubleshoot and resolve the problem! " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

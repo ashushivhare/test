@@ -1,0 +1,117 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Premier FirstNet- Check order status" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Order_Status" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Premier FirstNet- Check order status" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="What else can I help you with? Some popular topics are: <div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Delayed delivery date\"> Delayed delivery date</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Order lost or damaged in transit\"> Order lost or damaged in transit</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Cancel an order\">Cancel an order</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Change shipping address\"> Change shipping address</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Item out of stock / order on hold\">Item out of stock / order on hold</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Missing items from order\">Missing items from order</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Need a return label\"> Need a return label</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\">I got what I needed</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="I got what I needed " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label="Missing items from order" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2dialog [label="I understand you may be missing something. Let’s check on the order status first because most of the time a partial order is shipped right away when some items are delayed due to backorder. Also, note that most device brands no longer send ear buds or charging blocks with new devices. 
+
+What can I help you with next: 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Order status\"> Order status </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Shop for accessory\"> Shop for accessory </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\"> I got what I needed </a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child2_level3child1title [label="Shop for accessory " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2_level3child1jump [label="Accessory Order" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2_level3child2title [label="I got what I needed " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2_level3child2jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2_level3child3title [label="Order status " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2_level3child3dialog [label="You can check the status of your order <a target=\"_blank\" href=\"https://www.att.com/checkmyorder/omhub.rt\">AT&T Order Management Portal</a> page. <br></br>All you need is your order number and zip code. You'll find your order number on emails about your order (be sure to check your Spam folder), recent bills, AT&T receipts, and other order paperwork.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child2_level3child3jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child3title [label="Cancel an order " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child3jump [label="Cancel order" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child4title [label="Order lost or damaged in transit " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child4_level3child1title [label="In hours" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child4_level3child1waFlags [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child5title [label="Change shipping address " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child5dialog [label="I’m sorry, but the address cannot be updated once the order has been submitted. Live agents are also unable to make this change. You may cancel that order and place a new order. May I offer additional assistance with: 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Cancel an order\"> Cancel an order</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Locate a store near me\"> Locate a store near me </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\"> I got what I needed </a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child5_level3child1title [label="I got what I needed " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child5_level3child1jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child5_level3child2title [label="Locate a store near me" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child5_level3child2dialog [label="Click <a href=\"https://www.att.com/stores/\"  target=\"_blank\">here </a> to find a store near you!<br> <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child5_level3child2jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child5_level3child3title [label=" Cancel an order" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child5_level3child3jump [label="Cancel order" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child6title [label="Need a return label " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child6jump [label=Return_Label fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child7title [label="Item out of stock / order on hold " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child7dialog [label="We understand that getting a new phone can be an urgent matter. You can cancel this order and either place another online order selecting an item(s) that’s available sooner or go to your local store. 
+
+May I offer additional assistance with: 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Cancel an order\"> Cancel an order</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Locate a store near me\"> Locate a store near me </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\"> I got what I needed </a></li></ul></div>
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child7_level3child1title [label="Locate a store near me" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child7_level3child1dialog [label="Click <a href=\"https://www.att.com/stores/\"  target=\"_blank\">here </a> to find a store near you!<br> <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child7_level3child1jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child7_level3child2title [label="I got what I needed " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child7_level3child2jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child7_level3child3title [label=" Cancel an order" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child7_level3child3jump [label="Cancel order" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child8title [label="Delayed delivery date" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child8dialog [label="Orders are usually delayed due to an item(s) being out of stock. Unfortunately, there is no way to expedite an order once it has been placed. We understand that getting a new phone can be an urgent matter. 
+
+You can cancel this order and either place another online order selecting an item(s) that’s available sooner or go to your local store. 
+
+May I offer additional assistance with: 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Cancel an order\"> Cancel an order </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Locate a store near me\"> Locate a store near me </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\"> I got what I needed </a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child8_level3child1title [label="I got what I needed " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child8_level3child1jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child8_level3child2title [label="Locate a store near me" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child8_level3child2dialog [label="Click <a href=\"https://www.att.com/stores/\"  target=\"_blank\">here </a> to find a store near you!<br> <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child8_level3child2jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child8_level3child3title [label=" Cancel an order" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child8_level3child3jump [label="Cancel order" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I can help you with that! <br>You can check the status of your order <a target=\"_blank\" href=\"https://www.att.com/checkmyorder/omhub.rt\">AT&T Order Management Portal</a> page. All you need is your order number and zip code. You'll find your order number on emails about your order (be sure to check your Spam folder), recent bills, AT&T receipts, and other order paperwork.<br><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2dialog
+	_level1child1_level2child2title -> _level1child1_level2child2_level3child1title
+	_level1child1_level2child2_level3child1title -> _level1child1_level2child2_level3child1jump [label="Jump To"]
+	_level1child1_level2child2title -> _level1child1_level2child2_level3child2title
+	_level1child1_level2child2_level3child2title -> _level1child1_level2child2_level3child2jump [label="Jump To"]
+	_level1child1_level2child2title -> _level1child1_level2child2_level3child3title
+	_level1child1_level2child2_level3child3title -> _level1child1_level2child2_level3child3dialog
+	_level1child1_level2child2_level3child3title -> _level1child1_level2child2_level3child3jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child3title
+	_level1child1_level2child3title -> _level1child1_level2child3jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child4title
+	_level1child1_level2child4title -> _level1child1_level2child4_level3child1title
+	_level1child1_level2child4_level3child1title -> _level1child1_level2child4_level3child1waFlags [label="Switch Workspace"]
+	_level1child1title -> _level1child1_level2child5title
+	_level1child1_level2child5title -> _level1child1_level2child5dialog
+	_level1child1_level2child5title -> _level1child1_level2child5_level3child1title
+	_level1child1_level2child5_level3child1title -> _level1child1_level2child5_level3child1jump [label="Jump To"]
+	_level1child1_level2child5title -> _level1child1_level2child5_level3child2title
+	_level1child1_level2child5_level3child2title -> _level1child1_level2child5_level3child2dialog
+	_level1child1_level2child5_level3child2title -> _level1child1_level2child5_level3child2jump [label="Jump To"]
+	_level1child1_level2child5title -> _level1child1_level2child5_level3child3title
+	_level1child1_level2child5_level3child3title -> _level1child1_level2child5_level3child3jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child6title
+	_level1child1_level2child6title -> _level1child1_level2child6jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child7title
+	_level1child1_level2child7title -> _level1child1_level2child7dialog
+	_level1child1_level2child7title -> _level1child1_level2child7_level3child1title
+	_level1child1_level2child7_level3child1title -> _level1child1_level2child7_level3child1dialog
+	_level1child1_level2child7_level3child1title -> _level1child1_level2child7_level3child1jump [label="Jump To"]
+	_level1child1_level2child7title -> _level1child1_level2child7_level3child2title
+	_level1child1_level2child7_level3child2title -> _level1child1_level2child7_level3child2jump [label="Jump To"]
+	_level1child1_level2child7title -> _level1child1_level2child7_level3child3title
+	_level1child1_level2child7_level3child3title -> _level1child1_level2child7_level3child3jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child8title
+	_level1child1_level2child8title -> _level1child1_level2child8dialog
+	_level1child1_level2child8title -> _level1child1_level2child8_level3child1title
+	_level1child1_level2child8_level3child1title -> _level1child1_level2child8_level3child1jump [label="Jump To"]
+	_level1child1_level2child8title -> _level1child1_level2child8_level3child2title
+	_level1child1_level2child8_level3child2title -> _level1child1_level2child8_level3child2dialog
+	_level1child1_level2child8_level3child2title -> _level1child1_level2child8_level3child2jump [label="Jump To"]
+	_level1child1_level2child8title -> _level1child1_level2child8_level3child3title
+	_level1child1_level2child8_level3child3title -> _level1child1_level2child8_level3child3jump [label="Jump To"]
+}

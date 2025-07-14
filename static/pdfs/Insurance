@@ -1,0 +1,32 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Insurance fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#insurance" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition2 [label="$waSession.insuranceCounter >= 1 || $waSession.primaryIntentCounter >= 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump2 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Make an insurance claim" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Add, change, or remove insurance" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1title [label="In hours" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1waFlags [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Contact Insurance Company" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="Your insurance provider is Asurion. You can reach them at <b>888.562.8662</b>, Monday - Friday, 8 a.m. - 10 p.m. ET and Saturday - Sunday, 9 a.m. - 9 p.m. ET.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Learn More About Your Insurance" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition2
+	root_condition2 -> root_jump2 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1waFlags [label="Switch Workspace"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4jump [label="Jump To"]
+}

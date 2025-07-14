@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Out of Scope" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#email_problem || #link_expired || #Website_Difficult_To_Navigate || #Manage_Pay_Method || #View_Inventory || #Update_Profile || #Create_Delivery_Profile || #Copy_of_Contract || #Sort_By || #Set_Alerts || #schedule_monthly_report || #sales_agent_or_rep || #reporting_issue || #paper_bill_reprint || #need_resolution || #name_and_ticket_number || #Loop || #issue_not_resolved || #Incident_Log_failure || #exactly_as_it_is_on_bill || #Form_does_not_open || #Intent_Retrieved_Username_Incorrect || #payment_arrangements || #registration_anti || #Cancel_Bill_Summary || #term_lookup || #change_due_date || #issue_not_resolved || #Add_User || #Remove_User" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Transfer to Live Agent" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}

@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Hello Again" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#General_Greetings && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="First Node" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="Hi. How can I help?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

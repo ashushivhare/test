@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="ReRoute - FN_Central - 2" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#activate_phone_device_anti or #Already_Tried_Not_Working or #Can_not_access_email or #cancel_service_line_plan_feature or #cant_login or #cant_login_anti or #check_usage_anti or #device_installment_support_oos or #Did_not_get_temporary_pin or #download_bill_anti or #forgot_password or #forgot_username or #Form_does_not_open or #General_About_You or #Group_Login_Password or #International_device_support or #link_expired or #Menu or #pay_bill_anti or #prepaid or #registration_anti or #Set_Alerts or #unlock_device_support_oos or #user_manual or #view_bill_anti or #which_email or #Add_User or #Edit_User or #Uplift_Creation or #Uplift_Management or #Deployable_Request or #Manage_Apps or #FirstNet_Applications or #FirstNet_Push_To_Talk or #FirstNet_Messaging or #Tutorials or #Support or #Cell_Booster or #Notifications or #Education or #Manage_IOT_Devices or #View_Wireless_Reports || #Nutrition_Labels || #Locate_a_Store || #SOS_Mode" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label=Reroute fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\") || ($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_waFlags2 [label=FN_Central fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_waFlags2 [label="Switch Workspace"]
+}

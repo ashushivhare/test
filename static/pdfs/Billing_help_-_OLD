@@ -1,0 +1,117 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Billing help - OLD" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=true fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition1 [label="@BillingHelp" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump2 [label=Details fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Can you explain more about the company fees?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="AT&T imposes additional charges on a per line basis, including federal and state universal service charges, an Administrative Fee, a Regulatory Cost Recovery Charge, and a Property Tax Allotment.
+These fees are not taxes or charges that the government requires AT&T to collect from its customers. You can get more information about these fees and surcharges by clicking <a href=\"http://att.com/mobilityfees\" target=\"_blank\">here</a>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label="Which number used the most data?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="How do I pay my bill?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="To pay your bill, simply click on the <b>Bills</b> tab on the top menu bar to see a list of accounts and bills. Check the box to the left of the invoice you wish to pay. Then the button for <b>Pay</b> is clickable." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="What is the billing period for this statement?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="How much is the bill for that number?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="The total amount billed for 1-580-618-1559 is <b>$40.79</b>." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label="When is my bill due?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label=ConfidenceCheck fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4dialog [label="We're actively enhancing our model to serve you better. Thank you for your patience!" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5title [label=" How can I set up alerts for when my bill is ready to view?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5dialog [label=" I can help you with that! On the <b>Billing</b> tab, under the <b>Notifications</b> menu, click on <b>Set Up</b> to go to the Notifications screen. 
+Here you can subscribe to online and emails alerts for things like your bill is ready to view, offline report is ready to view, as well as payment events like autopay credit card is about to expire. " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5jump [label="When is my bill due?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child6title [label="When is my bill due?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child6dialog [label="Your bill is due on <b> Apr 29, 2024 </b>." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child6jump [label="I want to download my bill" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7title [label="I want to download my bill" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7dialog [label="I can help you with that! You can download your bill by clicking the PDF <a href=\"#\" target=\"_blank\" download><img src=\"https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg\" style=\"width:50px;height:60px;\"></a>
+
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7jump [label="How do I pay my bill?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child8title [label="Can I see the individual charges for each phone number? - copy 1 - copy 1" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child8dialog [label="Sure! Here is a side by side comparison of your overall usage in December and January.
+<figure><img src=\"https://drive.google.com/uc?id=18SulbYm6JdFyO_KuEQ9ihyI8l7BVNf9b\" alt=\"chart\" width=\"50\" height=\"50\"><figcaption><b>Compare Usage</b><br></figcaption></figure>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child8jump [label="When is my bill due?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9title [label=InternationalDayPass fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child9dialog [label="To sign up for AT&T International Day Pass, follow these steps:
+
+1. Go to the AT&T International Day Pass webpage.
+
+2. Log in to your AT&T account using your credentials.
+
+3. Go to the Add or Change Plan Features section.
+
+4. Find the International Day Pass option and click Add or Manage to enable it.
+
+5. Review the changes and confirm your selection.
+
+You can also sign up by calling AT&T International Customer Care at 314-925-6925.
+Article:<a href=\" https://www.att.com/support/article/wireless/KM1175103/ \"> https://www.att.com/support/article/wireless/KM1175103/ </a>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child10title [label="What is the billing period for this statement?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child10dialog [label="The billing period is from <b>March 6, 2024 to Apr 6, 2024 </b>. 
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child10jump [label="How much fees did I pay?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child11title [label="Which number used the most data?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child11dialog [label="The phone number that used the most data this month is <b>1-580-618-1559</b>, with <b>9,801,366 KB</b> of data used. " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child11jump [label="How much is the bill for that number?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child12title [label="Can I see which phone numbers have gone over the allowed data amount?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child12dialog [label="Sure! Here is a side by side comparison of your overall usage in December and January.
+<figure><img src=\"https://drive.google.com/uc?id=18SulbYm6JdFyO_KuEQ9ihyI8l7BVNf9b\" alt=\"chart\" width=\"50\" height=\"50\"><figcaption><b>Compare Usage</b><br></figcaption></figure>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child12jump [label="When is my bill due?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child13title [label="How much fees did I pay?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child13dialog [label="You paid a total of  <b>$1,117.41</b> in fees. This includes $889.67 in Company Fees and Surcharges and $227.74 in Government Fees and Taxes." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child13jump [label="Can you explain more about the company fees?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child14title [label="Can I see the individual charges for each phone number? - copy 1" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child14dialog [label="Sure! Here is a side by side comparison of your overall usage in December and January.
+<figure><img src=\"https://drive.google.com/uc?id=18SulbYm6JdFyO_KuEQ9ihyI8l7BVNf9b\" alt=\"chart\" width=\"50\" height=\"50\"><figcaption><b>Compare Usage</b><br></figcaption></figure>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child14jump [label="When is my bill due?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child15title [label=Details fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child15dialog [label="Here is your monthly bill:Your current balance is \$2,313. Your current charge is \$388. Your total amount billed is <b>\$2,701</b>. <br>Do you have any questions about the bill?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child15jump [label="When is my bill due?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition1
+	root_dialog2 -> root_jump2 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4dialog
+	Intent -> _level1child5title
+	_level1child5title -> _level1child5dialog
+	_level1child5title -> _level1child5jump [label="Jump To"]
+	Intent -> _level1child6title
+	_level1child6title -> _level1child6dialog
+	_level1child6title -> _level1child6jump [label="Jump To"]
+	Intent -> _level1child7title
+	_level1child7title -> _level1child7dialog
+	_level1child7title -> _level1child7jump [label="Jump To"]
+	Intent -> _level1child8title
+	_level1child8title -> _level1child8dialog
+	_level1child8title -> _level1child8jump [label="Jump To"]
+	Intent -> _level1child9title
+	_level1child9title -> _level1child9dialog
+	Intent -> _level1child10title
+	_level1child10title -> _level1child10dialog
+	_level1child10title -> _level1child10jump [label="Jump To"]
+	Intent -> _level1child11title
+	_level1child11title -> _level1child11dialog
+	_level1child11title -> _level1child11jump [label="Jump To"]
+	Intent -> _level1child12title
+	_level1child12title -> _level1child12dialog
+	_level1child12title -> _level1child12jump [label="Jump To"]
+	Intent -> _level1child13title
+	_level1child13title -> _level1child13dialog
+	_level1child13title -> _level1child13jump [label="Jump To"]
+	Intent -> _level1child14title
+	_level1child14title -> _level1child14dialog
+	_level1child14title -> _level1child14jump [label="Jump To"]
+	Intent -> _level1child15title
+	_level1child15title -> _level1child15dialog
+	_level1child15title -> _level1child15jump [label="Jump To"]
+}

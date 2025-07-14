@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=need_phone_support_number_cannot_call fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#need_phone_support_number_cannot_call" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	"End Chat" [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> "End Chat" [minlen=2]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I’m sorry for any inconvenience. If you can't call, enter <b>611</b> on your phone keypad. FirstNet support can help you with what you need. [MSG_LINE_BR~05000]Our phone support agents can help 24/7! Please call <b>1.800.574.7000</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing FirstNet. Goodbye" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Am I In the right place" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#am_i_in_the_right_place" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with some Business Center self-service options for managing your enterprise wireline accounts. Here are some places where you can find help about other AT&T solutions:<br>
+If you’re a <b>consumer or small business mobility customer</b>, go to <a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\"><b>myAT&T</b></a>.<br>
+If you're an <b>enterprise mobility customer</b>, go to <a href=\"https://www.wireless.att.com/business/index.jsp\" target=\"_blank\"><b>Premier</b></a>.<br>
+To manage your <b>DIRECTV</b> or <b>DIRECTV for BUSINESS</b> account, or find more information about AT&T entertainment, go to <a href=\"https://www.directv.com/\" target=\"_blank\"><b>DIRECTV</b></a>.<br>
+To explore the <b>AT&T Cloud ecosystem</b> or log in to your AT&T Cloud Solutions account, go to <a href=\"https://www.synaptic.att.com/clouduser/login.htm\" target=\"_blank\"><b>Cloud Solutions</b></a>.<br>
+To manage your <b>AT&T wireless internet solution</b>, go to the <a href=\"https://my-attwifi.attwifi.com/ent_loginpage\" target=\"_blank\"><b>AT&T Wi-Fi Customer Portal</b></a>.<br>
+For <b>cybersecurity</b>, visit <a href=\"https://www.e-access.att.com/iprotent/\" target=\"_blank\"><b>AT&T Threat Manager</b></a>.<br>[MSG_LINE_BR~05000]Can I help you with anything else today?<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Yes\">Yes</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"No\">No</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

@@ -1,0 +1,24 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Payment Intents" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#autopay || #Change_Rate_Plan || #charge_inquiry || #device_installment_support_oos || #IMEI_ICCID_SIM_Change || #Manage_Pay_Method || #payment_arrangements || #payment_confirmation || #update_payment_method" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label="payment Intents Options" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeflags1 [label="SMB FAN PIN" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption2 [label="@paymentIntents:(See your balance or pay a bill without signing in)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend2 [label="Option - Pay Bill without logging in" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption3 [label="@paymentIntents:(Get Prepaid support)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend3 [label="Prepaid Service" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption4 [label="@paymentIntents:(Which account do I sign in to?)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend4 [label="Am I In Right Place" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="You can do that online by signing in to your account.<br><div><ul><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Which account do I sign in to?\">Which account do I sign in to?</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"See your balance or pay a bill without signing in\">See your balance or pay a bill without signing in</a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Get Prepaid support\">Get Prepaid support</a></li></ul><div> Or, i need more info on... " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1nodeflags1 [label="Switch Workspace"]
+	_level1child1title -> _level1child1nodeoption2
+	_level1child1nodeoption2 -> _level1child1nodeend2 [label="Jump To"]
+	_level1child1title -> _level1child1nodeoption3
+	_level1child1nodeoption3 -> _level1child1nodeend3 [label="Jump To"]
+	_level1child1title -> _level1child1nodeoption4
+	_level1child1nodeoption4 -> _level1child1nodeend4 [label="Jump To"]
+}

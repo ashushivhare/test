@@ -1,0 +1,50 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Dictionary Term Lookup" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#term_lookup && @dictionaryTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Premier_FirstNet [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> Premier_FirstNet [label="Switch Workspace"]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="No Response Yet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Get Response" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Get Response" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1title [label="Check if Errored" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child2title [label=Response fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child2nodetext1 [label="Here's what I was able to find:<br></br>$waSession.dictionaryResponse.response[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child2nodeend1 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child2nodeoption2 [label="$waSession.dictionaryResponse.containsFANPIN==\"true\" &&    ($waInput.portal == \"login\" || $waInput.portal == \"registration\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child2nodetext2 [label="Here's what I was able to find:<br></br>$waSession.dictionaryResponse.response If you’ve forgotten your FAN PIN, I can help you reset it. Would you like me to help you reset your FAN PIN?<br></br>$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child2_level3child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child2_level3child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child2_level3child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child2_level3child2jump [label="FAN PIN OOS" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child3title [label="Generate Response" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child3nodeoption1 [label="$waInput.DataDictionary[$waSession.dictionaryResponse.termCount].definition != \"NOT_FOUND\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child3_level3child1title [label="Increment Terms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child3_level3child1jump [label="Generate Response" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child3_level3child2title [label="Check if FAN PIN" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child3_level3child2jump [label="Increment Terms" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child2title
+	_level1child2_level2child2title -> _level1child2_level2child2nodetext1
+	_level1child2_level2child2nodetext1 -> _level1child2_level2child2nodeend1 [label="Jump To"]
+	_level1child2_level2child2title -> _level1child2_level2child2nodeoption2
+	_level1child2_level2child2nodeoption2 -> _level1child2_level2child2nodetext2
+	_level1child2_level2child2nodetext1 -> _level1child2_level2child2_level3child1title
+	_level1child2_level2child2_level3child1title -> _level1child2_level2child2_level3child1jump [label="Jump To"]
+	_level1child2_level2child2nodetext1 -> _level1child2_level2child2_level3child2title
+	_level1child2_level2child2_level3child2title -> _level1child2_level2child2_level3child2jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child3title
+	_level1child2_level2child3title -> _level1child2_level2child3nodeoption1
+	_level1child2_level2child3title -> _level1child2_level2child3_level3child1title
+	_level1child2_level2child3_level3child1title -> _level1child2_level2child3_level3child1jump [label="Jump To"]
+	_level1child2_level2child3title -> _level1child2_level2child3_level3child2title
+	_level1child2_level2child3_level3child2title -> _level1child2_level2child3_level3child2jump [label="Jump To"]
+}

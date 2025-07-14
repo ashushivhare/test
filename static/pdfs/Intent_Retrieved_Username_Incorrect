@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Intent Retrieved Username Incorrect" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Intent_Retrieved_Username_Incorrect" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.customerType==\"CONS\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="I can help you with that! What if I forgot my user ID? It’s easy to recover your user ID. Here’s what to do:
+1. Go to the  <a href=\"https://identity.att.com/identity-ui/fid/lander\">Forgot ID </a>page.
+2. Enter the email you provided when you set up your ID.
+3. Follow the prompts.
+FYI: If you don’t remember what email you used, choose Forgot contact email. If you have more than one ID with the same contact email, your Forgot ID email will list them all." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+}

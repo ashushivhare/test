@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Wireline Was this info" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="$waSession.Wireline" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label="I have another question" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="What else can I help with?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="I'm glad that I could help you today. <br></br>If you're a new customer or want to know how you can get things done, you can find answers to many questions <a href=https://www.att.com/support/smallbusiness/>here</a><br></br>Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3jump [label="Transfer To Live Agent Wireline Intents" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="Was this information helpful?$waSession.buttons.optionsYesNoAnotherQuestion" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2dialog -> _level1child2waFlags
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3jump [label="Jump To"]
+}

@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Apple iPhone 13 Pro" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Apple_iPhone_13_Pro" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you with Apple iPhones!<br>
+Click <a href=\"https://www.att.com/buy/phones/browse/apple\" target=\"_blank\"><b>here</b></a> to shop the latest models and their great features. <br>
+You can <a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\"><b>sign in to myAT&T</b></a> to manage your account, check upgrade eligibility, and order new service.<br><br>Need help with your device? Click <a href=\"https://www.att.com/device-support/selector/Apple/\" target=\"_blank\"><b>here</b></a> for comprehensive support on how to use features, technical specifications and troubleshooting.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

@@ -1,0 +1,13 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Outage fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#outage" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!  
+<br></br>1.Click <a target=\"_blank\" href=\"https://www.att.com/outages/\"><b>here</b></a> to see the <b>Find Outage in Your Area </b> option.
+<br></br>2.Simply select if you need for you wireless service or AT&T Internet, AT&T Phone, or U-verse® TV.
+<br></br>3.After entering an address, the tool will return a message about service in the area. It's that easy!<br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

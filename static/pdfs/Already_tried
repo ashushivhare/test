@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Already tried" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Already_Tried_Not_Working && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Authenticated - Inhours" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I'm sorry you're having difficulty with our website. " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Provide you the number to call" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="Our phone support agents can help 24/7! Please call <b>1.800.574.7000</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2dialog -> _level1child2waFlags
+}

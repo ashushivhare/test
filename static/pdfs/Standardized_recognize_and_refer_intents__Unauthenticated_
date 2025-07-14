@@ -1,0 +1,79 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Standardized recognize and refer intents (Unauthenticated)" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="(#add_more_data || #add_new_line || #Add_Remove_Features || #autopay || #Bill_Higher_Than_Expected || #billing_inquiry || #Billing_Period_Missing || #cancel_service_line_plan_feature || #cannot_send_message || #Change_Billing_Period || #Change_Caller_ID_Name || #change_due_date || #Change_Rate_Plan || #charge_inquiry || #download_bill_anti || #reinstate_suspend_service || #Reports_Premier || #schedule_monthly_report || #Set_Alerts || #update_payment_method || #upgrade_eligibility_multi || #upgrade_eligibility_single || #User_Name_Change || #Wireless_Number_Change || #download_bill || #early_termination_fee || #need_latest_bill || #update_billing_contact_information || #view_bill || #view_bill_anti || #Intent_Retrieved_Username_Incorrect || #download_bill_anti || #paper_bill_different || #paperless_billing || #credit_inquiry || #IMEI_ICCID_SIM_Change || #need_phone_support_number_anti || #need_phone_support_number_cannot_call || #device_installment_support_oos || #cant_login_anti || #registration_anti || #Accessory_Order || #pay_bill_anti || #payment_arrangements || #payment_confirmation) &&         ($waInput.portal == \"login\" ||  $waInput.portal == \"registration\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="#Intent_Retrieved_Username_Incorrect" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition2 [label=false fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition3 [label="#reinstate_suspend_service" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition4 [label="#Bill_Higher_Than_Expected || #update_billing_contact_information || #billing_inquiry || #Billing_Period_Missing || #Change_Billing_Period || #Change_Caller_ID_Name || #change_due_date || #charge_inquiry || #download_bill || #need_latest_bill || #view_bill || #view_bill_anti || #download_bill_anti || #paper_bill_different || #paperless_billing || #credit_inquiry" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition5 [label="#add_more_data || #Add_Remove_Features" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition6 [label="#early_termination_fee || #Late_fee" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition7 [label="#Set_Alerts" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition8 [label="#upgrade_eligibility_multi || #upgrade_eligibility_single" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition9 [label="#autopay" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition10 [label="#Reports_Premier || #schedule_monthly_report" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition11 [label="#cannot_send_message" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition12 [label="#update_payment_method || #pay_bill_anti || #payment_arrangements || #payment_confirmation" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition13 [label="#IMEI_ICCID_SIM_Change" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition14 [label="#need_phone_support_number_anti || #need_phone_support_number_cannot_call" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition15 [label="#Change_Rate_Plan" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition16 [label="#cancel_service_line_plan_feature" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition17 [label="#User_Name_Change" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition18 [label="#add_new_line" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition19 [label="#Wireless_Number_Change" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition20 [label="#Accessory_Order" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition21 [label="#device_installment_support_oos" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition22 [label="#cant_login_anti || #registration_anti" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I understand you are seeking information on $logreg_filler. You can view/take action for this after logging into Premier. In addition, live chat agents are available to assist after successful log in. <br></br>May I offer additional assistance with: <ul><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Menu Options\">Menu Options</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Create an account\">Create an account</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Retrieve my User Name\">Retrieve my User Name</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Reset my password\">Reset my password</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I just want to pay my bill\">I just want to pay my bill</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I am not seeking help with my business mobility service\">I am not seeking help with my business mobility service</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Provide you the number to call\">Provide you the number to call</a></li><br></div></ul>I want more info on… " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1nodeoption1 [label="@PremierUnauthOptions:(I am not seeking help with my business mobility service)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodetext1 [label="I can help you with some Premier self-service options for managing your enterprise mobility accounts. Here are some places where you can find help about other AT&T solutions:<br></br>If you’re a consumer or small business mobility customer, go to <a href=\"https://www.att.com/my/#/login\"  target=’_blank’>myAT&T</a>.<br></br>If you’re an enterprise business customer looking for help with your network services, go to <a href=\"https://businesscenter.att.com/ebiz/registration/\"  target=’_blank’>Business Center</b> or BusinessDirect</a>.<br></br>
+To manage your DIRECTV or DIRECTV for BUSINESS account, or find more information about AT&T entertainment, go to <a href=\"https://www.directv.com/\" target=’_blank’>DIRECTV</a>.<br></br>To explore the AT&T Cloud ecosystem or log in to your AT&T Cloud Solutions account, go to <a href=\"https://www.synaptic.att.com/clouduser/login.htm\"  target=’_blank’>Cloud Solutions</a>.<br></br> The <a href=\"https://my-attwifi.attwifi.com/ent_loginpage\"  target=’_blank’>AT&T Wi-Fi Customer Portal</a>  is where you can manage your AT&T wireless internet solution.<br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1nodeend1 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption2 [label="@phonesupportyes:(Provide you the number to call) || #need_phone_support_number" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodetext2 [label="Our phone support agents can help 24/7! Please call <b>800.331.0500</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption3 [label="@PremierUnauthOptions:(Reset my password)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeflags3 [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption4 [label="@PremierUnauthOptions:(Retrieve my User Name)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeflags4 [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption5 [label="@PremierUnauthOptions:(Create an account)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeflags5 [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	Intent -> root_condition2
+	Intent -> root_condition3
+	Intent -> root_condition4
+	Intent -> root_condition5
+	Intent -> root_condition6
+	Intent -> root_condition7
+	Intent -> root_condition8
+	Intent -> root_condition9
+	Intent -> root_condition10
+	Intent -> root_condition11
+	Intent -> root_condition12
+	Intent -> root_condition13
+	Intent -> root_condition14
+	Intent -> root_condition15
+	Intent -> root_condition16
+	Intent -> root_condition17
+	Intent -> root_condition18
+	Intent -> root_condition19
+	Intent -> root_condition20
+	Intent -> root_condition21
+	Intent -> root_condition22
+	_level1child1title -> _level1child1dialog
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption1
+	_level1child1_level2child1nodeoption1 -> _level1child1_level2child1nodetext1
+	_level1child1_level2child1nodeoption1 -> _level1child1_level2child1nodeend1 [label="Jump To"]
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption2
+	_level1child1_level2child1nodeoption2 -> _level1child1_level2child1nodetext2
+	_level1child1_level2child1nodetext2 -> _level1child1_level2child1nodeflags2
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption3
+	_level1child1_level2child1nodeoption3 -> _level1child1_level2child1nodeflags3 [label="Switch Workspace"]
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption4
+	_level1child1_level2child1nodeoption4 -> _level1child1_level2child1nodeflags4 [label="Switch Workspace"]
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption5
+	_level1child1_level2child1nodeoption5 -> _level1child1_level2child1nodeflags5 [label="Switch Workspace"]
+}

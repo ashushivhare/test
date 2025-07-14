@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=DirecTV fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#DirecTV && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="To pay your DIRECTV bill without logging in, go <a href=\"https://www.att.com/acctmgmt/fastpmt/fastpay\" target=\"_blank\"><b>here</b></a> and enter your account number and your billing ZIP Code. You may want to bookmark or favorite this page for the future.<br>
+For general information, or to manage your DIRECTV or DIRECTV for BUSINESS account, go <a href=\"https://www.directv.com/\" target=\"_blank\"><b>here</b></a>, or call 844.916.1462." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

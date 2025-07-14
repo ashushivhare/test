@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=FN_Cell_Booster fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_Cell_Booster" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! The AT&T Cell Booster Pro is a device that acts as a miniature cell tower, and enables you to improve the quality of your organization’s indoor wireless service. 
+To activate your AT&T Cell Booster:
+1. Download the AT&T Cell Booster app from your app store or go to firstnet.com/cellboosterpro. You can also scan the QR Code on your Cell Booster.
+2.  Follow the steps to register and set up your Cell Booster. 
+Go <a href=\"https://www.firstnet.com/help/device-help/cell-booster-pro-faq.html\" target=\"_blank\">here</a>   for all information on Cell Boosters including troubleshooting steps, billing insights and determining if a Cell Booster is right for you.  <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

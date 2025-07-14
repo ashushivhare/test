@@ -1,0 +1,55 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="FN Verification - copy 1" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition2 [label="$waSession.customerType==\"CONS\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I'm sorry, but I see your log in status is not that of the First Responder. Please have that authorized user contact us via chat to obtain assistance on verification. <br> " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1title [label="FN Verification Response for FN User ID+FN line" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I can help you with that! Verification of your First Responder status is essential to your eligibility for this first of its kind National Public Safety Broadband Network. Because FirstNet is for First Responders, all users must verify that they are eligible for service.<br>If you have received notification that you are \"confirmed\" or \"verified\", this means you’ve qualified for FirstNet service and no further action is required at this time. Otherwise I can further assist you with the following: <br>
+<div><ul><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Understand the program\">Understand the program</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"See what job titles qualify\">See what job titles qualify</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"What documents do I need\">What documents do I need</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Check the status of my verification request\">Check the status of my verification request</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"My status has been rejected, what next?\"> My status has been rejected, what next?</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\">I got what I needed</a></li></ul></div>
+   
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="Check the status of my verification request" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1jump [label="Transfer to Live agent - XFR/RFR" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label="I got what i needed" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child3title [label="See what job titles qualify" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child3dialog [label="To get there quickly, use this <a href=\"https://www.firstnet.com/content/dam/firstnet/white-papers/firstnet-sub-paid-eligibility.pdf\" target=\"_blank\">link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child3jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child4title [label="My status has been rejected, what next?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child4jump [label="Transfer to Live agent - XFR/RFR" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child5title [label="What documents do I need" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child5dialog [label="To get there quickly, use this <a href=\"https://www.firstnet.com/content/dam/firstnet/white-papers/firstnet-sub-paid-eligibility.pdf\" target=\"_blank\">link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child5jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child6title [label="Understand the program" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child6dialog [label="To get there quickly, use this <a href=\"https://www.firstnet.com/faq.html\" target=\"_blank\">link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child6jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="FN Verification Response for Consumer ID+FN line" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="I'm sorry, but I see your log in status is not that of the First Responder. Please have that authorized user contact us via chat to obtain assistance on verification. <br> " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child3title
+	_level1child1_level2child3title -> _level1child1_level2child3dialog
+	_level1child1_level2child3title -> _level1child1_level2child3jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child4title
+	_level1child1_level2child4title -> _level1child1_level2child4jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child5title
+	_level1child1_level2child5title -> _level1child1_level2child5dialog
+	_level1child1_level2child5title -> _level1child1_level2child5jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child6title
+	_level1child1_level2child6title -> _level1child1_level2child6dialog
+	_level1child1_level2child6title -> _level1child1_level2child6jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

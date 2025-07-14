@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Due Date" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Due_Date" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! On the top of your screen, click <b>My AT&T</b> then choose <b>See My Bill</b>. You will see the total due on your <b>Bill and Pay</b> page.<br>
+To get there quickly, use this  <a href=\"https://www.att.com/acctmgmt/billandpay\">link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

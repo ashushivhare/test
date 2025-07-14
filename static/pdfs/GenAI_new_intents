@@ -1,0 +1,28 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="GenAI new intents" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#ATT_Business_Internet || #ATT_AIAB || #ATT_Wireless_Broadband || #device_installment_support_oos || #TOBR_support_oos || #ATT_Fiber || #International_device_support || #International_Long_Distance || #International_packages_pricing_billing || #ATT_ADI || #Move_Moving_Service || #insurance || #Fraud_Prevention || #Bankruptcy || #forgot_password || #forgot_username || #billing_inquiry || #Add_User || #update_profile || #unlock_device_support_oos || #Copy_of_Contract || #registration || #Edit_User || #Remove_User || #Activate_Phone_Device || #Device_Support_samsung || #Device_Support_google || #Device_Support_iphone || #device_support_motorola || #Equipment_Device_Trouble || #IMEI_ICCID_SIM_Change || #mobile_hotspot || #warranty_exchange || #ATT_Guarantee || #call_forwarding || #upgrade_eligibility_single || #payment_arrangements || #autopay || #payment_confirmation || #update_payment_method || #Billing_Address_Change || #First_Bill_review || #credit_inquiry || #Copy_of_Contract || #Bill_Higher_Than_Expected || #charge_inquiry || #Dynamic_Defense || #Reset_voice_mail_password || #Device_Support_sonim || #port_in || #port_out || #Notifications || #ATT_Phone_For_Business || #Submit_Dispute || #About_ATT_BoardDirectors || #About_ATT_Leadership || #About_ATT_Culture || #About_ATT_Corporate_Responsibility || #ATT_IOT_Platforms || #ATT_IOT_Asset_Mgmnt || #About_ATT_DisasterRecovery || #About_ATT_Innovation || #About_ATT_Accessibility || #ATT_Fleet_Complete || #Find_Lost_Device || #About_ATT_Privacy || #dont_know_ban" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	"SMB FAN PIN" [label="SMB FAN PIN" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> "SMB FAN PIN" [label="Switch Workspace"]
+	root_waFlags1 [label="SMB FAN PIN" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Gen AI response" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeoption1 [label="$waInput.GENAI.GENAIQuestionAPIResponse.GENAIQuestionAPI.isGenAiResponseValid==true" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext1 [label="$waInput.GENAI.GENAIQuestionAPIResponse.GENAIQuestionAPI.modelResult.response [MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeend1 [label="check Wireline/Wireless " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeend2 [label="Disambiguation 2 " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1title [label="check Wireline/Wireless " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeend1 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption2 [label="#ATT_ADI || #ATT_Business_Internet || #ATT_Fiber || #ATT_Phone_For_Business || #ATT_Wireless_Broadband || #Dynamic_Defense || #Move_Moving_Service" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeend2 [label="Wireline Was this info" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1nodeoption1
+	_level1child1nodeoption1 -> _level1child1nodetext1
+	_level1child1nodeoption1 -> _level1child1nodeend1 [label="Jump To"]
+	_level1child1nodeend2 -> _level1child1nodeend2 [label="Jump To"]
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1nodeend1 -> _level1child1_level2child1nodeend1 [label="Jump To"]
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption2
+	_level1child1_level2child1nodeoption2 -> _level1child1_level2child1nodeend2 [label="Jump To"]
+}

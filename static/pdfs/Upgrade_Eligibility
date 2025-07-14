@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Upgrade Eligibility" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#upgrade_eligibility_multi || #upgrade_eligibility_single || #Sort_By" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Upgrade_Eligibility [label=Upgrade_Eligibility fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> Upgrade_Eligibility [label="Switch Workspace"]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label=Upgrade_Eligibility fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label=hello fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+}

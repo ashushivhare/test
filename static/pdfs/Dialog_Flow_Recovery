@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Dialog Flow Recovery" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="$waSession.anyOtherHelp && !$waSession.liveAgentOffer && !$waSession.phoneReferral && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label=BC_PreLogin fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="#Bot_Control_Approve_Response" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="What else can I help you with today?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition3 [label="#Bot_Control_Reject_Response" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump3 [label="Closing Survey" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Confidence Check" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Out of Scope" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	Intent -> root_condition3
+	root_condition3 -> root_jump3 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+}

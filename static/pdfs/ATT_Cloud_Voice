@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="ATT Cloud Voice" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#ATT_Cloud_Voice" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you with that!<br>
+AT&T Cloud Voice integrates with the leading cloud contact center provider platforms for a resilient, high quality voice connection for both inbound and outbound calling.<br>
+Click <a href=\"https://www.business.att.com/products/att-cloud-voice-for-contact-center.html\" target=\"_blank\"><b>here</b> </a> to learn about how it works and its great benefits. <br>
+You can <a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\"><b>sign in to myAT&T</b></a> to manage your account, check upgrade eligibility, and order new service.
+[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

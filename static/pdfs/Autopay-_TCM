@@ -1,0 +1,145 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Autopay- TCM" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#autopay && !@negativeTerms &&                  $waInput.businessRule != \"ATT-BME-Premier-GL-POC-BME-Premier-VA-C2C\" &&          $waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" &&                                                             $waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C\" && ($waInput.absCompanyRole == \"TCM\" || $waInput.absCompanyRole == \"BAN Administrator\" || !$waSession.Volunteer)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.autopayCounter && $waSession.autopayCounter == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Out Of Scope Relevant" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="$waSession.clickedLinks == true || ($waSession.balanceDueCounter && $waSession.balanceDueCounter == 1)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump3 [label=Yes fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition4 [label="$waSession.primaryIntentCounter == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump4 [label="Transfer to Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Transfer to Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodeoption1 [label="(@autopay_actions:modify || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"modify\")) &&     $waInput.pageURL == \"Manage Autopay\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext1 [label="OK. I can help you with that. I see that you’re on the <b>Manage Autopay</b> page. Under the <b>AutoPay status</b> heading, you’ll see the word <b>Enrolled</b> and a summary of your payment information, masked for privacy and security. <br></br> Select the <b>Edit</b> button.[MSG_LINE_BR~05000]On the <b>Modify payment information</b> page, you can choose a different payment method, change the card expiration date, or update any other information as necessary. <br></br> When you’re done updating your information, select the <b>Continue</b> button.[MSG_LINE_BR~05000]Let me know when you see the <b>Review information</b> page." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption2 [label="$waInput.pageURL == \"Suspend Autopay\" && (@autopay_actions:suspend || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"suspend\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext2 [label="OK. I can help you with that. You’ll be suspending automatic payments for only 1 billing cycle. If you’re within a few days of the due date for your bill, you won’t be able to suspend automatic payments. <br></br> Select the <b>Suspend</b> button.[MSG_LINE_BR~05000]The <b>Manage AutoPay</b> page appears with a confirmation message. Also, the AutoPay status changes to <b>Suspended</b>.<br></br> Were you able to suspend your automatic payment? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption3 [label="(!$waInput OR !$waInput.pageURL OR !$waInput.pageURL == \"\") && (@autopay_actions:setup || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"setup\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext3 [label="Ok. To make this easy, let's go back and start from here. You can setup AutoPay, by going to the <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\">manage AutoPay page here.</a><br></br>After the page loads, select the <b>Set up AutoPay</b> button.<br></br>AutoPay takes effect the following billing cycle. (Ex: If you're in the middle of a billing cycle, AutoPay will begin at the end of the next billing cycle).[MSG_LINE_BR~05000]Would you like me to show you how you can set up AutoPay? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption4 [label="@autopay_actions:setup || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"setup\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext4 [label="OK. You can setup AutoPay, by going to the <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\">manage AutoPay page here.</a><br></br>After the page loads, select the <b>Set up AutoPay</b> button.<br></br>AutoPay takes effect the following billing cycle. (Ex: If you're in the middle of a billing cycle, AutoPay will begin at the end of the next billing cycle).[MSG_LINE_BR~05000]Would you like me to show you how you can set up AutoPay? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption5 [label="@autopay_actions:cancel || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"cancel\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext5 [label="OK. You can cancel AutoPay, by going to the <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\"><b>Manage AutoPay</b> page.</a>[MSG_LINE_BR~05000]Depending on where you are in your billing cycle, you may not be able to cancel automatic payments.<br></br>Do you see a link called <b>Cancel AutoPay enrollment</b>? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption6 [label="(@autopay_actions:cancel || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"cancel\")) &&     $waInput.pageURL == \"Manage Autopay\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext6 [label="OK. I can help you with that. I see that you’re on the <b>Manage Autopay</b> page. Depending on where you are in your billing cycle, you may not be able to cancel automatic payments. <br></br> Do you see a link called <b>Cancel AutoPay enrollment</b>? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption7 [label="@autopay_actions:(Understanding when autopay will be made monthly) ||  ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"add\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext7 [label="For credit/debit card transactions, you can expect the automatic payment to be taken each month on 7th day after the bill cycle close date. For EFTs, the payment will be withdrawn 2 days prior to the bill due date." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeend7 [label="Understanding Autopay Option" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child1nodeoption8 [label="(!$waInput OR !$waInput.pageURL OR !$waInput.pageURL == \"\") && (@autopay_actions:modify || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"modify\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext8 [label="Ok. To make this easy, let's go back and start from here. You can modify AutoPay, by going to the <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\"><b>Manage AutoPay</b> page.</a><br></br>After the page loads, to modify your AutoPay, select the <b>Edit</b> button.[MSG_LINE_BR~05000]Would you like me to show you how you can modify AutoPay? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption9 [label="(@autopay_actions:setup || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"setup\")) &&   $waInput.pageURL == \"Review Payment Information\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext9 [label="OK. I can help you with that. From the page you’re on, review the details to ensure the information is correct. If you need to change anything, Select the <b>Edit</b> button.[MSG_LINE_BR~05000]Next, read the Terms and Conditions and, if you agree, check the <b>I have read and agree to the Terms and Conditions above</b> checkbox.[MSG_LINE_BR~05000]When you’re ready, select the <b>Submit</b> button. <br></br> Let me know when you see a Thank You message." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption10 [label="(!$waInput OR !$waInput.pageURL OR !$waInput.pageURL == \"\") && (@autopay_actions:cancel || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"cancel\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext10 [label="Ok. To make this easy, let's go back and start from here. You can cancel AutoPay, by going to the <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\"><b>Manage AutoPay</b> page.</a>  <br></br> After the page loads, select the <b>Set up AutoPay</b> button.[MSG_LINE_BR~05000]Depending on where you are in your billing cycle, you may not be able to cancel automatic payments.<br></br>Do you see a link called <b>Cancel AutoPay enrollment</b>? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodetext11 [label="OK. Would you like to set up, modify, cancel, or suspend automatic payments? $waSession.buttons.autopayOptions" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption12 [label="(@autopay_actions:modify || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"modify\")) && $waInput.portal == \"POB\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext12 [label="OK. To modify automatic payments, hover over the <b>Payments</b> menu and select <b>Manage AutoPay</b>. If you don’t have a billing account selected, the <b>Select billing account</b> window opens so that you can select one. <br></br>[MSG_LINE_BR~05000]The <b>Manage AutoPay</b> page may take a few moments to load. Let me know when it’s loaded." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption13 [label="@autopay_actions:modify || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"modify\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext13 [label="OK. You can modify AutoPay, by going to the <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\"><b>Manage AutoPay</b> page.</a><br></br>After the page loads, to modify your AutoPay, select the <b>Edit</b> button.[MSG_LINE_BR~05000]Would you like me to show you how you can modify AutoPay? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption14 [label="(!$waInput OR !$waInput.pageURL OR !$waInput.pageURL == \"\") && (@autopay_actions:suspend || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"suspend\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext14 [label="Ok. To make this easy, let's go back and start from here. You can modify AutoPay, by going to the <a href=“https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\"><b>Manage AutoPay</b> page here.</a><br></br>After the page loads, to modify your AutoPay, select the <b>Suspend</b> button in the lower right corner of the page.[MSG_LINE_BR~05000]The <b>Suspend AutoPay</b> window will open. <br></br> You’ll be suspending automatic payments for only 1 bill cycle. If you’re within a few days of the due date, you won’t be able to suspend automatic payments.  <br></br> When you're ready to continue, select the <b>Suspend</b> button.[MSG_LINE_BR~05000]Were you able to suspend your automatic payment? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption15 [label="$waInput.pageURL == \"Setup Autopay\" && (@autopay_actions:setup || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"setup\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext15 [label="OK. I can help you with that. I see that you’re on the <b>Set up Autopay</b> page. OK. Enter your payment information. You can pay with a credit card, debit card, or electronic funds transfer. <br></br> In the <b>Payment method</b> box, select your payment type.[MSG_LINE_BR~05000]If you want to make a one-time payment today using the same payment method you’re using to set up automatic payments, check the <b>Make a one-time payment today using this payment method</b> box.[MSG_LINE_BR~05000]A summary of the amount due appears. You can choose to pay the total amount due or another amount. <br></br> Let me know when you’ve finished entering your payment information." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption16 [label="$waInput.pageURL == \"Delete Autopay Enrollment\" && (@autopay_actions:cancel || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"cancel\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext16 [label="OK. I can help you with that. To cancel your automatic payments, select the <b>Cancel AutoPay enrollment</b> link. <br></br> The <b>Delete AutoPay enrollment</b> window appears. Select <b>Delete</b>.[MSG_LINE_BR~05000]You should see the <b>Manage AutoPay</b> page confirming that automatic payments have been canceled and AutoPay status set to <b>Not enrolled</b>. <br></br>Do you see this page? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption17 [label="(@autopay_actions:modify || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"modify\")) && $waInput.pageURL == \"Review Payment Information\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext17 [label="OK. I can help you with that. I see that you’re on the <b>Review Payment Information</b> page. Review the details to verify that the information is correct. If you need to change anything, select the <b>Edit</b> button.[MSG_LINE_BR~05000]Before you can submit payment information, read the Terms and Conditions and, if you agree, check the <b>I have read and agree to the Terms and Conditions above</b> checkbox.[MSG_LINE_BR~05000]When you’re ready, Select the <b>Submit</b> button. You’ll see the <b>AutoPay setup confirmation</b> page. <br></br> Do you see an AutoPay updated message? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption18 [label="(@autopay_actions:suspend || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"suspend\")) && $waInput.portal == \"POB\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext18 [label="OK. To suspend automatic payments, hover over the <b>Payments</b> menu and select <b>Manage AutoPay</b>. If you don’t have a billing account in context, the <b>Select billing account window</b> opens so that you can select one. <br></br> The <b>Manage AutoPay</b> page may take a few moments to load. Let me know when it’s loaded." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption19 [label="@autopay_actions:suspend || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"suspend\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext19 [label="OK. You can modify AutoPay, by going to the <a href=\"https://www.wireless.att.com/businessebill/index.html/#/businessebill/index/autoPay/mainPage\"><b>Manage AutoPay</b> page here.</a><br></br>After the page loads, to modify your AutoPay, select the <b>Suspend</b> button in the lower right corner of the page.[MSG_LINE_BR~05000]The <b>Suspend AutoPay</b> window will open. <br></br> You’ll be suspending automatic payments for only 1 bill cycle. If you’re within a few days of the due date, you won’t be able to suspend automatic payments.  <br></br> When you're ready to continue, select the <b>Suspend</b> button.[MSG_LINE_BR~05000]Were you able to suspend your automatic payment? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption20 [label="(@autopay_actions:cancel || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"cancel\")) && $waInput.portal == \"POB\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext20 [label="OK. To cancel automatic payments, hover over the <b>Payments</b> menu and select <b>Manage AutoPay</b>. If you don’t have a billing account in context, the <b>Select billing account</b> window opens so that you can select one. <br></br> The <b>Manage AutoPay</b> page may take a few moments to load. Let me know when it’s loaded." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption21 [label="(@autopay_actions:setup || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"setup\")) && $waInput.portal == \"POB\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext21 [label="OK. To set up automatic payments, hover over the <b>Payments</b> menu and then select <b>Manage AutoPay</b>. If you don’t have a billing account in context, the <b>Select billing account</b> window opens so that you can select one.[MSG_LINE_BR~05000]The <b>Manage AutoPay</b> page may take a few moments to load. Let me know when it’s loaded." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption22 [label="(@autopay_actions:setup || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"setup\")) &&     $waInput.pageURL == \"Manage Autopay\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext22 [label="OK. I can help you with that. I see that you’re on the Manage AutoPay page. If the account is already enrolled in automatic payments, you’ll see <b>AutoPay Status</b> and the word <b>Enrolled</b>. <br></br> If the account isn’t enrolled yet, you’ll see the words <b>Not enrolled</b>. <br></br> Select the <b>Set up AutoPay</b> button. Let me know when you see the <b>Set up AutoPay</b> page." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption23 [label="$waInput.pageURL == \"Setup Autopay\" && (@autopay_actions:modify || ($waSession && $waSession.autopay_actions && $waSession.autopay_actions == \"modify\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext23 [label="OK. I can help you with that. On the <b>Modify payment information</b> page, you can choose a different payment method, change the card expiration date, or update any other information as necessary. <br></br> When you’re done updating your information, select the <b>Continue</b> button.[MSG_LINE_BR~05000]Let me know when you see the <b>Review information</b> page." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1_level3child1title [label="Understanding Autopay Option" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1_level3child1dialog [label=" Was this information helpful?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1_level3child1_level4child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1_level3child1_level4child1jump [label="Transfer to Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child1_level3child1_level4child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1_level3child1_level4child2nodetext1 [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1_level3child1_level4child2nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child1_level3child1_level4child2nodeoption2 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1_level3child1_level4child2nodetext2 [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1_level3child1_level4child2nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child1_level3child2title [label="Autopay Entity Check" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1_level3child2jump [label=Yes fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_jump1 [label="Jump To"]
+	Intent -> root_condition3
+	root_condition3 -> root_jump3 [label="Jump To"]
+	Intent -> root_condition4
+	root_condition4 -> root_jump4 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption1
+	_level1child2_level2child1nodeoption1 -> _level1child2_level2child1nodetext1
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption2
+	_level1child2_level2child1nodeoption2 -> _level1child2_level2child1nodetext2
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption3
+	_level1child2_level2child1nodeoption3 -> _level1child2_level2child1nodetext3
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption4
+	_level1child2_level2child1nodeoption4 -> _level1child2_level2child1nodetext4
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption5
+	_level1child2_level2child1nodeoption5 -> _level1child2_level2child1nodetext5
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption6
+	_level1child2_level2child1nodeoption6 -> _level1child2_level2child1nodetext6
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption7
+	_level1child2_level2child1nodeoption7 -> _level1child2_level2child1nodetext7
+	_level1child2_level2child1nodeoption7 -> _level1child2_level2child1nodeend7 [label="Jump To"]
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption8
+	_level1child2_level2child1nodeoption8 -> _level1child2_level2child1nodetext8
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption9
+	_level1child2_level2child1nodeoption9 -> _level1child2_level2child1nodetext9
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption10
+	_level1child2_level2child1nodeoption10 -> _level1child2_level2child1nodetext10
+	_level1child2_level2child1title -> _level1child2_level2child1nodetext11
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption12
+	_level1child2_level2child1nodeoption12 -> _level1child2_level2child1nodetext12
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption13
+	_level1child2_level2child1nodeoption13 -> _level1child2_level2child1nodetext13
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption14
+	_level1child2_level2child1nodeoption14 -> _level1child2_level2child1nodetext14
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption15
+	_level1child2_level2child1nodeoption15 -> _level1child2_level2child1nodetext15
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption16
+	_level1child2_level2child1nodeoption16 -> _level1child2_level2child1nodetext16
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption17
+	_level1child2_level2child1nodeoption17 -> _level1child2_level2child1nodetext17
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption18
+	_level1child2_level2child1nodeoption18 -> _level1child2_level2child1nodetext18
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption19
+	_level1child2_level2child1nodeoption19 -> _level1child2_level2child1nodetext19
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption20
+	_level1child2_level2child1nodeoption20 -> _level1child2_level2child1nodetext20
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption21
+	_level1child2_level2child1nodeoption21 -> _level1child2_level2child1nodetext21
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption22
+	_level1child2_level2child1nodeoption22 -> _level1child2_level2child1nodetext22
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption23
+	_level1child2_level2child1nodeoption23 -> _level1child2_level2child1nodetext23
+	_level1child2_level2child1nodetext11 -> _level1child2_level2child1_level3child1title
+	_level1child2_level2child1_level3child1title -> _level1child2_level2child1_level3child1dialog
+	_level1child2_level2child1_level3child1title -> _level1child2_level2child1_level3child1_level4child1title
+	_level1child2_level2child1_level3child1_level4child1title -> _level1child2_level2child1_level3child1_level4child1jump [label="Jump To"]
+	_level1child2_level2child1_level3child1title -> _level1child2_level2child1_level3child1_level4child2title
+	_level1child2_level2child1_level3child1_level4child2title -> _level1child2_level2child1_level3child1_level4child2nodetext1
+	_level1child2_level2child1_level3child1_level4child2nodetext1 -> _level1child2_level2child1_level3child1_level4child2nodeflags1
+	_level1child2_level2child1_level3child1_level4child2title -> _level1child2_level2child1_level3child1_level4child2nodeoption2
+	_level1child2_level2child1_level3child1_level4child2nodeoption2 -> _level1child2_level2child1_level3child1_level4child2nodetext2
+	_level1child2_level2child1_level3child1_level4child2nodetext2 -> _level1child2_level2child1_level3child1_level4child2nodeflags2
+	_level1child2_level2child1nodetext11 -> _level1child2_level2child1_level3child2title
+	_level1child2_level2child1_level3child2title -> _level1child2_level2child1_level3child2jump [label="Jump To"]
+}

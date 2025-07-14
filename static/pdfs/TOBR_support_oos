@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=TOBR_support_oos fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#TOBR_support_oos" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! To learn more about Transfer of Billing Responsibility, go to the <b>Manage Devices and Services</b> tile and click <a href=\"https://www.att.com/acctmgmt/tobr\">here</a>.<br> 
+This gives you easy to learn videos and options to transfer or accept lines of service.[MSG_LINE_BR~05000] For FirstNet, if you are a FirstNet and Family account holder, you must be a first responder, transferring to a non-first responder may remove your FirstNet and Family offers.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

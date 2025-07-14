@@ -1,0 +1,9 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Option - Pay Bill without logging in" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="@UnAuthOptions:(Pay my bill without logging in) && ($waInput.businessRule==\"ATT-MYATT-Services-BVA-SMBWireless-C2C\" || $waInput.businessRule == \"ATT-MYATT-Sales-Marketing-O-BME-SMBWireless-R-C2C-EVA\" ||    $waInput.businessRule == \"ATT-MYATT-Sales-Marketing-O-BME-SMBWireless-DTM-R-C2C-EVA\" ||   $waInput.businessRule == \"ATT-Whisbi-BME-SMBWireless-C2C-EVA\" ||  $waInput.businessRule == \"ATT-Whisbi-BME-SMBWireless-DTM-C2C-EVA\" ||$waInput.businessRule==\"ATT-SMB-Shared-VA-O-R-G-C2C\" ||$waInput.businessRule==\"ATT-SMB-Shared-VA-O-R-G-C2C-EVA\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you pay your bill without logging in. To get started, enter your phone or account number and billing ZIP Code <a href=\"https://www.att.com/acctmgmt/fastpay?smbContext=true\" target='_blank'>here.</a>[MSG_LINE_BR~05000]If you have bills with no payments due, you'll see a message stating that your balance due is \$0.<br></br>If you see a balance due, proceed to the page from where you can make your payment.[MSG_LINE_BR~05000]If you want to know the amount you need to pay, click <b>Get balance</b>.<br></br>In the <b>Payment amount</b> box, enter the amount you want to pay. <br></br>Next, select how you want to pay (by bank account or debit/credit card) and follow the prompts. 
+<br></br>Thank you for making a payment today.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

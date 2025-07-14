@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Troubleshoot Email on Device" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Troubleshoot_Email_on_Device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! I have a great tool for you to use for all your device support needs. Click <a target=\"_blank\" href=\"https://www.att.com/device-support/selector/\">here</a> to select your device and get amazing help with hotspots, voicemail, how to back up and restore your device along with a complete users manual!. <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

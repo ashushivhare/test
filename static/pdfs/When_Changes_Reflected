@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="When Changes Reflected" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#When_Changes_Reflected" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!<br>
+Some biling changes may take effect immediately, while others may not reflect until your next bill. To learn more about changes to your bill, click <a href=\"https://www.att.com/support/article/my-account/KM1051879/\" target=\"_blank\"> here</a>.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

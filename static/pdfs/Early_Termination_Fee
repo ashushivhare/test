@@ -1,0 +1,28 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Early Termination Fee" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#early_termination_fee" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!  Would you like more information on:
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"How to view these fees billed to your account?\">How to view these fees billed to your account? </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"How much will the fee be to cancel a line?\">How much will the fee be to cancel a line? </a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="view fees billed to account" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I can help you with that!<br></br>
+1. From the <b>Premier Manage</b> tab, hover over the <b>Reports</b> option. Click on <b>Request Reports</b> to go to the Request Reports page. 
+<br></br>2. Select the <b>Early Termination Fee Report</b> option. Note this report: will show charges and credits, can be generated for all lines under your FAN or BAN in a single file and can be created for the last 1-3 months.
+<br></br>3. This report will take some time to generate. You will receive an email when it is ready.
+<br></br>4. To view and download the report, from the navigation bar, click <b>Reports</b> and then click <b>View and Download Requested Reports</b>. That's it! [MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=" fee to cancel a line" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label=" Unfortunately, there is no where to see online what this might be. 
+ [MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

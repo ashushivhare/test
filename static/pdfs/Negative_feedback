@@ -1,0 +1,38 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Negative Feedback" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#General_Negative_Feedback || @negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Negative Feedback 2" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeoption1 [label="$waInput.agentAvailability.has('premierFirstNet') && $waInput.agentAvailability.premierFirstNet == false" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext1 [label="I can tell that you’re upset now, and I’m sorry. Please give us a chance to make this right.<br></br>Our live support agents  can provide more specialized help. You can call them 24/7. <br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeoption2 [label=" $waInput.agentAvailability.premierFirstNet_EWT == \"\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext2 [label="I can tell that you’re upset, and I’m sorry. Please give us a chance to make this right.<br></br>I can connect you with a live chat agent who can provide more specialized help right now. Please give me a moment." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodetext3 [label="I can tell that you’re upset, and I’m sorry. Please give us a chance to make this right.<br></br>I can connect you with a live chat agent who can provide more specialized help right now. Please give me a moment.[MSG_LINE_BR~05000]Your estimated wait time is approximately $waInput.agentAvailability.premierFirstNet_EWT" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeflags3 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1dialog [label="Again, I’m sorry that I couldn’t help, and I hope you’ll give us a chance to make this right in the future.<br></br>Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2dialog [label="Thank you for your patience. Please contact our Business Support team at <b>1.800.574.7000</b>. They’ll work with you to make things right.<br></br>If you have other questions, please chat back with us. We’re here 24/7 to help.<br></br>Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1nodeoption1
+	_level1child1nodeoption1 -> _level1child1nodetext1
+	_level1child1title -> _level1child1nodeoption2
+	_level1child1nodeoption2 -> _level1child1nodetext2
+	_level1child1nodetext2 -> _level1child1nodeflags2
+	_level1child1title -> _level1child1nodetext3
+	_level1child1nodetext3 -> _level1child1nodeflags3
+	_level1child1nodetext3 -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1dialog
+	_level1child1_level2child1dialog -> _level1child1_level2child1waFlags
+	_level1child1nodetext3 -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2dialog
+	_level1child1_level2child2dialog -> _level1child1_level2child2waFlags
+}

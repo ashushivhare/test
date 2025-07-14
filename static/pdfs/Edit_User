@@ -1,0 +1,57 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Edit User" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Edit_User" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.User_TCM_ADM" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump1 [label="Edit User TCM_ADM" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="$waSession.User_VOL || $waSession.User_VOL_C || $waSession.User_SUB" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that!  <br><br>
+1. Click on the head icon at the top right and click <b>Manage My Profile</b>.
+2. Click <b>Edit Profile</b> to allow editing of some information such as contact email, phone number, address, password or security question.  
+3. Click <b>Save</b> to complete the update. [MSG_LINE_BR~05000]
+<b>Note</b>: If your agency has <b>Two-Factor Authentication</b> enabled, follow the prompts to complete the SSO login to edit password information. <br><br> 
+1. Log into the <b>FirstNet Single Sign On </b>application.  
+2. When the login shows authenticated, click on ,b>Settings</b> in the top left corner. 
+3. Choose <b>Change Password</b> and enter your User ID and password to complete the update." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump2 [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_jump3 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Edit User TCM_ADM" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="Would you like more information on how to edit your own profile or edit another user you manage?
+<div><ul><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Your own profile\">Your own profile</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"A managed user's profile\">A managed user's profile</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="A managed user's profile" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1dialog [label="I can help you with that! <br><br>  
+1. Click <b>Manage Users</b> and select the user to edit from the <b>Users</b> tab. 
+2. Click their name and select </b>Edit User</b> to edit fields of information on their profile. [MSG_LINE_BR~05000]
+Note: Administrators can <b>not</b> edit passwords or security answers for the user's protection. Administrators can <b>not</b> edit information for any user in <b>pending</b> status. Once the user completes their profile setup, editing can be completed.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1jump [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label="Your own profile" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2dialog [label="I can help you with that! <br><br>
+1. Click on the head icon at the top right and click <b>Manage My Profile</b>.
+2. Click <b>Edit Profile</b> to allow editing of some information such as contact email, phone number, address, password or security question.  
+3. Click Save to complete the update.  [MSG_LINE_BR~05000]
+ Note: If your agency has <b>Two-Factor Authentication</b> enabled, follow the prompts to complete the SSO login to edit password information.  <br><br>
+1. Log into the <b>FirstNet Single Sign On</b> application.  
+2. When the login shows authenticated, click on <b>Settings</b> in the top left corner.  
+3. Choose <b>Change Password</b> and enter your User ID and password to complete the update.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child2jump [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	root_dialog1 -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_jump2 [label="Jump To"]
+	Intent -> root_jump3 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1dialog
+	_level1child1_level2child1title -> _level1child1_level2child1jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2dialog
+	_level1child1_level2child2title -> _level1child1_level2child2jump [label="Jump To"]
+}

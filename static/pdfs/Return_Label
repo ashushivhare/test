@@ -1,0 +1,30 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Return_Label fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#return_label" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can get you to a live agent but can you please check the box the phone came in as one should have been provided for you. Did you find it? <div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Yes, I found it\">Yes, I found it </a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"No, I need to request one\">No, I need to request one</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="No, I need to request one" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1title [label="In hours" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1waFlags [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Yes, I found it" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="Excellent! Was this information helpful? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child2dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1waFlags [label="Switch Workspace"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child2title
+	_level1child2_level2child2title -> _level1child2_level2child2dialog
+	_level1child2_level2child2dialog -> _level1child2_level2child2waFlags
+}

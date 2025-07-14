@@ -1,0 +1,28 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="View Data Usage" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#View_Data_usage" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	"Data Usage" [label="Data Usage" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> "Data Usage" [label="Switch Workspace"]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waInput.portal == \"login\" ||  $waInput.portal == \"registration\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="Before I can help you with this, you must first log in. I can help you log in or, if you can’t log in, I can give you the number for Business Support. Our live support agents will be happy to help.<br></br>What do you want to do?$waSession.buttons.dataIdErrorOptions" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_waFlags2 [label="Data Usage" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="!$waInput OR !$waInput.absCompanyRole OR $waInput.absCompanyRole == \"\" || $waInput.absCompanyRole == \"error\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog3 [label="Now I need to know about your role. <br></br>Are you an administrator?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition4 [label="(!$waInput OR !$waInput.accountLiabilityType OR $waInput.accountLiabilityType == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog4 [label="Now I need to know about your company. <br></br>Are you a Small Business customer?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition5 [label="($waInput.portal == \"login\" || $waInput.portal == \"registration\") && $waSession.unauthenticatedAttempts == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump5 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	Intent -> root_waFlags2 [label="Switch Workspace"]
+	Intent -> root_condition3
+	root_condition3 -> root_dialog3
+	Intent -> root_condition4
+	root_condition4 -> root_dialog4
+	Intent -> root_condition5
+	root_condition5 -> root_jump5 [label="Jump To"]
+}

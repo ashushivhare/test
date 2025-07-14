@@ -1,0 +1,96 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Autopay 3" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bot_Control_Reject_Response && $waSession.autopay && !@negativeTerms &&         $waInput.businessRule != \"ATT-BME-Premier-GL-POC-BME-Premier-VA-C2C\" &&        $waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" &&        $waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C\" && ($waInput.absCompanyRole == \"TCM\" || $waInput.absCompanyRole == \"BAN Administrator\" || $waSession.User_TCM_ADM)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.autopay == \"cancelStep4\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="I apologize that something went wrong while you were cancelling automatic payments." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump1 [label="Failed Hours" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_jump2 [label="Having Trouble" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="$waSession.autopay == \"cancelStep3\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog3 [label="I’m sorry, it looks like you can’t cancel automatic payments online right now.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump3 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition4 [label="$waSession.autopay == \"modifyStep4\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog4 [label="I’m sorry, it looks like something went wrong while you were setting up automatic payments." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump4 [label="Failed Hours" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition5 [label="$waSession.autopay == \"failed\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump5 [label="Transfer to Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition6 [label="$waSession.autopay == \"setupStep5\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog6 [label="I’m sorry, it looks like something went wrong while you were setting up automatic payments.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump6 [label="Failed Hours" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition7 [label="$waSession.autopay == \"modifyStep2\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump7 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition8 [label="$waSession.autopay == \"setupStep2\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump8 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition9 [label="$waSession.autopay == \"suspendStep3\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog9 [label="I apologize that something went wrong while you were suspending automatic payments." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump9 [label="Failed Hours" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Failed Hours" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeoption1 [label="($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeflags1 [label=Autopay fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeflags2 [label=Autopay fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption3 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\") || ($waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" || $waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeflags3 [label=Autopay fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1title [label="Failed Hours 2" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeoption1 [label="($waInput.agentAvailability.has('BCS_Premier') && $waInput.agentAvailability.BCS_Premier == false) ||     ($waInput.agentAvailability.has('firstNetCentral') && $waInput.agentAvailability.firstNetCentral == false) ||  ($waInput.agentAvailability.has('premierFirstNet') && $waInput.agentAvailability.premierFirstNet == false)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodetext1 [label="I’m sorry, but live chat agents aren’t available right now.<br></br>To chat with a live agent, please come back any time 24/7, and ask for <b>live agent</b><br></br>You also can get help from Business Support by phone.<br></br>Would you like their number?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1nodetext2 [label="I can connect you to a live agent, if one is available.<br></br>Would you like me to connect you? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1nodetext1 [label="OK. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child1nodeoption2 [label="$waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" ||  $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\" || ($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child1nodetext2 [label="OK. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2nodeend1 [label="Transfer to Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child2nodeoption2 [label="$waSession.noPhoneSupport || $waSession.agentsUnavailable" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2nodetext2 [label="Live Business Support is available by chat 24/7. Or, you can call <b>1.800.331.0500</b>.[MSG_LINE_BR~05000]For self-service help, please see the  <a href=\"https://www.wireless.att.com/business/support/\"><b> SUPPORT tab here.</b></a>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child2nodeend2 [label="Goodbye Out of Hours" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1_level3child2nodeoption3 [label="(($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\") || ($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\")) && $waSession.noPhoneSupport || $waSession.agentsUnavailable" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2nodetext3 [label="Live Business Support is available by chat 24/7. Or, you can call <b>1.800.574.7000</b>.[MSG_LINE_BR~05000]For self-service help, please see the  <a href=\"https://www.wireless.att.com/business/support/\"><b> SUPPORT tab here.</b></a>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	root_dialog1 -> root_jump1 [label="Jump To"]
+	Intent -> root_jump2 [label="Jump To"]
+	Intent -> root_condition3
+	root_condition3 -> root_dialog3
+	root_dialog3 -> root_jump3 [label="Jump To"]
+	Intent -> root_condition4
+	root_condition4 -> root_dialog4
+	root_dialog4 -> root_jump4 [label="Jump To"]
+	Intent -> root_condition5
+	root_condition5 -> root_jump5 [label="Jump To"]
+	Intent -> root_condition6
+	root_condition6 -> root_dialog6
+	root_dialog6 -> root_jump6 [label="Jump To"]
+	Intent -> root_condition7
+	root_condition7 -> root_jump7 [label="Jump To"]
+	Intent -> root_condition8
+	root_condition8 -> root_jump8 [label="Jump To"]
+	Intent -> root_condition9
+	root_condition9 -> root_dialog9
+	root_dialog9 -> root_jump9 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1nodeoption1
+	_level1child1nodeoption1 -> _level1child1nodeflags1 [label="Switch Workspace"]
+	_level1child1title -> _level1child1nodeflags2 [label="Switch Workspace"]
+	_level1child1title -> _level1child1nodeoption3
+	_level1child1nodeoption3 -> _level1child1nodeflags3 [label="Switch Workspace"]
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption1
+	_level1child1_level2child1nodeoption1 -> _level1child1_level2child1nodetext1
+	_level1child1_level2child1title -> _level1child1_level2child1nodetext2
+	_level1child1_level2child1nodetext2 -> _level1child1_level2child1_level3child1title
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1nodetext1
+	_level1child1_level2child1_level3child1nodetext1 -> _level1child1_level2child1_level3child1nodeflags1
+	_level1child1_level2child1_level3child1title -> _level1child1_level2child1_level3child1nodeoption2
+	_level1child1_level2child1_level3child1nodeoption2 -> _level1child1_level2child1_level3child1nodetext2
+	_level1child1_level2child1nodetext2 -> _level1child1_level2child1_level3child2title
+	_level1child1_level2child1_level3child2nodeend1 -> _level1child1_level2child1_level3child2nodeend1 [label="Jump To"]
+	_level1child1_level2child1_level3child2title -> _level1child1_level2child1_level3child2nodeoption2
+	_level1child1_level2child1_level3child2nodeoption2 -> _level1child1_level2child1_level3child2nodetext2
+	_level1child1_level2child1_level3child2nodeoption2 -> _level1child1_level2child1_level3child2nodeend2 [label="Jump To"]
+	_level1child1_level2child1_level3child2title -> _level1child1_level2child1_level3child2nodeoption3
+	_level1child1_level2child1_level3child2nodeoption3 -> _level1child1_level2child1_level3child2nodetext3
+}

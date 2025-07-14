@@ -1,0 +1,24 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=VAS fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Value_Add_Service_VAS" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! <br>
+
+&More Benefits are special deals created for our customers that can easily be subscribed to by following these few steps: <br></br>
+&emsp;&emsp; • Click on the hamburger &emsp;&emsp; <b>menu</b> in the upper left &emsp;&emsp; corner <br> 
+&emsp;&emsp; • Click on <b>Deals & Discounts</b><br>
+&emsp;&emsp; • Click on <b>&More </b><br>
+&emsp;&emsp; • A batch of merchants will show detailing each offer! <br>
+Note: If you do not see the &More option, then your account is not eligible. <br>
+
+Here are some answers to common questions: <br>
+•	You will subscribe directly to the merchant via their site linked from here. <br>
+•	Your subscription will not appear on an AT&T bill. We will charge your card directly.<br>
+•	Regular data rates still apply if you use a subscription from your mobile device. For example, a movie streaming service still uses data; the deal is on the subscription price only.<br>
+•	You can come back here easily to see or cancel subscriptions. <br>
+•	Cancelling your AT&T service will not impact your subscription services. However, discounts will be removed from your subscription with the next renewal. <br>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

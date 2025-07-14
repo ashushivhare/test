@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Warranty Exchange" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#warranty_exchange" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="In hours" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1waFlags [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1waFlags [label="Switch Workspace"]
+}

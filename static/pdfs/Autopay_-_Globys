@@ -1,0 +1,27 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Autopay - Globys" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#autopay && ($waInput.businessRule==\"ATT-BME-Premier-GL-POC-BME-Premier-VA-C2C\" || $waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" || $waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Transfer to Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2nodetext1 [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2nodeoption2 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2nodetext2 [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I can help you with that!<br><br>1. From the <b>Bills</b> tab, you view a list of your accounts and invoices. <br></br>2.You can change the account using the <b>View By</B> drop down or the month using the <b>Month</b> drop down features.<br><br>3.You manage autopay under the <b>Manage payments</b> drop down menu by selecting <b>Manage AT&T Autopay.</b><br>
+Was this information helpful? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2nodetext1
+	_level1child2nodetext1 -> _level1child2nodeflags1
+	_level1child2title -> _level1child2nodeoption2
+	_level1child2nodeoption2 -> _level1child2nodetext2
+	_level1child2nodetext2 -> _level1child2nodeflags2
+}

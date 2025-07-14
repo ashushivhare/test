@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Are you a human or robot?" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#General_Human_or_Bot && @Human_Or_Bot && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Confidence Check" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="@Human_Or_Bot:human" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="No, I’m the enterprise virtual  assistant. I am here to show you how to perform certain actions with Premier. How can I help?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition2 [label="@Human_Or_Bot:bot" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="Yes, I am.  I’m the enterprise virtual assistant. I can show you how to perform certain actions with Premier. How can I help?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+}

@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Data Incident" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#data_incident" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="We apologize and remain committed to protecting your data. For all details and latest updates, go to <a href=\"https://www.att.com/dataincident\" target=\"_blank\"><b>att.com/dataincident</b></a>." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

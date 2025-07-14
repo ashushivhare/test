@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Add More Data (Yes)" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bot_Control_Approve_Response && $waSession.addMoreData &&  $waSession.addMoreData != \"finished\" && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.addMoreData == \"step3\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="Great. Your device may already be part of a Mobile Share or a Mobile Select rate plan. If so you’ll have a tab for that plan with a list of data plans you can select from.<br></br>You may also have the option to add data only either with an individual or pooled data only plan.[MSG_LINE_BR~05000]You may have many choices for adding data for the device. To view more details about a data only plan, on the Data Only Plans tab, in the <b>Plan Name</b> column, select the plan name link. <br></br> On the Mobile Share or Mobile Select tab, in the <b>Plan Name</b> column, select the Plan detail link. <br></br> Or, for an overview of all plans, you can <a href=\"https://www.wireless.att.com/businesscenter/legal-contracts/abs-addtl-service-and-equipment-terms.jsp\">view plan details here.</a><br></br>Let me know when you are ready to select a plan." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition2 [label="$waSession.addMoreData == \"step4\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="OK. In the <b>Select</b> column, select the plan. If prompted, select the date you want the new data plan to be effective. Dates shown can depend on the permissions for the account, the bill cycle date, or whether there are already pending rate plan changes.<br></br>Click <b>Continue</b> to move on to the next step.[MSG_LINE_BR~05000]You have an opportunity to add additional features to the device. After you’ve made your selections, click <b>Continue</b><br></br>A review page with new rate plan details and features appears. Verify the changes you are making are correct and then select <b>Submit</b>. You’ll see a confirmation message your request is complete.<br></br>You’ll also receive an email confirming the changes you made.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump2 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="$waSession.addMoreData == \"step2\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog3 [label="OK. Scroll down to the <b>Select a Rate Plan</b> section. Depending on what rate plans are set up for your account you may see one or more tabs showing available data plans for the device.  <br></br> Do you see a list of data plans on at least one of the tabs?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_jump2 [label="Jump To"]
+	Intent -> root_condition3
+	root_condition3 -> root_dialog3
+}

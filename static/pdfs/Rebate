@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Rebate fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Rebate" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! 
+
+If you are a small business, click <a href =\"https://www.att.com/support/smallbusiness/topic/smb-digital-phone/topic_accountmyatt9-topic_plans4-topic_promotionalrewards8\" target=\"_blank\"><b>here</b> </a>to find out more about AT&T Rewards. 
+
+For enterprise customers, please contact your sales agent. <br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

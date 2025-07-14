@@ -1,0 +1,18 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Reroute fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#add_new_line || #balance_due || #Reports_Premier || #britebill_support || #cant_login || #check_usage || #download_bill || #forgot_password || #forgot_username || #paperless_billing || #pay_bill || #payment_arrangements || #payment_confirmation || #registration || #upgrade_eligibility_multi || #upgrade_eligibility_single || #view_bill || #which_email || #billing_inquiry || #charge_inquiry || #credit_inquiry || #TOBR_support_oos || #International_device_support || #device_installment_support_oos || #unlock_device_support_oos || #paper_bill_different || #cancel_service_line_plan_feature || #reinstate_suspend_service || #add_more_data || #email_domain_error || #update_billing_contact_information || #insurance || #link_expired || #Bill_Higher_Than_Expected || #Activate_Phone_Device || #Website_Difficult_To_Navigate || #Voice_Mail_Not_Working || #Group_Login_Password || #Already_Tried_Not_Working || #Copy_of_Contract || #When_Changes_Reflected || #Order_Status || #Menu || #Nutrition_Labels || #data_incident || #Locate_a_Store || #SOS_Mode || #ATT_Guarantee || #International_packages_pricing_billing || #International_Long_Distance || #ATT_Turbo" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label=Router_WCS fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_waFlags2 [label=FN_Central fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_waFlags3 [label=Premier_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+	Intent -> root_condition2
+	root_condition2 -> root_waFlags2 [label="Switch Workspace"]
+	Intent -> root_condition3
+	root_condition3 -> root_waFlags3 [label="Switch Workspace"]
+}

@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Disambiguation Attempt" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=anything_else fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Disambiguation Attempt 2" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Disambiguation Attempt 2" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext1 [label="I think I know what you’re trying to say, but I want to be sure. Can you please rephrase your question?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeoption2 [label="$waSession && $waSession.retryCount && $waSession.retryCount == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend2 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1nodetext1
+	_level1child1title -> _level1child1nodeoption2
+	_level1child1nodeoption2 -> _level1child1nodeend2 [label="Jump To"]
+}

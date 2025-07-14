@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Unauthenticated Disambiguation" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="$waInput &&          ($waInput.portal == \"login\" || $waInput.portal == \"registration\") &&      (intents.size()>1 &&(intents[0].confidence - intents[1].confidence < 0.15)) && (intents.size()>0 &&(intents[0].intent == \"registration\" || intents[0].intent == \"forgot_username\" || intents[0].intent == \"forgot_password\")) &&   (intents.size()>1 &&(intents[1].intent == \"registration\") || intents[1].intent == \"forgot_username\" || intents[1].intent == \"forgot_password\") &&               (intents.size()>0 && intents[0].confidence > 0.3)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="First Node" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="$waSession.disambiguation == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+	root_dialog1 -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+}

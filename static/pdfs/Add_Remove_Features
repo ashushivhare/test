@@ -1,0 +1,17 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Add Remove Features" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Add_Remove_Features" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Want to choose add-ons for your wireless service? It’s easy with myAT&T:<br>
+
+1. Go to your myAT&T account overview. 
+2. Scroll to <b>My devices</b>, choose the line for your new add-on, and select <b>Manage add-ons</b>.
+3. Scroll to <b>Explore add-ons</b> and choose the add-on you want.
+4. Follow the prompts to get the add-on. You did it!<br>
+
+Helpful tip: your FirstNet line may see different options than your consumer line.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

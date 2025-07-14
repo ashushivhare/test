@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="call forwarding" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#call_forwarding" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! All devices should have call forwarding on their subscription by default. 
+
+In order to turn your forwarding on/off, I have a great tool for you to use for all your device support needs. Click <a target=\"_blank\" href=\"https://www.att.com/device-support/selector/\"><b>here</b></a> to select your device and get easy to follow steps for call forwarding.
+
+Other topics are available like voicemail, hotspots and how to back up and restore your device along with a complete users manual!" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

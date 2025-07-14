@@ -1,0 +1,32 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="What Email Do I Use?" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#which_email && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition1 [label="$waSession.primaryIntentCounter == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer To Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodeoption1 [label="$waSession.role == \"cru\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext1 [label="After you enter your email on the page, select <b>Continue</b>.[MSG_LINE_BR~05000]Just so you know, the next page may take a few moments to load. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption3 [label="$waSession.role == \"ca\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext3 [label="After you enter your email on the page, select <b>Continue</b>.[MSG_LINE_BR~05000]Just so you know, the next page may take a few moments to load. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeoption4 [label="$waSession.haloBRegistration" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1nodetext4 [label="After you select <b>Continue</b>, we’ll send an email with a link to the email address you just entered. <br></br>To create your profile, select <b>validate your email address</b>. The email will also note any changes needed.[MSG_LINE_BR~05000]Just so you’ll know, the chat may end when you select the link. Select the link, verify your device, and enter your contact information on the page.[MSG_LINE_BR~05000]When you complete these steps, your profile will be successfully created.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1nodeend4 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition1
+	root_condition1 -> root_jump1 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption1
+	_level1child2_level2child1nodeoption1 -> _level1child2_level2child1nodetext1
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption3
+	_level1child2_level2child1nodeoption3 -> _level1child2_level2child1nodetext3
+	_level1child2_level2child1title -> _level1child2_level2child1nodeoption4
+	_level1child2_level2child1nodeoption4 -> _level1child2_level2child1nodetext4
+	_level1child2_level2child1nodeoption4 -> _level1child2_level2child1nodeend4 [label="Jump To"]
+}

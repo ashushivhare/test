@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Authenticated Disambiguation" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="(intents.size()>1  &&(intents[0].confidence - intents[1].confidence < 0.15)) &&    (intents.size()>0 && intents[0].confidence > 0.3) && !#upgrade_eligibility_multi && !#upgrade_eligibility_single" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.disambiguation == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="(intents.size()>0 &&(intents[0].intent == \"add_new_line\" || intents[0].intent == \"upgrade_eligibility_single\" || intents[0].intent == \"update_payment_method\" || intents[0].intent == \"need_latest_bill\" || intents[0].intent == \"balance_due\" || intents[0].intent == \"autopay\" || intents[0].intent == \"billing_report\" || intents[0].intent == \"check_usage\" || intents[0].intent == \"payment_arrangements\" || intents[0].intent == \"britebill_support\" || intents[0].intent == \"pay_bill\" || intents[0].intent == \"view_bill\" || intents[0].intent == \"download_bill\" ||intents[0].intent == \"update_billing_contact_information\")) && (intents.size()>1 &&(intents[1].intent == \"add_new_line\" || intents[1].intent == \"upgrade_eligibility_single\" || intents[1].intent == \"update_payment_method\" || intents[1].intent == \"need_latest_bill\" || intents[1].intent == \"balance_due\" || intents[1].intent == \"autopay\" || intents[1].intent == \"paperless_billing\" || intents[1].intent == \"billing_report\" || intents[1].intent == \"check_usage\" ||intents[1].intent == \"payment_arrangements\" || intents[1].intent == \"britebill_support\" || intents[1].intent == \"pay_bill\" || intents[1].intent == \"view_bill\" || intents[1].intent == \"download_bill\" ||intents[1].intent == \"update_billing_contact_information\"))" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="So that I am clear on what you need, please select the question closest to your issue:<br><div><ul><!--? $waSession.buttons.disambiguationOptions.get(intents[0].intent).getAsString() ?--><!--? $waSession.buttons.disambiguationOptions.get(intents[1].intent).getAsString() ?--></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump3 [label="Disambiguation Attempt" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label=Verify fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Pay Bill" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	Intent -> root_jump3 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+}

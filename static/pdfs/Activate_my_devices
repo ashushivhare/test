@@ -1,0 +1,24 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Activate my devices" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Activate_Phone_Device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="Activating a new SIM/eSIM" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label=<div>Activating your new device takes just a few minutes. <br>
+1. First, make sure that you have your wireless number, IMEI number, and SIM card number at hand. You can find these on the paperwork that came with your device.
+2. For information about activation and how to locate your IMEI and SIM card numbers, read the <b>Activate a Wireless Device</b> support article <a href="https://www.att.com/support/article/wireless/KM1008711" target="_blank">here</a>
+3. When you’re ready, go to the <b>Online Activation Portal</b> <a href="https://www.att.com/activations/" target="_blank">here</a>.
+4. Follow the activation steps, and you’ll quickly be ready to go!<br>[MSG_LINE_BR~05000]
+Next, do you need help with activating an eSIM?
+<button>Yes</button>\n<button>No</button></div> fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

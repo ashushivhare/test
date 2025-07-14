@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Out of Scopre Irrelevant" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Confidence Check" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$customerRole==\"tcm_billing\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="I'm sorry. I can't help you with this. Here's what I can help you with: <br />-      View and download your bill<br /> -      Check your upgrade eligibility <br /> -      Add a new line <pause wait=\"2000\" />What would you like help on?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump2 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="$customerRole==\"end_user\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog3 [label="I'm sorry. I can't help you with this. Here's what I can help you with: <br />-      View your bill<br /> -      Check your upgrade eligibility <br /> -      Add a new line <pause wait=\"2000\" />What would you like help on?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition4 [label="$customerRole==\"tcm_reporting\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog4 [label="I'm sorry. I can't help you with this. Here's what I can help you with:<br />-      Pay your bill<br />-      View and download your bill<br />-      Check your upgrade eligibility <br />-      Add a new line<pause wait=\"2000\" />What would you like help on?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	Intent -> root_jump2 [label="Jump To"]
+	Intent -> root_condition3
+	root_condition3 -> root_dialog3
+	Intent -> root_condition4
+	root_condition4 -> root_dialog4
+}

@@ -1,0 +1,19 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="FirstNet Messaging" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FirstNet_Messaging" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="($waSession.User_TCM_ADM || $waSession.User_VOL || $waSession.User_VOL_C || $waSession.User_SUB)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that!<br><br> To learn more about FirstNet Messaging, click the <b>Explore FirstNet Messaging</b> tile.<br><br>FirstNet Messaging is a group notification and messaging interface that enables enhanced wireless notification and response features needed for actionable messages.
+[MSG_LINE_BR~05000]
+<b>FirstNet Primary Agency</b> and <b>Subscriber Paid</b> users are eligible to download the application for free. <b>Extended Primary</b> agency users can download a license for \$3/mth.<br><br>
+Go to your device application store to download the app to begin using FirstNet Messaging services." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_jump2 [label="Was this information helpful " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_jump2 [label="Jump To"]
+}

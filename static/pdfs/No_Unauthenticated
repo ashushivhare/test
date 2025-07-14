@@ -1,0 +1,37 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="No Unauthenticated" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Bot_Control_Reject_Response && $waSession.unauthenticated && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	"End Chat" [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> "End Chat" [minlen=2]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeoption1 [label="@PremierUnauthOptions:(Retrieve my User Name)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeflags1 [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption2 [label="@PremierUnauthOptions:(Reset my password)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeflags2 [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption3 [label="@PremierUnauthOptions:(I am not seeking help with my business mobility service)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext3 [label="I can help you with some Premier self-service options for managing your enterprise mobility accounts. Here are some places where you can find help about other AT&T solutions:<br></br>If you’re a consumer or small business mobility customer, go to <a href=\"https://www.att.com/my/#/login\"  target=’_blank’>myAT&T</a>.<br></br>If you’re an enterprise business customer looking for help with your network services, go to <a href=\"https://businesscenter.att.com/ebiz/registration/\"  target=’_blank’>Business Center</b> or BusinessDirect</a>.<br></br>
+To manage your DIRECTV or DIRECTV for BUSINESS account, or find more information about AT&T entertainment, go to <a href=\"https://www.directv.com/\" target=’_blank’>DIRECTV</a>.<br></br>To explore the AT&T Cloud ecosystem or log in to your AT&T Cloud Solutions account, go to <a href=\"https://www.synaptic.att.com/clouduser/login.htm\"  target=’_blank’>Cloud Solutions</a>.<br></br> The <a href=\"https://my-attwifi.attwifi.com/ent_loginpage\"  target=’_blank’>AT&T Wi-Fi Customer Portal</a>  is where you can manage your AT&T wireless internet solution.<br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeend3 [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption4 [label="@PremierUnauthOptions:(Create an account)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeflags4 [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Provide you the number to call" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="Our phone support agents can help 24/7! Please call <b>800.331.0500</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing AT&T. Goodbye" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="Please allow me try again. Type what you need or you can select a topic from the menu. <br></br>Or, I can provide information on calling a live agent 24/7.  <br></br>Live chat agents are only available after successful log in. <br></br>May I offer additional assistance with: <ul><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Menu Options\">Menu Options</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Create an account\">Create an account</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Retrieve my User Name\">Retrieve my User Name</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Reset my password\">Reset my password</a><br></li></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Provide you the number to call\">Provide you the number to call</a><br></li></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I am not seeking help with my business mobility service\">I am not seeking help with my business mobility service</a></li><br></div></ul>I want more info on…" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	_level1child1title -> _level1child1nodeoption1
+	_level1child1nodeoption1 -> _level1child1nodeflags1 [label="Switch Workspace"]
+	_level1child1title -> _level1child1nodeoption2
+	_level1child1nodeoption2 -> _level1child1nodeflags2 [label="Switch Workspace"]
+	_level1child1title -> _level1child1nodeoption3
+	_level1child1nodeoption3 -> _level1child1nodetext3
+	_level1child1nodeoption3 -> _level1child1nodeend3 [label="Jump To"]
+	_level1child1title -> _level1child1nodeoption4
+	_level1child1nodeoption4 -> _level1child1nodeflags4 [label="Switch Workspace"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2dialog -> _level1child2waFlags
+}

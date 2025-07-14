@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="order eSIM" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Transfer to Live agent - XFR/RFR" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I understand you are having trouble order eSIM. I can provide assistance by showing you how to do this, or I can get you to a live agent. 
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

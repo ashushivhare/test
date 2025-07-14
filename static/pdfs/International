@@ -1,0 +1,18 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=International fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#International_Long_Distance" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="Business abroad? We got you covered.
+Bundle AT&T Phone for Business International Plus II with an eligible internet plan.* You’ll get:
+
+<ul><li> Unlimited nationwide calling within the U.S. and to Canada, Mexico, and U.S. territories</li><li>Unlimited calling to 50+ countries with low rates to all other countries**</li><li>30+ popular and advanced calling features</li></ul>
+\$25/mo. plus taxes and fees when you bundle.*
+*Min. \$65/mo. + taxes & fees for internet. Ltd availability/areas. <br>
+**An additional per minute rate may apply for international calls terminating on mobile phones. See online offer details <a href=\"https://www.business.att.com/products/att-phone-for-business.html\" target=\"_blank\"><b>here</b></a>. 
+
+[MSG_LINE_BR~05000]Can I help you with anything else today?<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Yes\">Yes</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"No\">No</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

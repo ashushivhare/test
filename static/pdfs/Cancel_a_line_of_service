@@ -1,0 +1,100 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Cancel a line of service" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#cancel_service_line_plan_feature && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Cancel a line of service 3" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Authenticated responses" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Yes(Agents Busy)" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodetext1 [label="I can help you with that! You may have access added to your Premier profile that will allow you to cancel and resume lines. Let's check. Go to the <b>I want to</b> drop down and look for <b>Cancel/Resume</b>. Do you have this option in your menu?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeoption2 [label="$waInput.agentAvailability.has('premierFirstNet') && $waInput.agentAvailability.premierFirstNet == false" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext2 [label="To get help with cancelling a line, for your security and to protect your account, please call our Live Support agents. Agents are available 24/7! <br></br> Would you like the number to call Business support?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2title [label="yes(agents available)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3title [label="Yes(Agents Busy)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="To connect with our live support team, call Business support at <b>1.800.574.7000</b>. Our Agents will be happy to help you. If you have other questions, send me a chat. I’m available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Cancel a line of service 2" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4nodeoption1 [label="@cancel_line_of_service:(Phone number business support)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodetext1 [label="OK. To connect with our live support team, please call Business support at <b>1.800.574.7000</b>.[MSG_LINE_BR~05000] If you have other questions, send me a chat. I’m available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child4nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeoption2 [label="@cancel_line_of_service:login" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeoption3 [label="@cancel_line_of_service:(Live chat hours of operation)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeflags3 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5title [label="no(agents available)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5dialog [label="Our phone support agents can help 24/7! Please call <b>1.800.574.7000</b>. [MSG_LINE_BR~05000]For self-service help, please see the  <a href=\"https://www.wireless.att.com/business/support/\"><b>SUPPORT tab here.</b></a> If you have other questions, send me a chat. I’m available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child6title [label="No(Agents Busy)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child6dialog [label="For self-service help, please see the <a href=\"https://www.wireless.att.com/business/support/\"><b>SUPPORT tab here.</b></a> If you have other questions, send me a chat. I’m available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child6waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7title [label="Cancel a line of service 3" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7dialog [label="I can help you with that! <br> You may have access added to your Premier profile that will allow you to cancel and resume lines. Let's check.<br> Go to the<b> I want to </b>drop down and look for<b> Cancel/Resume</b>. Do you have this option in your menu?<br></br> $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child1dialog [label="Ok. If this is a function that you would like to have added to your profile for future use, simply make a request to your FAN administrator to update your profile in Premier or contact the account sales manager for a ticket to update the FAN/Company Admin profile. This update may take up to 2 days to complete. If you would like have a live chat agent help you with canceling a line today, I can transfer you. Would you like:  <br>
+Transfer to a live agent <br></br> $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7_level2child1_level3child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child1_level3child1dialog [label="Was this information helpful?  $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7_level2child1_level3child1_level4child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child1_level3child1_level4child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7_level2child1_level3child1_level4child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child1_level3child1_level4child2dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7_level2child1_level3child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child1_level3child2jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child2dialog [label="Great! <br></br>1.Simply enter the wireless number and select <b>Go</b><br>
+2.Select a <b>Reason</b> for canceling from the list.<br>
+3.Select <b>Today</b> or the <b>Last day</b> of the current billing cycle as your <b>Cancellation Date</b>.<br>
+4.Select <b>Continue</b>. Confirm the changes and then select<b> Submit</b>.<br>
+5.You will receive an email confirming the cancellation. Note that you have 59 days to resume the service to maintain that wireless number. <br>
+Caution! You may have equipment installments balances remaining or Early Termination Fees applied when canceling a line. If you have a waiver on your profile, these credits are not automatically applied. You will need to speak to a live agent or your sales manager to access your waiver. <br>
+Was this information helpful?  $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7_level2child2_level3child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child2_level3child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7_level2child2_level3child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7_level2child2_level3child2dialog [label="Glad we could help. When you need us, just ask, anytime. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child7_level2child2_level3child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	_level1child1title -> _level1child1nodetext1
+	_level1child1title -> _level1child1nodeoption2
+	_level1child1nodeoption2 -> _level1child1nodetext2
+	Intent -> _level1child2title
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3dialog -> _level1child3waFlags
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4nodeoption1
+	_level1child4nodeoption1 -> _level1child4nodetext1
+	_level1child4nodetext1 -> _level1child4nodeflags1
+	_level1child4title -> _level1child4nodeoption2
+	_level1child4title -> _level1child4nodeoption3
+	_level1child4nodeoption3 -> _level1child4nodeflags3
+	Intent -> _level1child5title
+	_level1child5title -> _level1child5dialog
+	_level1child5dialog -> _level1child5waFlags
+	Intent -> _level1child6title
+	_level1child6title -> _level1child6dialog
+	_level1child6dialog -> _level1child6waFlags
+	Intent -> _level1child7title
+	_level1child7title -> _level1child7dialog
+	_level1child7title -> _level1child7_level2child1title
+	_level1child7_level2child1title -> _level1child7_level2child1dialog
+	_level1child7_level2child1title -> _level1child7_level2child1_level3child1title
+	_level1child7_level2child1_level3child1title -> _level1child7_level2child1_level3child1dialog
+	_level1child7_level2child1_level3child1title -> _level1child7_level2child1_level3child1_level4child1title
+	_level1child7_level2child1_level3child1_level4child1title -> _level1child7_level2child1_level3child1_level4child1jump [label="Jump To"]
+	_level1child7_level2child1_level3child1title -> _level1child7_level2child1_level3child1_level4child2title
+	_level1child7_level2child1_level3child1_level4child2title -> _level1child7_level2child1_level3child1_level4child2dialog
+	_level1child7_level2child1title -> _level1child7_level2child1_level3child2title
+	_level1child7_level2child1_level3child2title -> _level1child7_level2child1_level3child2dialog
+	_level1child7_level2child1_level3child2title -> _level1child7_level2child1_level3child2jump [label="Jump To"]
+	_level1child7title -> _level1child7_level2child2title
+	_level1child7_level2child2title -> _level1child7_level2child2dialog
+	_level1child7_level2child2title -> _level1child7_level2child2_level3child1title
+	_level1child7_level2child2_level3child1title -> _level1child7_level2child2_level3child1jump [label="Jump To"]
+	_level1child7_level2child2title -> _level1child7_level2child2_level3child2title
+	_level1child7_level2child2_level3child2title -> _level1child7_level2child2_level3child2dialog
+	_level1child7_level2child2_level3child2dialog -> _level1child7_level2child2_level3child2waFlags
+}

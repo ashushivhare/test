@@ -1,0 +1,28 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Transfer to Agent" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#General_Connect_to_Agent && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="#General_Connect_to_Agent" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1title [label=Premier fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1title [label="In hours " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1waFlags [label=Autopay fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label=FN_Central fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1title [label="In hours " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1waFlags [label=Autopay fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label=FirstNet fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child1title [label="In hours " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3_level2child1waFlags [label=Autopay fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1waFlags [label="Switch Workspace"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1waFlags [label="Switch Workspace"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3_level2child1title
+	_level1child3_level2child1title -> _level1child3_level2child1waFlags [label="Switch Workspace"]
+}

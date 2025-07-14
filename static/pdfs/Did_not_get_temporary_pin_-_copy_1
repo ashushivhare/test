@@ -1,0 +1,27 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Did not get temporary pin - copy 1" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Port-Out PIN to move your device to another service provider" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Port in / port Out" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Account log in passcode" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label=forgot_password fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="SIM Change PIN" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="During your SIM change process, you would receive this PIN via text to the device requesting the SIM change.If you did not get this text timely, a live agent can resend it. Your estimated wait time to chat with an agent is x minutes. Or, I can provide you with the support phone number. What you would you like?<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label="Provide options" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I understand you need help with a PIN. There are a couple different types - do you need help with: 
+   <ul><li> SIM Change PIN</li>
+   <li>Port-Out PIN to move your device to another service provider </li>
+   <li>Account log in passcode</li></ul>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+}

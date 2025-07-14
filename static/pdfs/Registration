@@ -1,0 +1,11 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Registration fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#registration ||   @forgotpassword:(Create an account)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="In order to create a Business Center account, please reach out to your AT&T account manager. <br>
+If you do not have an an AT&T account manager or are not sure who that may be, one of our live agents can assist you. [MSG_LINE_BR~05000]Can I help you with anything else today?<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Yes\">Yes</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"No\">No</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

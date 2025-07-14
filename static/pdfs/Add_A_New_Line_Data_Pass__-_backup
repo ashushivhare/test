@@ -1,0 +1,78 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Add A New Line(Data Pass) - backup" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="false && @data_pass_strings:(CUSTOMER SUPPLIED DATA: - topic: Add a New Line of Service)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="(!$waInput OR !$waInput.absCompanyRole OR $waInput.absCompanyRole == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog1 [label="Now I need to know about your role. <br></br>Are you an administrator?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_condition2 [label="(!$waInput OR !$waInput.userId OR $waInput.userId == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="Before I can help you with this, you must first log in. I can help you log in or, if you can’t log in, I can give you the number for Business Support. Our live support agents will be happy to help.<br></br>What do you want to do?$waSession.buttons.dataIdErrorOptions" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_waFlags3 [label=Add_A_New_Line fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition4 [label="(!$waInput OR !$waInput.accountLiabilityType OR $waInput.accountLiabilityType == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog4 [label="Now I need to know about your company.<br></br>Are you a Small Business customer?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1title [label="No (accountLiabilityType)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeoption1 [label="(!$waInput OR !$waInput.absCompanyRole OR $waInput.absCompanyRole == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend1 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeflags2 [label=Add_A_New_Line fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption3 [label="(!$waInput OR !$waInput.userId OR $waInput.userId == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodeend3 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="No (userID)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="For help, please call <b>1.800.574.7000</b>.<br></br> Our live agents will be happy to help you.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Yes (absCompanyRole)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3nodeflags1 [label=Add_A_New_Line fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3nodeoption2 [label="(!$waInput OR !$waInput.accountLiabilityType OR $waInput.accountLiabilityType == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodeend2 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3nodeoption3 [label="(!$waInput OR !$waInput.userId OR $waInput.userId == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodeend3 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Yes (accountLiabilityType)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4nodeoption1 [label="(!$waInput OR !$waInput.absCompanyRole OR $waInput.absCompanyRole == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeend1 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeflags2 [label=Add_A_New_Line fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4nodeoption3 [label="(!$waInput OR !$waInput.userId OR $waInput.userId == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child4nodeend3 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5title [label="No (absCompanyRole)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5nodeoption1 [label="(!$waInput OR !$waInput.accountLiabilityType OR $waInput.accountLiabilityType == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5nodeend1 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5nodeflags2 [label=Add_A_New_Line fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5nodeoption3 [label="(!$waInput OR !$waInput.userId OR $waInput.userId == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5nodeend3 [label="Add A New Line(Data Pass) - backup" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child6title [label="Yes (userID)" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_dialog1
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	Intent -> root_waFlags3 [label="Switch Workspace"]
+	Intent -> root_condition4
+	root_condition4 -> root_dialog4
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1nodeoption1
+	_level1child1nodeoption1 -> _level1child1nodeend1 [label="Jump To"]
+	_level1child1title -> _level1child1nodeflags2 [label="Switch Workspace"]
+	_level1child1title -> _level1child1nodeoption3
+	_level1child1nodeoption3 -> _level1child1nodeend3 [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3nodeflags1 [label="Switch Workspace"]
+	_level1child3title -> _level1child3nodeoption2
+	_level1child3nodeoption2 -> _level1child3nodeend2 [label="Jump To"]
+	_level1child3title -> _level1child3nodeoption3
+	_level1child3nodeoption3 -> _level1child3nodeend3 [label="Jump To"]
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4nodeoption1
+	_level1child4nodeoption1 -> _level1child4nodeend1 [label="Jump To"]
+	_level1child4title -> _level1child4nodeflags2 [label="Switch Workspace"]
+	_level1child4title -> _level1child4nodeoption3
+	_level1child4nodeoption3 -> _level1child4nodeend3 [label="Jump To"]
+	Intent -> _level1child5title
+	_level1child5title -> _level1child5nodeoption1
+	_level1child5nodeoption1 -> _level1child5nodeend1 [label="Jump To"]
+	_level1child5title -> _level1child5nodeflags2 [label="Switch Workspace"]
+	_level1child5title -> _level1child5nodeoption3
+	_level1child5nodeoption3 -> _level1child5nodeend3 [label="Jump To"]
+	Intent -> _level1child6title
+}

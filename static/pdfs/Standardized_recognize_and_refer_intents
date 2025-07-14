@@ -1,0 +1,40 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Standardized recognize and refer intents" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#add_more_data || #add_new_line || #Add_Remove_Features || #autopay || #Bill_Higher_Than_Expected || #billing_inquiry || #billing_report || #charge_inquiry || #credit_inquiry || #download_bill || #escalate_ticket || #get_ticket_status || #need_etr || #need_latest_bill || #paperless_billing || #pay_bill_anti || #tech_eta || #add_notes || #close_ticket || #create_ticket || #need_rfo || #Report_usage || #Billing_Address_Change || #Place_Order || #Order_Status || #major_outage || #payment_confirmation || #Loading_Delay || #download_bill_anti || #Request_Bill_Summary || #View_Charges || #Submit_Dispute || #View_Dispute_History || #update_payment_method || #view_bill || #Change_Billing_Period || #Billing_Period_Missing || #paper_bill_different || #Add_Service || #Change_Order || #New_Start || #Add_Site || #EID_Info" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="#autopay" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition2 [label="#Place_Order || #Order_Status || #Add_Site || #Change_Order || #New_Start || #Add_Service" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition3 [label="#add_new_line" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition4 [label="#Bill_Higher_Than_Expected || #billing_inquiry || #charge_inquiry || #download_bill || #need_latest_bill || #Billing_Address_Change || #billing_report || #credit_inquiry || #Loading_Delay || #paperless_billing || #pay_bill_anti || #Request_Bill_Summary || #download_bill_anti || #View_Charges || #Submit_Dispute || #View_Dispute_History || #Report_usage || #update_payment_method || #view_bill || #payment_confirmation || #Change_Billing_Period || #Billing_Period_Missing || #paper_bill_different || #select_method || #View_Dispute_History || #EID_Info" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition5 [label="#escalate_ticket || #get_ticket_status || #need_etr || #tech_eta || #add_notes || #close_ticket || #create_ticket || #need_rfo || #major_outage" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_condition6 [label="#add_more_data || #Add_Remove_Features" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1title [label=true fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I understand you are seeking information on $waSession.logreg_filler. You can view/take action for this after logging into Business Center. In addition, live chat agents are available to assist after successful log in. <br></br>May I offer additional assistance with:<br></br><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Retrieve Username\">Retrieve Username </a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Reset Password\">Reset Password</a></li><br></div><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Am I in the right place?\">Am I in the right place?</a></li><br></div>I want more info on… " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label=options fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeoption1 [label="@UnauthOptions:(Am I in the right place?)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeend1 [label="Am I In the right place" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption2 [label="@UnauthOptions:(Reset Password)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeend2 [label="forgot password" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeend3 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child1nodeoption4 [label="@UnauthOptions:(Retrieve Username)" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1nodeend4 [label="forgot username" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	Intent -> root_condition2
+	Intent -> root_condition3
+	Intent -> root_condition4
+	Intent -> root_condition5
+	Intent -> root_condition6
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption1
+	_level1child1_level2child1nodeoption1 -> _level1child1_level2child1nodeend1 [label="Jump To"]
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption2
+	_level1child1_level2child1nodeoption2 -> _level1child1_level2child1nodeend2 [label="Jump To"]
+	_level1child1_level2child1nodeend3 -> _level1child1_level2child1nodeend3 [label="Jump To"]
+	_level1child1_level2child1title -> _level1child1_level2child1nodeoption4
+	_level1child1_level2child1nodeoption4 -> _level1child1_level2child1nodeend4 [label="Jump To"]
+}

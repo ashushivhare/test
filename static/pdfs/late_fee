@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="late fee" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#late_fee" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! To view a late fee on your bill,<br> 
+1. Go to the top of your screen, click <b>My AT&T</b> to get a drop down menu.
+2. Choose <b>See My Bill</b> to go to the<b> Bill and Pay </b>page.
+3. Select the small arrow next to each charge category to expand more details.<br>
+Please note that late fees are not waived for FirstNet accounts. <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

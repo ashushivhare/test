@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="#Copy_of_Contract" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Copy_of_Contract" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I understand you would like a copy of your contract, also known as the Customer Service Summary (CSS). You received a copy of this to your email address upon activation and each time you make a change to your rate or features. <br></br>If you are unable to locate this email in your records, you can visit your local store to have one printed. Unfortunately, our live chat/call agents are unable to assist you with this.<br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

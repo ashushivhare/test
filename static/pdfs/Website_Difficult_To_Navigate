@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Website Difficult To Navigate" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Website_Difficult_To_Navigate" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I am sorry you are having trouble today. <br>
+To see many quick start guides for things like activating devices, service and sims, click <a href=\"https://www.att.com/support/how-to/wireless\">here </a>
+Click <a href=\"https://www.att.com/support/pages/help-videos\" target=\"_blank\">here</a> to see some great short videos. </br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=ATT_Dynamic_Exchange fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#ATT_Dynamic_Exchange" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you with that!<br>
+AT&T Dynamic Exchange is a Virtual connection to the cloud and business partners delivered on one network for greater control and scalability.<br>
+Click <a href=\"https://www.business.att.com/business-solutions/att-dynamic-exchange.html\" target=\"_blank\">here</a> to learn about how it works and its great benefits. <br>
+You can <a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\"><b>sign in to myAT&T</b></a> to manage your account, check upgrade eligibility, and order new service.
+[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

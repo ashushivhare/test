@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=Welcome fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="@welcome_string && ($waInput.businessRule==\"ATT-BDS-eBiz-PreLogin-O-P-HaloLogin-T0-EVA\" ||$waInput.businessRule==\"ATT-BDS-CFD-O-R-G-SIGNIN-UNAUTH-C2C-EVA\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="Hello! I'm the Enterprise Virtual Assistant. I'm here to help you:<br><div><ul> <li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Retrieve Username\">Retrieve Username</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Reset Password\">Reset Password</a> </li><li> <a href=\"#\" role=\"button\" data-nuance-message-text=\"Am I in the right place?\">Am I in the right place?</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Pay my bill without logging in\">Pay my bill without logging in</a></li><li> <a href=\"#\" role=\"button\" data-nuance-message-text=\"What is my balance due without logging in\">What is my balance due without logging in</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Dont Know Ban - Globys" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#dont_know_ban && !@negativeTerms &&  ($waInput.businessRule==\"ATT-BME-Premier-GL-POC-BME-Premier-VA-C2C\" ||$waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" || $waInput.businessRule==\"ATT-BME-FirstNet-GL-eBill-C2C\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Simply click on the Bills tab on the top menu bar to see a list of accounts and bills. " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

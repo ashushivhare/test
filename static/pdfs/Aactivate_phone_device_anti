@@ -1,0 +1,27 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Aactivate phone device anti" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#activate_phone_device_anti" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="$waSession.User_TCM_ADM" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump2 [label="activate phone device anti" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="activate phone device anti" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I am sorry that you are having trouble activating your device. I can provide you with the instructions to try or connect you with an agent to assist. What would you like to do?
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Get instructions/links to activate my device\">Get instructions/links to activate my device</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Transfer to a live agent\">Transfer to a live agent</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="Transfer to a live agent" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label="Get instructions/links to activate my device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2jump [label="Activate Phone Device" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_jump2 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2jump [label="Jump To"]
+}

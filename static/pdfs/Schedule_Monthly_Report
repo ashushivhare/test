@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Schedule Monthly Report" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#schedule_monthly_report &&  $waInput.businessRule!=\"ATT-BME-Premier-GL-POC-BME-Premier-VA-C2C\" && ($waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" && $waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label=" I can help you with that! Are you looking to schedule one of the reports from the Manage tab or a report from the Billing tab? <div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Manage Reports\"> Manage Reports</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Billing Reports\">Billing Reports</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="Manage Reports" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="Unfortunately, these reports are real time snap-shots that can not be scheduled for recurrence. Please visit any time you need refreshed data. [MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Billing Reports" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="<br></br>1. Simply click on the <b>Billing</b> tab then select the desired report under the <b>Reports </b> tab. <br></br>2. Configure it to your liking then click the <b>Request Reports </b> link. This is where you can schedule this report to generate automatically on a daily, weekly or monthly basis. You can even have these emailed directly to you! <br></br>3. Once you have configured your settings, click the <b>Submit request</b> button at the bottom of the screen. [MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

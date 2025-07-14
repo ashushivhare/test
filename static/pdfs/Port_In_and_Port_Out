@@ -1,0 +1,37 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Port In and Port Out" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label=false fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Are you attempting to port in a number to AT&T or port out a number from AT&T? 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Port In\">Port In</a></li> <li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Port Out\">Port Out</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="Port In " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="Do you need help with: 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Initiating a new port in request\">Initiating a new port in request </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Checking status of a port request\">Checking status of a port request </a></li><br></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label="status of a port request" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1dialog [label="You can quickly check the status of your port here online.<br></br>                                                1. While on the <b>Manage</b> tab, simply click under the <b>Account Management</b> drop down menu at the top of your screen the option for  <b>View Port (Transfer) Status </b>.<br></br>                                                                                                                                                          
+2. You will taken to the Port (Transfer) Status screen.Enter the <b>Wireless Number</b> and click the <b>Check Status</b> button.<br></br> 
+If you need further assistance a live agent is best.<br></br>[MSG_LINE_BR~05000]Would you like to: 
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Get in touch with a live agent\">Get in touch with a live agent </a></li><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I am finished.\">I am finished.</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1_level3child1title [label="I am finished" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2title [label="Get in touch with a live agent" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1_level3child2jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label="New port request" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Port Out" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="This action must initiated by the carrier you will be porting to. There is no action or status that AT&T can provide [MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1dialog
+	_level1child1_level2child1title -> _level1child1_level2child1_level3child1title
+	_level1child1_level2child1title -> _level1child1_level2child1_level3child2title
+	_level1child1_level2child1_level3child2title -> _level1child1_level2child1_level3child2jump [label="Jump To"]
+	_level1child1title -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+}

@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Autopay (Billing FAN)" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#autopay && ($waInput.absCompanyRole == \"TCM\" || $waInput.absCompanyRole == \"BAN Administrator\" || $waSession.User_TCM_ADM || !$waSession.Volunteer) && !@negativeTerms &&                $waInput.businessRule != \"ATT-BME-Premier-GL-POC-BME-Premier-VA-C2C\" &&                          $waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C-EVA\" &&       $waInput.businessRule != \"ATT-BME-FirstNet-GL-eBill-C2C\"" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label=Goodbye fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition2 [label="($waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C-EVA\" || $waInput.businessRule==\"ATT-B-RA-FirstNetRouting-O-R-Manage-C2C\") || ($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="OK. Because you’re logged in using a Billing foundation account, you can’t set up AutoPay. <br></br>If you need to set up Autopay, call <b>1.800.574.7000</b>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+}

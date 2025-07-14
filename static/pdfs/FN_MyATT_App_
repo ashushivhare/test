@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="FN_MyATT_App " fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_MyATT_App" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition2 [label="$waSession.customerType==\"CONS\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that!
+MyAT&T can be downloaded from iOS or Android app stores to see or pay your bill.<br>
+
+To get the myAT&T app, download from your app store on your smartphone or tablet.
+You can also text the word myATT to 556699 from any device. We’ll send a link so you can download the app.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+}

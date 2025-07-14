@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Customer doesn't have a bill to check BAN" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Incorrect_BAN_No_Bill && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="If you haven't received a copy of your bill yet, you can contact our support agents for assistance. They can help you reset your foundation account PIN and access your bill.<br></br> You can reach Business support at <b>800.331.0500</b>.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

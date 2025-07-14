@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Set Alerts" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Set_Alerts" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! 
+On the <b>Billing tab</b>, under the <b>Notifications</b> menu, click on <b>Set Up</b> to go to the Notifications screen. 
+<br>Here you subscribe to online and emails alerts for things like your bill is ready to view, offline report is ready to view and payment events like autopay credit card is about to expire. <br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

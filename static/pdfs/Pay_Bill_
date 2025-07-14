@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Pay Bill " fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#pay_bill" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that!<br>
+On the top of your screen, click <b>My AT&T</b> to get a menu then choose <b>Make a Payment</b>. To get there quickly, use this <a href=\"https://www.att.com/acctmgmt/makepayment\"><b>link</b></a><br>
+Did you know that you can also make a payment without signing in? Save this <a href=\"https://www.att.com/search/?q=fast+pay\"target=\"_blank\"><b>link</b></a> to your favorites for future use. You can also dial *PAY from your mobile device!<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

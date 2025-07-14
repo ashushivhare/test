@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="FN Uplift" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_Uplift" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="<div>I can help you with that! To set up FirstNet Assist, follow these steps:<br>
+
+1. Visit your device application store to download the FirstNet Assist application. 
+2. Log in to the application using your FirstNet User ID.
+3. Click <b>Active Uplifts</b> to see the current, active events in your area and click to request access into the event as needed.
+4. Go <a href=\"https://www.firstnet.com/apps/featured-apps/firstnet-assist.html\" target=\"_blank\">here</a> to learn more about the FirstNet Assist app! <br>
+Please note, only FirstNet first responders device is eligible for uplift. </div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

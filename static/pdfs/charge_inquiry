@@ -1,0 +1,17 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="charge inquiry" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#charge_inquiry" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! 
+
+1. Go to the <b>Manage Devices and Services </b>tile.
+2. On the top of your screen, click <b>My AT&T </b>to open the dropdown menu, then choose <b>See My Bill</b>. 
+3. Select the view you want and view charges for each line of service on the <b>Bill and Pay</b> page. 
+4. Once you locate the charge, you can click on the charge to get a better description. 
+
+To get there quickly, use this <a href=\"https://www.att.com/acctmgmt/billandpay\">link</a>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

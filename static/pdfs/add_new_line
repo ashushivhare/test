@@ -1,0 +1,15 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="add new line" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#add_new_line" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Want to add a device? It's easy with myAT&T.<br>
+1. On the top of your screen, cilck <b>My AT&T</b> to get a menu then choose <b>Go To My Account</b>. 
+2. Scroll down to <b>My Devices</b> section to click on <b>Add A Device</b>.<br> 
+As a reminder, you can add up to 4 FirstNet lines to your account plus any additional consumer lines as needed. 
+In some cases, a secondary user may not be allowed to add lines to the account.<br>
+To get there quickly, use this <a href=\"https://www.att.com/plans/add-a-line/\" target=\"_blank\">link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

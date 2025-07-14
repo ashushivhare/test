@@ -1,0 +1,41 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Transfer to Live agent - XFR/RFR" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#General_Connect_to_Agent && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	myATT_FirstNet [label=myATT_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> myATT_FirstNet [label="Switch Workspace"]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="Transfer to Live Agent - XFR/RFR" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1nodeoption1 [label="$waInput.agentAvailability.myATTFirstNet== true && $waInput.agentAvailability.myATTFirstNet_EWT== \"\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext1 [label="OK. Please wait a moment. A live agent, if available, will be here to help you soon." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeflags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodeoption2 [label="$waInput.agentAvailability.has('myATTFirstNet') && $waInput.agentAvailability.myATTFirstNet== false" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child1nodetext2 [label="Our phone support agents can help 24/7! Please call <b>1.800.574.7000</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1nodeflags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1nodetext3 [label="I’m sorry I couldn't help you today. Please wait. A live agent will be here soon.Your estimated wait time is approximately $waInput.agentAvailability.myATTFirstNet_EWT. 
+Do you want to transfer to Live agent?
+<div><button>Yes</button>/n
+<button>No</button></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child1dialog [label="Our phone support agents can help 24/7! Please call <b>1.800.574.7000</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing FirstNet. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child1waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1_level2child2title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1_level2child2dialog [label="Transfer to Live Agent" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1_level2child2waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1nodeoption1
+	_level1child1nodeoption1 -> _level1child1nodetext1
+	_level1child1nodetext1 -> _level1child1nodeflags1
+	_level1child1title -> _level1child1nodeoption2
+	_level1child1nodeoption2 -> _level1child1nodetext2
+	_level1child1nodetext2 -> _level1child1nodeflags2
+	_level1child1title -> _level1child1nodetext3
+	_level1child1nodetext3 -> _level1child1_level2child1title
+	_level1child1_level2child1title -> _level1child1_level2child1dialog
+	_level1child1_level2child1dialog -> _level1child1_level2child1waFlags
+	_level1child1nodetext3 -> _level1child1_level2child2title
+	_level1child1_level2child2title -> _level1child1_level2child2dialog
+	_level1child1_level2child2dialog -> _level1child1_level2child2waFlags
+}

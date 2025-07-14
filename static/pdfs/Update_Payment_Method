@@ -1,0 +1,25 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Update Payment Method" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#update_payment_method" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label=" I can help you with that! You may have been recently migrated to a new billing experience that is simple to use to update your payment method. Click on the <b> Billing </b> Tab at the top of your screen and let me know which experience you see:  <div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Overview tab on black menu bar containing tabs for Bills, Reports, Downloads and Setup\">Overview tab on black menu bar containing tabs for Bills, Reports, Downloads and Setup</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"The traditional blue menu containing View Bill, Payments, Usage, Reports and Notifications\">The traditional blue menu containing View Bill, Payments, Usage, Reports and Notifications</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="View Bill, Payments, Usage, Reports and Notifications" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="You have not been migrated yet. " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label="Update Payment Method" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Bills, Reports, Downloads and Setup" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2dialog [label="Great! Welcome to the new billing experience.  
+Simply click on the <b> Bills </b> tab on the top menu bar to see a list of accounts and bills. 
+You can change the account using the <b> View By </b> drop down or the month using the <b> Month </b> drop down features. 
+You update or add new payment methods under the <b> Manage payments </b> drop down menu by selecting <b> Manage payment methods. </b> <br><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2dialog
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

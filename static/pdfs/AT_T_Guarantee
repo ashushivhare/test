@@ -1,0 +1,10 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="AT&T Guarantee" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#ATT_Guarantee" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Goodbye - FirstNet" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="Thanks for asking about AT&T Guarantee!<br> Agencies, please visit <a href=\"https://www.firstnet.com/power-of-firstnet/firstnet-promise.html\" target=\"_blank\">FirstNet Promise</a> FirstNet Promise to learn more. <br> First Responders and Family, Visit AT&T Guarantee to learn more.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

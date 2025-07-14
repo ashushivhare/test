@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=ATT_Flexware fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#ATT_Flexware" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you with that!<br>
+AT&T FlexWare, formerly called AT&T Network Functions on Demand, is available globally through the AT&T Network on Demand platform. AT&T FlexWare is a platform that simplifies the delivery and deployment of software-based network functions. Businesses can easily and flexibly manage their networks, reduce total costs of ownership and avoid being locked into proprietary hardware-based solutions.<br>
+Click <a href=\"https://www.business.att.com/products/network-functions-virtualization.html\" target=\"_blank\"><b>here</b></a> to learn about how it works and its great benefits. <br>
+You can <a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\"><b>sign in to myAT&T</b></a> to manage your account, check upgrade eligibility, and order new service.
+[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

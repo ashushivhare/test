@@ -1,0 +1,22 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Pin Authenticate" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#pin_authenticate" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="SIM change PIN " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="If you recently completed a SIM change in a device or with an upgrade, please refer to your text messages from AT&T to get the PIN verification to complete the activation.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Voicemail PIN" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="Reset voice mail password" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I can help you with that! There are a couple different types of PINs.
+ Do you need help with: <br>
+<div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Voicemail PIN \">Voicemail PIN </a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"SIM change PIN\">SIM change PIN</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+}

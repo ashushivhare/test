@@ -1,0 +1,16 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Phone Referral (Yes)" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="(#Bot_Control_Approve_Response || @liveAgentOptions:(Get phone number for support agent) || #General_Connect_to_Agent) && $waSession.phoneReferral && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="($waInput.unitOriginalValue==\"ABS-ABV\" || $waInput.unit==\"10004630\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="You can reach our support agents at 800-615-0708. If you have other questions, send me a chat. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	root_waFlags2 [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	root_dialog1 -> root_waFlags1
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+	root_dialog2 -> root_waFlags2
+}

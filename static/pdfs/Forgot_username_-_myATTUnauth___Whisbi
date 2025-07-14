@@ -1,0 +1,19 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Forgot username - myATTUnauth & Whisbi" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#forgot_username" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	_level1child1title [label="Option - I got what I needed" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog [label="I can help you with that! Click <a href=\"https://www.att.com/my/#/login\"  target=\"_blank\"> here </a>to get to the myAT&T portal.Your username is usually your your email address, so make sure to try that first.<br>
+If you still need to retrieve your User ID:
+1. Click on  <b>I don't know my username/password</b>
+2. Enter <b>Contact email</b> and then click the <b>Continue</b> button.
+3. If you forgot the contact email used at the time of initial registration, click <b>Forgot contact email</b>. (To gain access this way, you will need your <b>mobile phone number</b> or your <b>Account Number</b> plus <b>Billing Zip Code</b>)
+4. Complete the process as guided online and you got it!<br>
+May I offer additional assistance with:<br>
+<div><ul><li><a href=\"https://www.att.com/acctmgmt/login\" target=\"_blank\">I don't know my username/password</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Create New ID\">Create New ID</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Pay my bill without logging in\">Pay my bill without logging in</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"What is my balance due?\">What is my balance due?</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Purchase a device\">Purchase a device</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Prepaid support\">Prepaid support</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I got what I needed\"> I got what I needed</a></li></ul></div>I need further info on...." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+}

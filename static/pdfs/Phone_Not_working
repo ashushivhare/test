@@ -1,0 +1,28 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Phone Not working" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Phone_Not_working" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1title [label="My equipment may have a problem" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Equipment Device Help" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Is my line suspended?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="Payment Arrangement" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Is there an outage in my area" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3jump [label=Outage fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Maybe I need to make an insurance claim" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4jump [label=Insurance fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5title [label="Maybe I should make a warranty claim" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5jump [label="Warranty Exchange" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4jump [label="Jump To"]
+	Intent -> _level1child5title
+	_level1child5title -> _level1child5jump [label="Jump To"]
+}

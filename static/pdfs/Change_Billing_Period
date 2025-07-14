@@ -1,0 +1,18 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Change Billing Period" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#Change_Billing_Period" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition1 [label="$waSession.User_TCM_ADM" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label="View Bill" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_jump2 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition3 [label="$waSession.User_VOL || $waSession.User_VOL_C" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_waFlags3 [label=myATT_FirstNet_Central fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition1
+	root_condition1 -> root_waFlags1 [label="Switch Workspace"]
+	Intent -> root_jump2 [label="Jump To"]
+	Intent -> root_condition3
+	root_condition3 -> root_waFlags3 [label="Switch Workspace"]
+}

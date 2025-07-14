@@ -1,0 +1,12 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Update Billing Contact Information" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#update_billing_contact_information" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	"View Bill" [label="View Bill" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> "View Bill" [label="Switch Workspace"]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label="View Bill" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+}

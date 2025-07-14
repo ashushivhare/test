@@ -1,0 +1,6 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Dictionary Term Look Up" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#term_lookup && @dictionaryTerms && !@negativeTerms" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+}

@@ -1,0 +1,181 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Call Agent Availability Api for XFR/RFR" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="$waSession.callXFR_RFR" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_waFlags1 [label=myATT_FirstNet fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label="Transfer to Live Agent - XFR/RFR" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="Transfer to Live Agent" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="check responses for anti intents" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1title [label="Incorrect BAN No Bill" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child1dialog [label="<div>I understand you need assistance with your account number. I can get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child1jump [label="Provide options" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child2title [label="Registration Anti - FN_Central" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child2dialog [label="I understand you are having trouble with registration. I can provide assistance by showing you how to do this, or I can get you to a live agent.<br>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child2jump [label="Provide options " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child3title [label="Registration Anti" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child3dialog [label="I understand you are having trouble with registration. I can provide assistance by showing you how to do this, or I can get you to a live agent.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child3jump [label="Provide options " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child4title [label=reporting_issue fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child4dialog [label=<div>I understand you are having trouble with reporting. I can provide assistance by showing you how to do this, or I can get you to a live agent.</div> fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child4jump [label="Provide options " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child5title [label="Reinstate suspend service" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child5dialog [label="I can help you with that! On the top of your screen, click <b>Support</b> to get a menu then choose <b>Get bill and account help</b>. Then click on <b>Move, change, suspend & cancel service</b><br>To get there quickly, use this <a href=\"https://www.att.com/support/my-account/\" target=\"_blank\" >link</a><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child5jump [label="Was this information helpful?" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child6title [label="Pay Bill  Anti" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child6dialog [label="I understand you are having trouble paying your bill. I can provide assistance by showing you how to do this, or I can get you to a live agent.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child6jump [label="Provide options " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child7title [label="Did not get temporary pin" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child7dialog [label=<div>I understand you need help with a PIN. There are a couple different types - do you need help with:
+<button> SIM Change PIN</button>\n
+<button>Port-out PIN to change providers</button>\n
+<button>Account log in passcode</button></div> fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child7_level3child1title [label="Port-Out PIN to move your device to another service provider" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child7_level3child1jump [label="Port in / port Out" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child7_level3child2title [label="Account log in passcode" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child7_level3child2jump [label=forgot_password fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child7_level3child3title [label="SIM Change PIN" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child7_level3child3dialog [label="During your SIM change process, you would receive this PIN via text to the device requesting the SIM change.If you did not get this text timely, a live agent can resend it.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child7_level3child3jump [label="Provide options" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child8title [label="Warranty exchange" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child8dialog [label="<div>I can help you with that! 
+Please click <a href=\"https://www.att.com/support/article/wireless/KM1000680/\" target=\"_blank\">here </a>to read an article about the process and eligibility.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child8jump [label="Provide options" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child9title [label="Billing Period Missing" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child9dialog [label="I understand you need assistance with a missing bill. Let's check together, otherwise, I will need to get a live agent to help you with that today.<br> 
+
+1. On the top of your screen, click on <b>Bill</b>.
+2. Once on the <b>Bill & Pay</b> page select <b>Bill and Payment History</b>, then <b>View My History</b>. This tab will display up to 16 months history. Select the preferred bill cycle to bring into view. If not there...<br>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child9jump [label="Provide options" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child10title [label="Download Bill Anti" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child10dialog [label="I understand you are having trouble downloading your bill. I can provide assistance by showing you how to do this, or I can get you to a live agent.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child10jump [label="Provide options " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child11title [label="View Bill Anti " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child11dialog [label="I understand you are having trouble viewing your bill. If you have proper access, I can provide assistance by showing you how to do this or I can get you to a live agent.
+[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child11jump [label="Provide options " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2_level2child12title [label="check usage anti" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2_level2child12dialog [label="<div>I understand you are having trouble checking your usage. I can provide assistance by showing you how to do this, or I can get you to a live agent.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child2_level2child12jump [label="Provide options " fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="check responses for intents" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3jump [label="Provide Live Agent /  Phone Support (XFR/RFR)  options" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3nodeoption1 [label="#change_order" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext1 [label="<div>I understand you need assistance with changing your order Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption2 [label="#Cancel_order" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext2 [label="<div>I understand you need assistance with canceling an order. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption3 [label="#View_Dispute_History" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext3 [label="<div>I understand you need assistance with disputing charges. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption4 [label="#Equipment_Return" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext4 [label="<div><p>I understand you wish to return equipment. You can return or exchange a device during the 14-day return period. You will need to speak with a live agent to begin the process and obtain a label.</p><br><p> Go to this <a href=\"https://www.att.com/support/article/wireless/KM1045132\" target=\"_blank\">article</a> to learn about this process.</p></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption5 [label="#microcell_support_oos" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext5 [label="<div>I understand you need assistance with microcell service. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption6 [label="#cancel_service_line_plan_feature" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext6 [label="<div>I understand you need assistance with canceling a service. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption7 [label="#return_label" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext7 [label="<div><p>I understand you wish to return equipment. You can return or exchange a device during the 14-day return period. You will need to speak with a live agent to begin the process and obtain a label.</p><br>
+
+<p>Go to this <a href=\"https://www.att.com/support/article/wireless/KM1045132\" target=\"_blank\">article </a> to learn about this process.</p></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption8 [label="#Change_Billing_Period" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext8 [label="<div><p>I understand you need assistance with changing your bill period. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</p></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption9 [label="#change_due_date" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext9 [label="<div><p>I understand you need assistance with changing your due date. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</p></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption10 [label="#Cannot_See_Tab_Or_Button" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext10 [label="<div>I understand you need assistance with access to online functions. I will need to get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption11 [label="#remove_service" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext11 [label="<div><p>I understand you need assistance with removing a service. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</p></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption12 [label="#Billing_Tab_Missing" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext12 [label="<div><p>I understand you need assistance with access to billing. I will need to get a live agent to help you with that today.</p></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption13 [label="#Correct_Billing_Name" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext13 [label="<div>I understand you need assistance with changing your billing name. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption14 [label="#Report_Site_Bug" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext14 [label="<div>I understand you are having trouble using the online site. I will need to get a live agent to help you with that today.</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption15 [label="#submit_dispute" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext15 [label="<div><p>I understand you need assistance with submitting a dispute. Unfortunately, there is not an online feature for you to self-service. I will need to get a live agent to help you with that today.</p></div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3nodeoption16 [label="#sales_agent_or_rep" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child3nodetext16 [label="<div>I understand you need assistance with contacting your sales agent. Unfortunately, there is not an online feature for us to determine who that is. I will need to get a live agent to help you with that today..</div>[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_waFlags1 [label="Switch Workspace"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1dialog -> _level1child1waFlags
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2_level2child1title
+	_level1child2_level2child1title -> _level1child2_level2child1dialog
+	_level1child2_level2child1title -> _level1child2_level2child1jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child2title
+	_level1child2_level2child2title -> _level1child2_level2child2dialog
+	_level1child2_level2child2title -> _level1child2_level2child2jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child3title
+	_level1child2_level2child3title -> _level1child2_level2child3dialog
+	_level1child2_level2child3title -> _level1child2_level2child3jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child4title
+	_level1child2_level2child4title -> _level1child2_level2child4dialog
+	_level1child2_level2child4title -> _level1child2_level2child4jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child5title
+	_level1child2_level2child5title -> _level1child2_level2child5dialog
+	_level1child2_level2child5title -> _level1child2_level2child5jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child6title
+	_level1child2_level2child6title -> _level1child2_level2child6dialog
+	_level1child2_level2child6title -> _level1child2_level2child6jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child7title
+	_level1child2_level2child7title -> _level1child2_level2child7dialog
+	_level1child2_level2child7title -> _level1child2_level2child7_level3child1title
+	_level1child2_level2child7_level3child1title -> _level1child2_level2child7_level3child1jump [label="Jump To"]
+	_level1child2_level2child7title -> _level1child2_level2child7_level3child2title
+	_level1child2_level2child7_level3child2title -> _level1child2_level2child7_level3child2jump [label="Jump To"]
+	_level1child2_level2child7title -> _level1child2_level2child7_level3child3title
+	_level1child2_level2child7_level3child3title -> _level1child2_level2child7_level3child3dialog
+	_level1child2_level2child7_level3child3title -> _level1child2_level2child7_level3child3jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child8title
+	_level1child2_level2child8title -> _level1child2_level2child8dialog
+	_level1child2_level2child8title -> _level1child2_level2child8jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child9title
+	_level1child2_level2child9title -> _level1child2_level2child9dialog
+	_level1child2_level2child9title -> _level1child2_level2child9jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child10title
+	_level1child2_level2child10title -> _level1child2_level2child10dialog
+	_level1child2_level2child10title -> _level1child2_level2child10jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child11title
+	_level1child2_level2child11title -> _level1child2_level2child11dialog
+	_level1child2_level2child11title -> _level1child2_level2child11jump [label="Jump To"]
+	_level1child2title -> _level1child2_level2child12title
+	_level1child2_level2child12title -> _level1child2_level2child12dialog
+	_level1child2_level2child12title -> _level1child2_level2child12jump [label="Jump To"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	_level1child3title -> _level1child3nodeoption1
+	_level1child3nodeoption1 -> _level1child3nodetext1
+	_level1child3title -> _level1child3nodeoption2
+	_level1child3nodeoption2 -> _level1child3nodetext2
+	_level1child3title -> _level1child3nodeoption3
+	_level1child3nodeoption3 -> _level1child3nodetext3
+	_level1child3title -> _level1child3nodeoption4
+	_level1child3nodeoption4 -> _level1child3nodetext4
+	_level1child3title -> _level1child3nodeoption5
+	_level1child3nodeoption5 -> _level1child3nodetext5
+	_level1child3title -> _level1child3nodeoption6
+	_level1child3nodeoption6 -> _level1child3nodetext6
+	_level1child3title -> _level1child3nodeoption7
+	_level1child3nodeoption7 -> _level1child3nodetext7
+	_level1child3title -> _level1child3nodeoption8
+	_level1child3nodeoption8 -> _level1child3nodetext8
+	_level1child3title -> _level1child3nodeoption9
+	_level1child3nodeoption9 -> _level1child3nodetext9
+	_level1child3title -> _level1child3nodeoption10
+	_level1child3nodeoption10 -> _level1child3nodetext10
+	_level1child3title -> _level1child3nodeoption11
+	_level1child3nodeoption11 -> _level1child3nodetext11
+	_level1child3title -> _level1child3nodeoption12
+	_level1child3nodeoption12 -> _level1child3nodetext12
+	_level1child3title -> _level1child3nodeoption13
+	_level1child3nodeoption13 -> _level1child3nodetext13
+	_level1child3title -> _level1child3nodeoption14
+	_level1child3nodeoption14 -> _level1child3nodetext14
+	_level1child3title -> _level1child3nodeoption15
+	_level1child3nodeoption15 -> _level1child3nodetext15
+	_level1child3title -> _level1child3nodeoption16
+	_level1child3nodeoption16 -> _level1child3nodetext16
+}

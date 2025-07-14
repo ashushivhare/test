@@ -1,0 +1,218 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=LR size="50,50" splines=polyline
+	Title [label="Add A New Line - FN_Central" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#add_new_line && !@negativeTerms && ($waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-PSE_Marketing-VA-C2C-EVA\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C\" || $waInput.businessRule == \"ATT-BME-FirstNet-O-R-ProfileMgmt-VA-C2C-EVA\")" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_condition1 [label="$waSession.primaryIntentCounter == 2" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump1 [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition2 [label="$waSession.upgradeEligibility == \"Finished\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump2 [label="Add New Line" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	root_condition4 [label="$waSession.addNewLineCounter == 1" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_jump4 [label="Out of scope relevant" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child1title [label=No fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Add new device to current Line" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label=Reroute fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Activate a device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3jump [label=Reroute fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Upgrade a device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4jump [label=Reroute fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5title [label="Add New Line to Current account" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodeoption1 [label="$waInput.pageURL == \"Packages\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext1 [label="I see that you’re on the <b>Packages</b> page. You can choose a package, or select one of the icons at the top of the page. <br></br> Would you like to select a package or select a device?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend1 [label="Add A New Line - Devices or Packages" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption2 [label="$waInput.pageURL == \"Shipping Information\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext2 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. I see you’re on the Shipping Information page. When the page loads, fill in your shipping information and billing information. <br></br> Just so you know, the next page may take a few moments to load. Let me know when you’re ready." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend2 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption3 [label="$waInput.pageURL == \"Review Order\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext3 [label="Ok, I can help you with that. Go to the Manage Devices and Services tile. Now you’ll see a <b>Review Order</b> page with your Wireless User Shipping information. <br></br> Make sure to double-check that all the information is correct. <br></br> When you’re ready, select <b>Place Order</b>.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend3 [label="Conversation Close" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodetext4 [label="OK. You can <a href=\"https://www.wireless.att.com/business/shop/shop_cru_home.jsp?\">add a new line of service here.</a> If the <b>Select employee group</b> page appears, select your <b>employee group</b>.[MSG_LINE_BR~05000]Once the page loads, Select <b> Shop New Service</b>. Then, enter the <b>Wireless user’s ZIP Code</b> and select <b>Get a new phone number</b> and <b>Add to the phone number’s account</b>. After you enter a <b>phone number</b> existing on the desired account, click <b>Continue</b>.[MSG_LINE_BR~05000]Would you like me to walk you through the rest of how to add a new line of service?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend4 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption5 [label="$waInput.pageURL == \"Select Employee Group\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext5 [label="OK. I see that you’re on the <b>Select employee group</b> page. Select your <b>employee group</b>. <br></br>The SHOP tab may take a few moments to load. Let me know when it’s loaded." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend5 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption6 [label="$waInput.pageURL == \"Wireless User Information\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext6 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. First, fill in the <b>Wireless User Information</b> form.<br></br> Double check that everything is correct and select <b>Continue</b>.[MSG_LINE_BR~05000]When the page loads, fill in your shipping information and billing information. <br></br> Just so you know, the next page may take a few moments to load. <br></br>Let me know when you’re ready." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend6 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption7 [label="$waInput.pageURL == \"Access Options\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext7 [label="Ok. I can help you with that. Go to the Manage Devices and Services tile. When you’re done selecting your options, select <b>Continue</b>[MSG_LINE_BR~05000]From the Shopping Cart, you can shop for accessories, add a data plan, or add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend7 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption8 [label="(!$waInput OR !$waInput.pageURL OR !$waInput.pageURL == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext8 [label="Ok. To make this easy, let's go back and start from here. You can <a href=\"https://www.wireless.att.com/business/shop/shop_cru_home.jsp?\">add a new line of service here.</a> If the <b>Select employee group</b> page appears, select your <b>employee group</b>.[MSG_LINE_BR~05000]Once the page loads, Select <b> Shop New Service</b>. Then, enter the <b>Wireless user’s ZIP Code</b> and select <b>Get a new phone number</b> and <b>Add to the phone number’s account</b>. After you enter a <b>phone number</b> existing on the desired account, click <b>Continue</b>.[MSG_LINE_BR~05000]Would you like me to walk you through the rest of how to add a new line of service? $waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend8 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption9 [label="$waInput.pageURL == \"Device Details\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext9 [label="I see you’re already looking at device details. You can choose accessories now, or you can select <b>Continue</b>. It’s always a good idea to get a case to protect your device. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend9 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption10 [label="$waInput.pageURL == \"Package Details\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext10 [label="I can see that you’re on the Package details page already. OK. To view Packages, select <b> Packages</b> under the shop tab. View the Packages on the page. <br></br> When you’re happy with your package Select <b>Add to Cart</b> to proceed. You can also select the package to view more details on the package and then select <b>Add to Cart</b>.[MSG_LINE_BR~05000]From the Shopping Cart you can shop for accessories, Add a data plan, or Add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend10 [label="Add A New Line 2" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption11 [label="$waInput.pageURL == \"Features and Applications\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext11 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. From here, you can choose: <ul> <li><b>Voice and data plan</b></li>  <li><b>Features</b></li> <li><b>Applications</b></li> <li><b>Device protection coverage</b></li> </ul>[MSG_LINE_BR~05000]On your next page, you’ll see your access options. <br></br> When you’re done selecting your options, select <b>Continue</b>.[MSG_LINE_BR~05000]From the Shopping Cart, you can shop for accessories, add a data plan, or add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend11 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption12 [label="$waInput.pageURL == \"Phones & Devices\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext12 [label="To order a device, select <b>View</b>, and then choose the options you want, such as: <ul> <li>- Color</li> <li>- Capacity</li> <li>- Contract or Installment plan</li> </ul> <br></br> When you’re ready to continue, select <b>Add to Cart</b>. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend12 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption13 [label="$waInput.pageURL == \"Shopping Cart\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext13 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. From the Shopping Cart, you can shop for accessories, add a data plan, or add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend13 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5_level2child1nodeoption14 [label="$waSession.upgradeEligibility == \"Finished\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child5_level2child1nodetext14 [label="OK. You can upgrade your device from the <b> MANAGE</b> tab. Select <b>View Upgrade Options</b>.[MSG_LINE_BR~05000]In the <b>Upgrade Options</b> window that opens, select <b>Upgrade Today</b>." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child5_level2child1nodeend14 [label="Add A New Line 2" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child6title [label="Add or Remove Feature" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child6jump [label=Reroute fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child7title [label="Other options" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child7jump [label="Out of scope relevant" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child8title [label="Port (transfer) a number or account from another provider" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child8jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9title [label="Add New Line" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1title [label=Yes fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodeoption1 [label="$waInput.pageURL == \"Review Order\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext1 [label="Ok, I can help you with that. Go to the Manage Devices and Services tile. Now you’ll see a <b>Review Order</b> page with your Wireless User Shipping information. <br></br> Make sure to double-check that all the information is correct. <br></br> When you’re ready, select <b>Place Order</b>.[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend1 [label="Conversation Close" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption2 [label="$waInput.pageURL == \"Select Employee Group\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext2 [label="OK. I see that you’re on the <b>Select employee group</b> page. Select your <b>employee group</b>. <br></br>The SHOP tab may take a few moments to load. Let me know when it’s loaded." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend2 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption3 [label="$waInput.pageURL == \"Package Details\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext3 [label="I can see that you’re on the Package details page already. OK. To view Packages, select <b> Packages</b> under the shop tab. View the Packages on the page. <br></br> When you’re happy with your package Select <b>Add to Cart</b> to proceed. You can also select the package to view more details on the package and then select <b>Add to Cart</b>.[MSG_LINE_BR~05000]From the Shopping Cart you can shop for accessories, Add a data plan, or Add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend3 [label="Add A New Line 2" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodetext4 [label="OK. You can add a new line of service <a href=\"https://www.wireless.att.com/business/shop/shop_cru_home.jsp?\">here.</a> If the <b>Select employee group</b> page appears, select your <b>employee group</b>.[MSG_LINE_BR~05000]Once the page loads, Select <b> Shop New Service</b>. Then, enter the <b>Wireless user’s ZIP Code</b> and select <b>Get a new phone number</b> and <b> Create a new account. </b>[MSG_LINE_BR~05000]Would you like me to walk you through the rest of how to add a new line of service?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend4 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption5 [label="$waInput.pageURL == \"Features and Applications\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext5 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. From here, you can choose: <ul> <li><b>Voice and data plan</b></li>  <li><b>Features</b></li> <li><b>Applications</b></li> <li><b>Device protection coverage</b></li> </ul>[MSG_LINE_BR~05000]On your next page, you’ll see your access options. <br></br> When you’re done selecting your options, select <b>Continue</b>.[MSG_LINE_BR~05000]From the Shopping Cart, you can shop for accessories, add a data plan, or add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend5 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption6 [label="$waInput.pageURL == \"Phones & Devices\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext6 [label="To order a device, select <b>View</b>, and then choose the options you want, such as: <ul> <li>- Color</li> <li>- Capacity</li> <li>- Contract or Installment plan</li> </ul> <br></br> When you’re ready to continue, select <b>Add to Cart</b>. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend6 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption7 [label="(!$waInput OR !$waInput.pageURL OR !$waInput.pageURL == \"\")" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext7 [label="Ok. To make this easy, let's go back and start from here. You can <a href=\"https://www.wireless.att.com/business/shop/shop_cru_home.jsp?\">add a new line of service here.</a> If the <b>Select employee group</b> page appears, select your <b>employee group</b>.[MSG_LINE_BR~05000]Once the page loads, Select <b> Shop New Service</b>. Then, enter the <b>Wireless user’s ZIP Code</b> and select <b>Get a new phone number</b> and <b> Create a new account. </b>[MSG_LINE_BR~05000]Would you like me to walk you through the rest of how to add a new line of service?$waSession.buttons.optionsYesNo" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend7 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption8 [label="$waInput.pageURL == \"Wireless User Information\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext8 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. First, fill in the <b>Wireless User Information</b> form.<br></br> Double check that everything is correct and select <b>Continue</b>.[MSG_LINE_BR~05000]When the page loads, fill in your shipping information and billing information. <br></br> Just so you know, the next page may take a few moments to load. Let me know when you’re ready." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend8 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption9 [label="$waInput.pageURL == \"Access Options\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext9 [label="Ok. I can help you with that. Go to the Manage Devices and Services tile. When you’re done selecting your options, select <b>Continue</b>[MSG_LINE_BR~05000]From the Shopping Cart, you can shop for accessories, add a data plan, or add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend9 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption10 [label="$waInput.pageURL == \"Packages\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext10 [label="I see that you’re on the <b>Packages</b> page. You can choose a package, or select one of the icons at the top of the page. <br></br> Would you like to select a package or select a device?" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend10 [label="Add A New Line - Devices or Packages" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption11 [label="$waInput.pageURL == \"Shopping Cart\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext11 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. From the Shopping Cart, you can shop for accessories, add a data plan, or add Wireless Network Access options. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend11 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption12 [label="$waInput.pageURL == \"Shipping Information\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext12 [label="OK. I can help you with that. Go to the Manage Devices and Services tile. I see you’re on the Shipping Information page. When the page loads, fill in your shipping information and billing information. <br></br> Just so you know, the next page may take a few moments to load. Let me know when you’re ready." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend12 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption13 [label="$waInput.pageURL == \"Device Details\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext13 [label="I see you’re already looking at device details. You can choose accessories now, or you can select <b>Continue</b>. It’s always a good idea to get a case to protect your device. <br></br> Let me know when you’re ready to continue." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend13 [label="Confidence Check" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child9_level2child1nodeoption14 [label="$waSession.upgradeEligibility == \"Finished\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	_level1child9_level2child1nodetext14 [label="OK. You can upgrade your device from the <b> MANAGE</b> tab. Select <b>View Upgrade Options</b>.[MSG_LINE_BR~05000]In the <b>Upgrade Options</b> window that opens, select <b>Upgrade Today</b>." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child9_level2child1nodeend14 [label="Add A New Line 2" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Intent -> root_condition1
+	root_condition1 -> root_jump1 [label="Jump To"]
+	Intent -> root_condition2
+	root_condition2 -> root_jump2 [label="Jump To"]
+	Intent -> root_condition4
+	root_condition4 -> root_jump4 [label="Jump To"]
+	Intent -> _level1child1title
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Intent -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Intent -> _level1child3title
+	_level1child3title -> _level1child3jump [label="Jump To"]
+	Intent -> _level1child4title
+	_level1child4title -> _level1child4jump [label="Jump To"]
+	Intent -> _level1child5title
+	_level1child5title -> _level1child5_level2child1title
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption1
+	_level1child5_level2child1nodeoption1 -> _level1child5_level2child1nodetext1
+	_level1child5_level2child1nodeoption1 -> _level1child5_level2child1nodeend1 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption2
+	_level1child5_level2child1nodeoption2 -> _level1child5_level2child1nodetext2
+	_level1child5_level2child1nodeoption2 -> _level1child5_level2child1nodeend2 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption3
+	_level1child5_level2child1nodeoption3 -> _level1child5_level2child1nodetext3
+	_level1child5_level2child1nodeoption3 -> _level1child5_level2child1nodeend3 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodetext4
+	_level1child5_level2child1nodetext4 -> _level1child5_level2child1nodeend4 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption5
+	_level1child5_level2child1nodeoption5 -> _level1child5_level2child1nodetext5
+	_level1child5_level2child1nodeoption5 -> _level1child5_level2child1nodeend5 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption6
+	_level1child5_level2child1nodeoption6 -> _level1child5_level2child1nodetext6
+	_level1child5_level2child1nodeoption6 -> _level1child5_level2child1nodeend6 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption7
+	_level1child5_level2child1nodeoption7 -> _level1child5_level2child1nodetext7
+	_level1child5_level2child1nodeoption7 -> _level1child5_level2child1nodeend7 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption8
+	_level1child5_level2child1nodeoption8 -> _level1child5_level2child1nodetext8
+	_level1child5_level2child1nodeoption8 -> _level1child5_level2child1nodeend8 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption9
+	_level1child5_level2child1nodeoption9 -> _level1child5_level2child1nodetext9
+	_level1child5_level2child1nodeoption9 -> _level1child5_level2child1nodeend9 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption10
+	_level1child5_level2child1nodeoption10 -> _level1child5_level2child1nodetext10
+	_level1child5_level2child1nodeoption10 -> _level1child5_level2child1nodeend10 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption11
+	_level1child5_level2child1nodeoption11 -> _level1child5_level2child1nodetext11
+	_level1child5_level2child1nodeoption11 -> _level1child5_level2child1nodeend11 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption12
+	_level1child5_level2child1nodeoption12 -> _level1child5_level2child1nodetext12
+	_level1child5_level2child1nodeoption12 -> _level1child5_level2child1nodeend12 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption13
+	_level1child5_level2child1nodeoption13 -> _level1child5_level2child1nodetext13
+	_level1child5_level2child1nodeoption13 -> _level1child5_level2child1nodeend13 [label="Jump To"]
+	_level1child5_level2child1title -> _level1child5_level2child1nodeoption14
+	_level1child5_level2child1nodeoption14 -> _level1child5_level2child1nodetext14
+	_level1child5_level2child1nodeoption14 -> _level1child5_level2child1nodeend14 [label="Jump To"]
+	Intent -> _level1child6title
+	_level1child6title -> _level1child6jump [label="Jump To"]
+	Intent -> _level1child7title
+	_level1child7title -> _level1child7jump [label="Jump To"]
+	Intent -> _level1child8title
+	_level1child8title -> _level1child8jump [label="Jump To"]
+	Intent -> _level1child9title
+	_level1child9title -> _level1child9_level2child1title
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption1
+	_level1child9_level2child1nodeoption1 -> _level1child9_level2child1nodetext1
+	_level1child9_level2child1nodeoption1 -> _level1child9_level2child1nodeend1 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption2
+	_level1child9_level2child1nodeoption2 -> _level1child9_level2child1nodetext2
+	_level1child9_level2child1nodeoption2 -> _level1child9_level2child1nodeend2 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption3
+	_level1child9_level2child1nodeoption3 -> _level1child9_level2child1nodetext3
+	_level1child9_level2child1nodeoption3 -> _level1child9_level2child1nodeend3 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodetext4
+	_level1child9_level2child1nodetext4 -> _level1child9_level2child1nodeend4 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption5
+	_level1child9_level2child1nodeoption5 -> _level1child9_level2child1nodetext5
+	_level1child9_level2child1nodeoption5 -> _level1child9_level2child1nodeend5 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption6
+	_level1child9_level2child1nodeoption6 -> _level1child9_level2child1nodetext6
+	_level1child9_level2child1nodeoption6 -> _level1child9_level2child1nodeend6 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption7
+	_level1child9_level2child1nodeoption7 -> _level1child9_level2child1nodetext7
+	_level1child9_level2child1nodeoption7 -> _level1child9_level2child1nodeend7 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption8
+	_level1child9_level2child1nodeoption8 -> _level1child9_level2child1nodetext8
+	_level1child9_level2child1nodeoption8 -> _level1child9_level2child1nodeend8 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption9
+	_level1child9_level2child1nodeoption9 -> _level1child9_level2child1nodetext9
+	_level1child9_level2child1nodeoption9 -> _level1child9_level2child1nodeend9 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption10
+	_level1child9_level2child1nodeoption10 -> _level1child9_level2child1nodetext10
+	_level1child9_level2child1nodeoption10 -> _level1child9_level2child1nodeend10 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption11
+	_level1child9_level2child1nodeoption11 -> _level1child9_level2child1nodetext11
+	_level1child9_level2child1nodeoption11 -> _level1child9_level2child1nodeend11 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption12
+	_level1child9_level2child1nodeoption12 -> _level1child9_level2child1nodetext12
+	_level1child9_level2child1nodeoption12 -> _level1child9_level2child1nodeend12 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption13
+	_level1child9_level2child1nodeoption13 -> _level1child9_level2child1nodetext13
+	_level1child9_level2child1nodeoption13 -> _level1child9_level2child1nodeend13 [label="Jump To"]
+	_level1child9_level2child1title -> _level1child9_level2child1nodeoption14
+	_level1child9_level2child1nodeoption14 -> _level1child9_level2child1nodetext14
+	_level1child9_level2child1nodeoption14 -> _level1child9_level2child1nodeend14 [label="Jump To"]
+}

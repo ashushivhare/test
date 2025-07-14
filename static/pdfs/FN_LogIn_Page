@@ -1,0 +1,13 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="FN LogIn Page" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_LogIn_Page" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition2 [label="$waSession.customerType==\"CONS\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that! Go to <a href=\"www.att.com\" target=\"_blank\">www.att.com</a> and at the top right choose <b>My AT&T</b>, then <b>Sign In</b>. Now you have reached My AT&T for all your account, payment, billing and profile needs.<br>
+" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+}

@@ -1,0 +1,26 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Cannot send message" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#cannot_send_message" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! Do you need help with: <br><div><ul><br><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Help with using my device\">Help with using my device</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Seeing if my line has messaging\">Seeing if my line has messaging</a></li><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"I swapped my SIM and now messaging doesn't work\">I swapped my SIM and now messaging doesn't work</a></li></ul></div>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="Help with using my device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I have a great tool for you to use for all your device support needs. Click <a target=\"_blank\" href=\"https://www.att.com/device-support/selector/\"><b>here</b></a> to select your device and get amazing help with hotspots, voicemail, how to back up and restore your device along with a complete users manual! " fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label="Was this information helpful" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Seeing if my line has messaging" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2jump [label="Change Rate Plan" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="I swapped my SIM and now messaging doesn't work" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3dialog [label="I'm sorry you are having trouble, you may need a new SIM or an update to your account.  A live agent can assist you with this. <br><br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child3jump [label="Transfer to Live Agent" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2jump [label="Jump To"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3dialog
+	_level1child3title -> _level1child3jump [label="Jump To"]
+}

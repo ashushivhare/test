@@ -1,0 +1,14 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label=FN_Best_Offer fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_Best_Offer" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	root_condition2 [label="$waSession.customerType==\"CONS\"" fillcolor=lightgrey fontsize=9 shape=diamond style=filled]
+	root_dialog2 [label="I can help you with that!<br> 
+
+The FirstNet network can only be accessed by devices using FirstNet SIMs. AT&T First Responder Appreciation Offer users use AT&T SIM to connect to the AT&T network. To connect to FirstNet, please click this <a href=\"www.firstnet.com/signup\" target=\"_blank\">link</a>  to complete your FirstNet profile to update your device/service to FirstNet.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> root_nodetitle
+	Intent -> root_condition2
+	root_condition2 -> root_dialog2
+}

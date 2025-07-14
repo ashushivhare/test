@@ -1,0 +1,36 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Unauthenticated RFR" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="$waInput.portal == \"login\"" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I would love to help you with that however, a live agent is required for this. 
+I can provide information on calling a live agent 24/7.  <br></br>Live chat agents are only available after successful log in. May I offer additional assistance with: <ul><div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Menu Options\">Menu Options</a></li><br></div> <div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Create an account\">Create an account</a></li><br></div> <div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Retrieve my User Name\">Retrieve my User Name</a></li><br></div> <div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Reset my password\">Reset my password</a></li><br></div> <div><li><a href=\"#\" role=\"button\" data-nuance-message-text=\"Provide you the number to call\">Provide you the number to call</a></li><br></div></ul> I want more info on…" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	_level1child1title [label="I am not seeking help with my business mobility service > when selected provide the existing dialog for other portals " fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child1dialog [label="I can help you with some Premier self-service options for managing your enterprise mobility accounts. Here are some places where you can find help about other AT&T solutions:<br></br>If you’re a consumer or small business mobility customer, go to <a href=\"https://www.att.com/my/#/login\"  target=’_blank’>myAT&T</a>.<br></br>If you’re an enterprise business customer looking for help with your network services, go to <a href=\"https://businesscenter.att.com/ebiz/registration/\"  target=’_blank’>Business Center</b> or BusinessDirect</a>.<br></br>
+To manage your DIRECTV or DIRECTV for BUSINESS account, or find more information about AT&T entertainment, go to <a href=\"https://www.directv.com/\" target=’_blank’>DIRECTV</a>.<br></br>To explore the AT&T Cloud ecosystem or log in to your AT&T Cloud Solutions account, go to <a href=\"https://www.synaptic.att.com/clouduser/login.htm\"  target=’_blank’>Cloud Solutions</a>.<br></br> The <a href=\"https://my-attwifi.attwifi.com/ent_loginpage\"  target=’_blank’>AT&T Wi-Fi Customer Portal</a>  is where you can manage your AT&T wireless internet solution.<br></br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child1jump [label=Goodbye fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child2title [label="Retrieve my User Name > Go to forgot_username dialog" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child2waFlags [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child3title [label="Reset my Password > Go to forgot_password dialog" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child3waFlags [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child4title [label="Provide you the number to call" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child4dialog [label="Our phone support agents can help 24/7! Please call <b>800.331.0500</b>. If you have other questions, send me a chat. I’m also available 24/7. Thank you for choosing AT&T. Goodbye." fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	_level1child4waFlags [label="End Chat" fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	_level1child5title [label="Create an account  > Go to registration intent dialog" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	_level1child5waFlags [label=Login_and_Registration fillcolor=lightgreen fontsize=9 shape=ellipse style=filled]
+	Dialog -> root_nodetitle
+	Dialog -> _level1child1title
+	_level1child1title -> _level1child1dialog
+	_level1child1title -> _level1child1jump [label="Jump To"]
+	Dialog -> _level1child2title
+	_level1child2title -> _level1child2waFlags [label="Switch Workspace"]
+	Dialog -> _level1child3title
+	_level1child3title -> _level1child3waFlags [label="Switch Workspace"]
+	Dialog -> _level1child4title
+	_level1child4title -> _level1child4dialog
+	_level1child4dialog -> _level1child4waFlags
+	Dialog -> _level1child5title
+	_level1child5title -> _level1child5waFlags [label="Switch Workspace"]
+}

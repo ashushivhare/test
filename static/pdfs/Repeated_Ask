@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Repeated Ask" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="$waSession.repeatedAsk && !$waSession.outOfScope && !@negativeTerms && !@liveAgentOptions" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Out of Scope" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}

@@ -1,0 +1,13 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="FN Download App" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#FN_Download_App" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Was this information helpful?" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Dialog [label="I can help you with that! 
+To get information on how to download applications for your device:
+1. Click <a href=\"https://www.att.com/device-support/index\" target=\"_blank\">here</a> 
+2. Select <b>Your Device</b> then click on <b>Application Management</b>.<br>" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+	Dialog -> root_nodetitle
+}

@@ -1,0 +1,9 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="ATT Fiber" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="#ATT_Fiber" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	Dialog [label="I can help you with that!<br><br>You can learn all about and check the availability of AT&T Business Fiber® <a href=\"https://www.business.att.com/products/business-fiber-internet.html\" target=\"_blank\">here</a>. Be sure to look for special offers for online orders! At the bottom of the page is a form to schedule a call from a sales expert.<br><br>Another possibility is AT&T Internet Air® for Business which is fixed wireless internet powered by AT&T 5GSM. Go <a href=\"https://www.business.att.com/products/wireless-internet.html\" target=\"_blank\">here</a> to learn more, see current offers and check availability.  Scroll down to watch a great video explaining the technology and how to reach a live agent for help.<br><br>Existing Small Business customers can log into myAT&T <a href=\"https://www.att.com/my/#/login\" target=\"_blank\">here</a> where live chat agents are ready to assist.  
+[MSG_LINE_BR~05000]" fillcolor=lightyellow fontsize=9 shape=rectangle style=filled]
+	Intent -> Dialog [label=Dialog minlen=2]
+}

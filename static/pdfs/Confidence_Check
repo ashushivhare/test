@@ -1,0 +1,8 @@
+digraph DFD {
+	bgcolor=azure ordering=out rankdir=TB size=20 splines=polyline
+	Title [label="Confidence Check" fillcolor=lightblue fontsize=9 shape=rectangle style=filled]
+	Intent [label="input.text.length() > 0 && (intents.size()>0 && intents[0].confidence < 0.5) && !@iconic_actions && !@iconic_new_device" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Title -> Intent [label=Intent]
+	root_nodetitle [label="Disambiguation Attempt" fillcolor=lightblue fontsize=9 shape=diamond style=filled]
+	Intent -> root_nodetitle
+}
