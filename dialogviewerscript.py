@@ -1,122 +1,102 @@
+from flask import Flask, render_template, request
 import threading
 import tkinter as tk
 from tkinter import Canvas
 from graphviz import Digraph
 import re
 import os
-from flask import Flask, render_template, request
-import json
-from google.cloud import dialogflow_cx_v3
-from google.oauth2 import service_account
 app = Flask(__name__)
-
-# Configuration for Google CCAI
-def load_google_credentials(credentials_file):
-    return service_account.Credentials.from_service_account_file(credentials_file)
-
-def get_google_client(credentials, project_id, location):
-    return dialogflow_cx_v3.FlowsClient(credentials=credentials)
 
 # Function to draw the Data Flow Diagram
 def dialog_viewer(selected_item):
-    try:
-        # Path to your Google Cloud credentials file
-        credentials_file = "google_credentials.json"
-        project_id = "your-project-id"  # Replace with your Google Cloud project ID
-        location = "us-central1"  # Replace with your agent's location
-        agent_id = "your-agent-id"  # Replace with your agent ID
+        from ibm_watson import AssistantV1
+        from ibm_watson import AssistantV2
+        from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+        import json
+        # V2 libraries can't see old V1 libraries
+        authenticator = IAMAuthenticator('qpLmPC9InrkehNB3dYCJFpD4Q0f8eHUjJf1c0JF94mP-')
 
-        # Initialize Google CCAI client
-        credentials = load_google_credentials(credentials_file)
-        client = get_google_client(credentials, project_id, location)
-        
-        # Get the agent's flows
-        parent = f"projects/{project_id}/locations/{location}/agents/{agent_id}"
-        flows = client.list_flows(parent=parent)
-        
-        # Find the flow with the matching display name
-        target_flow = None
-        for flow in flows:
-            if flow.display_name == selected_item:
-                target_flow = flow
-                break
-        
-        if not target_flow:
-            return []
-        
-        # Get the flow's pages (equivalent to dialog nodes)
-        pages_client = dialogflow_cx_v3.PagesClient(credentials=credentials)
-        pages = pages_client.list_pages(parent=target_flow.name)
-        
-        # Get the flow's transitions
-        transitions_client = dialogflow_cx_v3.TransitionRouteGroupsClient(credentials=credentials)
-        transitions = []
-        try:
-            transitions = transitions_client.list_transition_route_groups(parent=target_flow.name)
-        except Exception as e:
-            print(f"Error getting transitions: {e}")
-        
-        # Convert Google CCAI structure to a format similar to Watson's for visualization
-        skill_dialog_map = []
-        multivalued_nodes = []
-        root_nodes = []
-        child_nodes = []
-        node_list = []
-        
-        # Process pages as dialog nodes
-        for page in pages:
-            node = {
-                'dialog_node': page.name.split('/')[-1],
-                'type': 'standard',
-                'title': page.display_name
-            }
-            
-            # Check if this is an entry page (root node)
-            if page.name == target_flow.start_page:
-                root_nodes.append(node)
-            else:
-                # Check for parent relationship
-                for route in page.transition_routes:
-                    if hasattr(route, 'target_page') and route.target_page:
-                        node['parent'] = route.target_page.split('/')[-1]
-                        child_nodes.append(node)
-                        break
-                else:
-                    root_nodes.append(node)
-            
-            # Add to node list
-            node_list.append(node)
-            
-            # Check for multi-valued nodes (equivalent to response conditions)
-            if len(page.transition_routes) > 1:
-                for route in page.transition_routes:
-                    condition_node = {
-                        'dialog_node': f"{page.name.split('/')[-1]}_{route.name}",
-                        'type': 'response_condition',
-                        'parent': page.name.split('/')[-1],
-                        'conditions': route.condition if hasattr(route, 'condition') else ""
-                    }
-                    
-                    if hasattr(route, 'trigger_fulfillment') and route.trigger_fulfillment.messages:
-                        condition_node['output'] = {
-                            'generic': [{
-                                'values': [{
-                                    'text': msg.text.text[0] if msg.text.text else ""
-                                } for msg in route.trigger_fulfillment.messages]
-                            }]
-                        }
-                    
-                    multivalued_nodes.append(condition_node)
+        assistant = AssistantV1(
+            version='2021-06-14',
+            authenticator=authenticator
+        )
 
-        # Rest of the function remains similar but adapted for Google CCAI structure
+        assistant.set_service_url('https://api.us-south.assistant.watson.cloud.ibm.com/instances/988e9164-c283-425d-ab70-be1e07fd65c7')
+        def get_workspace_map():
+            response=assistant.list_workspaces().get_result()
+            list_workspaces=[]
+            for workspaces in response['workspaces']:
+                workspace={'name':workspaces['name'],'ID':workspaces['workspace_id']}
+                list_workspaces.append(workspace)
+        #print(assistant.list_workspaces())
+        #List of skills for Premier
+        Premier_workspace_list={selected_item}
+        #Downloading the Skill
+        def download_a_workspace(assistant, workspace_name):
+            '''
+            This function is used to download a skill by workspace_id.
+            '''
+            response = assistant.list_workspaces(sort='name').get_result()
+            workspaces = response['workspaces']
+            downloaded_workspaces = []
+            for workspace in workspaces:
+                if workspace['name'] == workspace_name:
+                    downloaded_workspace = assistant.get_workspace(workspace_id = workspace['workspace_id'], 
+                                                                export=True, 
+                                                                include_audit=None).get_result()
+                    downloaded_workspaces.append(downloaded_workspace)
+            return downloaded_workspaces
+        #download all skills for premierlist
+        Skill_list=[]
+        for name in Premier_workspace_list:
+
+            response=download_a_workspace(assistant,name)
+            skill={'name':name,'response':response}
+            Skill_list.append(skill)
+        #print(len(Skill_list))
+        #Download skills for the list 
+        for skill in Skill_list:
+            #print(skill.values())
+            response=skill['response']
+           # response=list(skill.values())
+            #dialog_nodes=response['dialog_nodes']
+            #value=response[0]
+            #print(dialog_nodes)
+            dialog_nodes=response[0]['dialog_nodes']
+        #new approach to get all childs
+        skill_dialog_map=[]
+        multivalued_nodes=[]
+        root_nodes=[]
+        child_nodes=[] 
+        node_list=[]
+        for skill in Skill_list:
+                response=skill['response']
+                dialog_nodes=response[0]['dialog_nodes']
+
+
+                for nodes in dialog_nodes:
+                    if(nodes['type']=='standard'):
+                        node_list.append(nodes)
+
+                for nodes in dialog_nodes:
+                    if(nodes['type']=='response_condition'):
+                        multivalued_nodes.append(nodes)
+                #print(multivalued_nodes)
+
+                for nodes in node_list:
+                    if('parent' in nodes):
+                        child_nodes.append(nodes)
+                    else:
+                        root_nodes.append(nodes)
+        #print(root_nodes)
         def get_jump_Node(nodekey):
-            title = 'not found'
-            for node in node_list:
-                if node['dialog_node'] == nodekey:
-                    if 'title' in node:
-                        title = node['title']
-            return title
-
+                    #print(nodekey)
+                    title='not found'
+                    for nodes in (dialog_nodes):
+                        if(nodes['dialog_node']==nodekey):
+                            if('title'in nodes):
+                                title= nodes['title']
+                    return  title       
         def getchildnodes(child_nodes,data,dialognode,lastname,level):
                             j=0
 
@@ -159,7 +139,7 @@ def dialog_viewer(selected_item):
                                             if('waFlags' in child['context']):
                                                 if('Switch_Workspace') in child['context']['waFlags']:
 
-                                                    if(child['context']['waFlags']['Switch_Workspace']!='CCAI_Router'):
+                                                    if(child['context']['waFlags']['Switch_Workspace']!='Router_WCS'):
                                                         endsearch=True
 
                                                         data[name+'waFlags']=child['context']['waFlags']['Switch_Workspace'] 
@@ -235,7 +215,7 @@ def dialog_viewer(selected_item):
                                             if('waFlags' in multinodes['context']):
                                                 if('Switch_Workspace') in multinodes['context']['waFlags']:
 
-                                                    data[waflag]=multinodes['context']['waFlags']['Switch_Workspace'] 
+                                                    data[waflag]=multinodes['context']['waFlags']['Switch_Workspace']
                                                 if('endSession') in multinodes['context']['waFlags']:
                                                     data[waflag]="End Chat"
                                        # Data.append(data)
@@ -281,7 +261,7 @@ def dialog_viewer(selected_item):
                                     
                                     
 
-                        data={'intent':intent,'title':title,'dialog':dialog,'waFlags':waflags,'root_nodetitle':rootjumpnodetitle} 
+                        data={'intent':intent,'title':title,'dialog':dialog,'waFlags':waflags,'root_nodetitle':rootjumpnodetitle}
 
                         data=getrootconditionnodes(multivalued_nodes,data,'root_condition','root_dialog',nodes['dialog_node'],'root_jump','root_waFlags')
 
@@ -289,9 +269,6 @@ def dialog_viewer(selected_item):
 
                         Data.append(data)
         return Data
-    except Exception as e:
-        print(f"Error in dialog_viewer: {e}")
-        return []
 
 def count_level(obj):
             count = 0
@@ -663,116 +640,28 @@ def draw_dfd(map_obj,output_dir,dfd_files):
                     continue  # Skip this object and continue with the next one
             return  dfd_files
 
+        # Function to handle item selection from the listbox
+
+
+        
+
+
+
 # Custom names for navigation buttons and dropdown items
 menu_data = {
-    "Premier": ['Add_A_New_Line','Autopay','Balance Due','Billing Reports','Data Usage','Login_and_Registration','Pay Bill','Payment Arrangements','Payment Confirmation','CCAI_Router','Upgrade_Eligibility','View Bill'],
+    "Premier": ['Add_A_New_Line','Autopay','Balance Due','Billing Reports','Data Usage','Login_and_Registration','Pay Bill','Payment Arrangements','Payment Confirmation','Router_WCS','Upgrade_Eligibility','View Bill'],
     "SMB": ['SMB'],
     "MyAtt": ['myATT_FirstNet',"myATT_FirstNet_Central"],
     "Premierfirstnet": ['Premier_FirstNet'],
     "BC": ["BC_PreLogin", "BC Get Ticket Status","BC_Router"],
-    "FN Central":["FN_Central"],
-    "Google CCAI":["CCAI_Flows", "CCAI_Intents", "CCAI_Entities"]
+    "FN Central":["FN_Central"]
+
 }
+
 
 @app.route("/")
 def home():
     return render_template("page.html", title="Home", menu_data=menu_data, pdfs=[], selected_item="")
-
-@app.route("/export_to_ccai/<category>/<item>")
-def export_to_ccai(category, item):
-    """Export a Watson dialog to Google CCAI format"""
-    if category not in menu_data:
-        return "Category Not Found", 404
-    
-    # Get the Watson dialog data
-    Data = dialog_viewer(item)
-    
-    # Convert to CCAI format
-    ccai_data = convert_to_ccai_format(Data)
-    
-    # Save to file
-    output_dir = "static/ccai_exports"
-    os.makedirs(output_dir, exist_ok=True)
-    filename = f"{item.replace(' ', '_')}_ccai_export.json"
-    with open(os.path.join(output_dir, filename), 'w') as f:
-        json.dump(ccai_data, f, indent=2)
-    
-    return render_template("export_success.html", filename=filename, item=item)
-
-def convert_to_ccai_format(watson_data):
-    """Convert Watson dialog data to Google CCAI format"""
-    ccai_data = {
-        "displayName": watson_data[0]['title'] if watson_data and 'title' in watson_data[0] else "Converted Flow",
-        "description": "Converted from Watson Assistant",
-        "transitionRoutes": [],
-        "pages": []
-    }
-    
-    # Process each dialog node
-    for node in watson_data:
-        # Create a page for each node
-        page = {
-            "displayName": node.get('title', 'Unnamed Node'),
-            "form": None,
-            "entryFulfillment": {
-                "messages": []
-            },
-            "transitionRoutes": []
-        }
-        
-        # Add dialog text as fulfillment
-        if 'dialog' in node and node['dialog']:
-            page["entryFulfillment"]["messages"].append({
-                "text": {
-                    "text": [node['dialog']]
-                }
-            })
-        
-        # Add conditions as transition routes
-        if 'intent' in node and node['intent']:
-            route = {
-                "condition": f"$intent = {node['intent']}",
-                "targetPage": node.get('title', 'Unnamed Node')
-            }
-            ccai_data["transitionRoutes"].append(route)
-        
-        # Handle jumps and workspace switches
-        if 'root_nodetitle' in node and node['root_nodetitle']:
-            route = {
-                "targetPage": node['root_nodetitle']
-            }
-            page["transitionRoutes"].append(route)
-        
-        if 'waFlags' in node and node['waFlags']:
-            # For workspace switches, we'll add a special route
-            if node['waFlags'] != "End Chat":
-                route = {
-                    "triggerFulfillment": {
-                        "messages": [{
-                            "text": {
-                                "text": [f"Switching to {node['waFlags']} flow"]
-                            }
-                        }]
-                    },
-                    "targetFlow": node['waFlags']
-                }
-                page["transitionRoutes"].append(route)
-            else:
-                # End session
-                route = {
-                    "triggerFulfillment": {
-                        "messages": [{
-                            "text": {
-                                "text": ["End of conversation"]
-                            }
-                        }]
-                    }
-                }
-                page["transitionRoutes"].append(route)
-        
-        ccai_data["pages"].append(page)
-    
-    return ccai_data
 
 @app.route("/<category>/<item>")
 def category_item(category, item):
@@ -782,11 +671,14 @@ def category_item(category, item):
         dfd_files = []
         output_dir = "static/pdfs"
         os.makedirs(output_dir, exist_ok=True)
-        Data = dialog_viewer(item)
-        dfd_files = draw_dfd(Data, output_dir, dfd_files)
+        Data=dialog_viewer(item)
+        dfd_files=draw_dfd(Data,output_dir,dfd_files)
         
             
-    return render_template("page.html", title=category, menu_data=menu_data, pdfs=dfd_files, selected_item=item, show_export=True)
+    return render_template("page.html", title=category, menu_data=menu_data, pdfs=dfd_files, selected_item=item)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
