@@ -68,20 +68,10 @@
                 const value = this.value;
                 const checked = this.checked;
                 
-                // Create a hidden input for the form if checked
-                if (checked) {
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = 'selected_dialogs';
-                    input.value = value;
-                    input.id = 'form-' + value;
-                    document.getElementById('migration-form').appendChild(input);
-                } else {
-                    // Remove the hidden input if unchecked
-                    const input = document.getElementById('form-' + value);
-                    if (input) {
-                        input.remove();
-                    }
+                // Enable or disable the corresponding hidden input in the form
+                const input = document.getElementById('form-' + value);
+                if (input) {
+                    input.disabled = !checked;
                 }
             });
         });
@@ -98,7 +88,9 @@
                 <li>
                     <input type="checkbox" id="select-{{ pdf.split('/')[-1] | replace('.pdf', '') }}" 
                            name="selected_dialogs" value="{{ pdf.split('/')[-1] | replace('.pdf', '') }}">
-                    <a href="#pdf-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">{{ pdf.split('/')[-1] | replace('.pdf', '') }}</a>
+                    <label for="select-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">
+                        <a href="#pdf-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">{{ pdf.split('/')[-1] | replace('.pdf', '') }}</a>
+                    </label>
                 </li>
             {% endfor %}
         </ul>
@@ -110,6 +102,9 @@
         <div class="migration-controls">
             <h2>Migrate Selected Intents to Google CCAI</h2>
             <form action="{{ url_for('export_to_ccai', category=category, item=selected_item) }}" method="post" id="migration-form">
+                {% for pdf in pdfs %}
+                <input type="hidden" name="selected_dialogs" value="{{ pdf.split('/')[-1] | replace('.pdf', '') }}" id="form-{{ pdf.split('/')[-1] | replace('.pdf', '') }}" disabled>
+                {% endfor %}
                 <button type="submit" class="export-button">Export to Google CCAI</button>
             </form>
         </div>

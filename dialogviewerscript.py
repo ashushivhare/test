@@ -793,14 +793,18 @@ def export_to_ccai(category, item):
     # Get selected dialogs to migrate
     # Get selected dialogs from the sidebar checkboxes
     selected_dialogs = request.form.getlist('selected_dialogs') 
+    print(f"Selected dialogs: {selected_dialogs}")
     
     if not selected_dialogs:
+        print("No dialogs selected for migration")
         return render_template("export_error.html", error="No dialogs selected for migration")
     
     # Filter the data to only include selected dialogs
     filtered_data = []
     for dialog in Data:
+        print(f"Checking dialog: {dialog.get('title', 'Unknown')}")
         if dialog.get('title') in selected_dialogs:
+            print(f"Adding dialog: {dialog.get('title', 'Unknown')}")
             filtered_data.append(dialog)
     
     # Configure Google CCAI parameters
