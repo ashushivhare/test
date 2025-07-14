@@ -789,7 +789,8 @@ def export_to_ccai(category, item):
     Data = dialog_viewer(item)
     
     # Get selected dialogs to migrate
-    selected_dialogs = request.form.getlist('selected_dialogs')
+    # Get selected dialogs from the sidebar checkboxes
+    selected_dialogs = request.form.getlist('selected_dialogs') 
     
     if not selected_dialogs:
         return "No dialogs selected for migration", 400

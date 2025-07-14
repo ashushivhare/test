@@ -134,6 +134,8 @@ body {
 
 .pdf-sidebar li {
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
 }
 
 .pdf-sidebar a {
@@ -149,6 +151,10 @@ body {
     background: #007bff;
     color: white;
     border-radius: 5px;
+}
+
+.pdf-sidebar input[type="checkbox"] {
+    margin-right: 8px;
 }
 
 /* PDF Viewer - Adjust for Sidebar on Right */

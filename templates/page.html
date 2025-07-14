@@ -55,6 +55,39 @@
     </div>
 </nav>
 
+<script>
+    // JavaScript to sync the sidebar checkboxes with the form submission
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all checkboxes in the sidebar
+        const sidebarCheckboxes = document.querySelectorAll('.pdf-sidebar input[type="checkbox"]');
+        
+        // Add event listener to each checkbox
+        sidebarCheckboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                // When a sidebar checkbox is changed, update the form
+                const value = this.value;
+                const checked = this.checked;
+                
+                // Create a hidden input for the form if checked
+                if (checked) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'selected_dialogs';
+                    input.value = value;
+                    input.id = 'form-' + value;
+                    document.getElementById('migration-form').appendChild(input);
+                } else {
+                    // Remove the hidden input if unchecked
+                    const input = document.getElementById('form-' + value);
+                    if (input) {
+                        input.remove();
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 <!-- Main Content -->
 <main class="content-wrapper">
     <!-- Sidebar: Scrollable PDF List -->
@@ -62,7 +95,11 @@
         <h3>Intents List</h3>
         <ul>
             {% for pdf in pdfs %}
-                <li><a href="#pdf-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">{{ pdf.split('/')[-1] | replace('.pdf', '') }}</a></li>
+                <li>
+                    <input type="checkbox" id="select-{{ pdf.split('/')[-1] | replace('.pdf', '') }}" 
+                           name="selected_dialogs" value="{{ pdf.split('/')[-1] | replace('.pdf', '') }}">
+                    <a href="#pdf-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">{{ pdf.split('/')[-1] | replace('.pdf', '') }}</a>
+                </li>
             {% endfor %}
         </ul>
     </aside>
@@ -71,20 +108,8 @@
     <section class="pdf-container">
         {% if pdfs %}
         <div class="migration-controls">
-            <h2>Migrate to Google CCAI</h2>
-            <form action="{{ url_for('export_to_ccai', category=category, item=selected_item) }}" method="post">
-                <div class="checkbox-container">
-                    <h3>Select dialogs to migrate:</h3>
-                    {% for pdf in pdfs %}
-                        <div>
-                            <input type="checkbox" id="dialog-{{ pdf.split('/')[-1] | replace('.pdf', '') }}" 
-                                   name="selected_dialogs" value="{{ pdf.split('/')[-1] | replace('.pdf', '') }}">
-                            <label for="dialog-{{ pdf.split('/')[-1] | replace('.pdf', '') }}">
-                                {{ pdf.split('/')[-1] | replace('.pdf', '') }}
-                            </label>
-                        </div>
-                    {% endfor %}
-                </div>
+            <h2>Migrate Selected Intents to Google CCAI</h2>
+            <form action="{{ url_for('export_to_ccai', category=category, item=selected_item) }}" method="post" id="migration-form">
                 <button type="submit" class="export-button">Export to Google CCAI</button>
             </form>
         </div>
